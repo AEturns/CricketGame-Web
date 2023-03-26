@@ -1,7 +1,7 @@
-import { Player } from '@lottiefiles/react-lottie-player'
-import { List, ListItem, ListItemButton, ListItemText } from '@mui/material';
+import { List, ListItem, ListItemButton, ListItemText, Button } from '@mui/material';
 import React from 'react'
 import Lottie from 'react-lottie'
+import { useHistory } from 'react-router';
 import * as animationData from '../assets/lottie/107653-trophy.json'
 import { leaderboard } from '../config/const';
 
@@ -15,6 +15,7 @@ const defaultOptions = {
 };
 
 function Completed({ match }) {
+    const navigate = useHistory()
     return (
         <div >
             <div className='award-animation'>
@@ -28,7 +29,7 @@ function Completed({ match }) {
             <h1 className='score-label'>SCORE</h1>
             <h1 className='score-points'>{match.score} / {match.wickets} </h1>
             <p style={{ textAlign: 'center', color: "#fff" }}>Leaderboard <h4 style={{ fontSize: '0.5em' }}>({match.matchSize} /{match.matchSize} )</h4></p>
-            <div style={{ display: 'flex', justifyContent: "center", overflow: "auto", height: "500px" }}>
+            <div style={{ display: 'flex', justifyContent: "center", overflow: "auto", height: "280px" }}>
                 <List className='card-list-list completed-leaderboard' >
                     <ListItem disablePadding>
                         <ListItemButton style={{ backgroundColor: "#1e2430", color: "#fff" }}>
@@ -46,7 +47,18 @@ function Completed({ match }) {
                         </ListItem>
                     ))}
                 </List>
+                
             </div>
+            <Button variant="contained" color="error"
+            onClick={() => {
+        
+                navigate.push('/selection')
+                sessionStorage.removeItem("matchSession")
+            }}
+            >
+                Play Another Match
+            </Button>
+       
         </div>
 
 

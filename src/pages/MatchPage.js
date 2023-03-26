@@ -1,13 +1,9 @@
-import { Button, Container, InputAdornment, TextField } from '@mui/material'
-import Ball from '../assets/images/ball.png'
-import React, { useEffect, useState } from 'react'
-import { styled } from '@mui/material/styles';
+import { Container } from '@mui/material'
+import React, {useState } from 'react'
 import RunSelection from '../components/RunSelection';
 import Quiz from '../components/Quiz';
-import Swal from 'sweetalert2';
-import { Navigate, Redirect, useHistory } from 'react-router';
+import { Redirect, useHistory } from 'react-router';
 import Completed from '../components/Completed';
-import { Modal } from '@coreui/coreui';
 import { Prompt } from 'react-router-dom'
 
 function MatchPage({ navigation }) {

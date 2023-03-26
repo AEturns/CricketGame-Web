@@ -1,14 +1,13 @@
-import { Box, Button, Container, InputAdornment, TextField } from '@mui/material'
+import { Box, Button } from '@mui/material'
 import Ball from '../assets/images/ball.png'
 import React, { useState } from 'react'
 import { styled } from '@mui/material/styles';
 import { Player } from '@lottiefiles/react-lottie-player';
 import * as animationData from '../assets/lottie/104144-cricket-ball.json'
 import { CModal } from '@coreui/react';
-import Countdown from 'react-countdown';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import Swal from 'sweetalert2';
 import { useHistory } from 'react-router';
+
 const AnswerButton = styled(Button)({
   boxShadow: 'none',
   textTransform: 'none',

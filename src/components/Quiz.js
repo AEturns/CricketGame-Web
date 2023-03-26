@@ -2,7 +2,7 @@ import { Box, Button } from '@mui/material'
 import React, { useState } from 'react'
 import Ball from '../assets/images/ball.png'
 import { styled } from '@mui/material/styles';
-import { CButton, CModal, CModalBody, CModalFooter, CModalHeader, CModalTitle } from '@coreui/react';
+import { CButton, CModal, CModalFooter } from '@coreui/react';
 import Lottie from 'lottie-react';
 import * as animationData from '../assets/lottie/77706-wicket.json'
 import * as animationOne from '../assets/lottie/78820-number-1-animation.json'
@@ -11,11 +11,9 @@ import * as animationSix from '../assets/lottie/77705-score-6.json'
 import * as animationFour from '../assets/lottie/77707-scored-4.json'
 import * as animationOut from '../assets/lottie/82818-cricket-bowled-out.json'
 import * as animationOutText from '../assets/lottie/13490-cricket-out-animation.json'
-import { Player } from '@lottiefiles/react-lottie-player';
 import Countdown from 'react-countdown';
 import { scoreChange } from '../util/scoreCalculator';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import Swal from 'sweetalert2';
 import { useHistory } from 'react-router';
 
 const AnswerButton = styled(Button)({

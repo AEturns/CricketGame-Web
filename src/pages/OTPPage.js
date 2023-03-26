@@ -2,9 +2,9 @@ import { Container } from '@mui/system'
 import InputAdornment from '@mui/material/InputAdornment';
 import React, { useState } from 'react'
 import HomeImage from '../assets/images/ball.png'
-import { Button, createStyles, FormControl, makeStyles, TextField } from '@mui/material';
+import { Button, createStyles, TextField } from '@mui/material';
 import { animateCSS } from '../animation/triggerAnimation'
-import { useHistory, useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Logo from '../assets/images/Logo-01.png'
 const OTPPage = () => {
     const navigate = useHistory()
