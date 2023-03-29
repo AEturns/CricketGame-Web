@@ -1,5 +1,5 @@
 import { Box, Button } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Ball from '../assets/images/ball.png'
 import { styled } from '@mui/material/styles';
 import { CButton, CModal, CModalFooter } from '@coreui/react';
@@ -15,6 +15,7 @@ import Countdown from 'react-countdown';
 import { scoreChange } from '../util/scoreCalculator';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { useHistory } from 'react-router';
+import { getQuestion } from '../services/match.service';
 
 const AnswerButton = styled(Button)({
     boxShadow: 'none',
@@ -73,8 +74,11 @@ function Quiz({ changeStatus, run }) {
     const [open, setOpen] = useState(false)
     const [selectAnimation, setSelectAnimation] = useState(animationData)
     const [isWicket, setIsWicket] = useState(true)
+    const [question, setQuestion] = useState("")
+    const [answers, setAnswers] = useState([])
+    const [correctAnswer, setCorrectAnswer] = useState(null)
     const checkAnswer = (id) => {
-        if (id == 1) {
+        if (id == correctAnswer) {
             setIsWicket(false)
             setSelectAnimation(run == 6 ? animationSix : (run == 4 ? animationFour : (run == 2 ? animationTwo : animationOne)))
         }
@@ -85,6 +89,48 @@ function Quiz({ changeStatus, run }) {
 
     }
 
+    useEffect(() => {
+      getQuestion(run, null)
+      .then(res => {
+        console.log("res", res)
+        setQuestion(res.question)
+        setCorrectAnswer(Number(res.correct_answer))
+        const mockAnswers = [
+            {
+                id: 1,
+                answer: res.answer_1
+            },
+            {
+                id: 2,
+                answer: res.answer_2
+            },
+            {
+                id: 3,
+                answer: res.answer_3
+            },
+            {
+                id: 4,
+                answer: res.answer_4
+            }
+        ]
+
+        setAnswers(mockAnswers)
+      })
+    }, [])
+    
+    useEffect(() => {
+        const unloadCallback = (event) => {
+          event.preventDefault();
+          console.log(event)
+          event.returnValue = "";
+          return "";
+        };
+      
+        window.addEventListener("beforeunload", unloadCallback);
+        return () => {
+            window.removeEventListener("beforeunload", unloadCallback)
+        }
+      }, []);
 
     const renderer = ({ hours, minutes, seconds, completed }) => {
         if (completed) {
@@ -173,8 +219,7 @@ function Quiz({ changeStatus, run }) {
             </div>
             <br />
             <div className='question animate__animated animate__lightSpeedInRight'>
-                <h3 className='question' style={{ color: "#fff" }}>Who is the captain of Pakistan team in 1992
-                    cricket world cup?</h3>
+                <h3 className='question' style={{ color: "#fff" }}>{question}</h3>
             </div>
             <div className='input-container-number mt-4 '>
                 {answers.map((item, key) => (

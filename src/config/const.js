@@ -9,10 +9,16 @@ const SMS_CREDENTIALS = {
 export const API_PATHS = {
     LOGIN_REGISTER_URL: MAIN_API,
     ALL_MATCHES_URL: MAIN_API,
-    GET_QUESTION_URL: MAIN_API,
+    GET_QUESTION_URL: MAIN_API + 'question/random/',
     VALIDATE_ANSWER_URL: MAIN_API,
     COMPLETE_MATCH_URL: MAIN_API,
     SEND_SMS_URL: SMS_API + '?username=' + SMS_CREDENTIALS.USERNAME + '&password=' + SMS_CREDENTIALS.PASSWORD + '&from=' + SMS_CREDENTIALS.FROM
+}
+
+export const LANGUAGE_ID = 0
+
+export const STRINGS = {
+    MATCH_SELECTION_HEADING: ['Please Select Your Match','කරුණාකර ක්‍රිකට් තරඟයක් තෝරන්න']
 }
 
 

@@ -15,7 +15,7 @@ const getQuestion = async (selectedRun, answeredQuestions) => {
     const data = { selectedRun, answeredQuestions }
 
     try {
-        const response = await axios.post(API_PATHS.GET_QUESTION_URL, data)
+        const response = await axios.get(API_PATHS.GET_QUESTION_URL + selectedRun)
         return response.data
     } catch (e) {
         console.log(e)

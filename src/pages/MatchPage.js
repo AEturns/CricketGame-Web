@@ -67,7 +67,7 @@ function MatchPage({ navigation }) {
             // }
         
             return location.pathname.startsWith("/app")
-              ? console.log("lol")
+              ? console.log("Leave")
               : `Are you sure you want to leave the match?`
           }}
         />

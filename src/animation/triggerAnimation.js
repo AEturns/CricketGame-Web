@@ -5,7 +5,7 @@ export const animateCSS = (element, animation, isEnd, duration, prefix = 'animat
         const node = document.querySelector(element);
 
         node.classList.add(`${prefix}animated`, animationName);
-        console.log(node, element, animationName, prefix)
+      
         // When the animation ends, we clean the classes and resolve the Promise
         if (isEnd) {
             function handleAnimationEnd(event) {

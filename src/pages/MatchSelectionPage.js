@@ -7,7 +7,7 @@ import { animateCSS } from '../animation/triggerAnimation'
 import Logo from '../assets/images/Logo-01.png'
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import GamepadIcon from '@mui/icons-material/Gamepad';
-import { leaderboard, matches } from '../config/const'
+import { LANGUAGE_ID, leaderboard, matches, STRINGS } from '../config/const'
 
 
 
@@ -109,7 +109,7 @@ const MatchSelectionPage = () => {
             </CModal>
             <div className='start-content animate__slow'>
                 <div className='top-heading'>
-                    <h2 style={{ color: '#cf4036', fontWeight: 'bold', fontSize: '2em', WebkitTextStroke: "0.5px #BD1307" }} className="animate__animated animate__bounceInDown">Please Select Your Match</h2>
+                    <h2 style={{ color: '#cf4036', fontWeight: 'bold', fontSize: '2em', WebkitTextStroke: "0.5px #BD1307" }} className="animate__animated animate__bounceInDown">{STRINGS.MATCH_SELECTION_HEADING[LANGUAGE_ID]}</h2>
                 </div>
                 <div className='card-list animate__animated animate__backInDown'>
                     <List className='card-list-list'>
