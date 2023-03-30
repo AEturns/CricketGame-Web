@@ -12,7 +12,7 @@ import * as animationFour from '../assets/lottie/77707-scored-4.json'
 import * as animationOut from '../assets/lottie/82818-cricket-bowled-out.json'
 import * as animationOutText from '../assets/lottie/13490-cricket-out-animation.json'
 import Countdown from 'react-countdown';
-import { scoreChange } from '../util/scoreCalculator';
+import { answeredQuestionUpdating, scoreChange } from '../util/scoreCalculator';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { useHistory } from 'react-router';
 import { getQuestion } from '../services/match.service';
@@ -48,27 +48,6 @@ const AnswerButton = styled(Button)({
     },
 });
 
-
-const answers = [
-    {
-        id: 1,
-        answer: "Imran Khan"
-    },
-    {
-        id: 2,
-        answer: "Ramiz Raja"
-    },
-    {
-        id: 3,
-        answer: "Inzamam-ul"
-    },
-    {
-        id: 4,
-        answer: "Iqbal Sikander"
-    }
-]
-
-
 function Quiz({ changeStatus, run }) {
 
     const [open, setOpen] = useState(false)
@@ -77,6 +56,10 @@ function Quiz({ changeStatus, run }) {
     const [question, setQuestion] = useState("")
     const [answers, setAnswers] = useState([])
     const [correctAnswer, setCorrectAnswer] = useState(null)
+    const [questionId, setQuestionId] = useState(null)
+    const [time, setTime] = useState(0)
+    const [isTime, setIsTime] = useState(false)
+    const [postCalled, setPostCalled] = useState(1)
     const checkAnswer = (id) => {
         if (id == correctAnswer) {
             setIsWicket(false)
@@ -85,52 +68,55 @@ function Quiz({ changeStatus, run }) {
         setOpen(true)
     }
 
-    const handleEventPlayer = (e) => {
-
-    }
-
     useEffect(() => {
-      getQuestion(run, null)
-      .then(res => {
-        console.log("res", res)
-        setQuestion(res.question)
-        setCorrectAnswer(Number(res.correct_answer))
-        const mockAnswers = [
-            {
-                id: 1,
-                answer: res.answer_1
-            },
-            {
-                id: 2,
-                answer: res.answer_2
-            },
-            {
-                id: 3,
-                answer: res.answer_3
-            },
-            {
-                id: 4,
-                answer: res.answer_4
-            }
-        ]
+      
+            getQuestion(run, JSON.parse(sessionStorage.getItem('matchSession'))?.answeredQuestions)
+                .then(res => {
+                    setPostCalled(postCalled + 1)
+                    console.log("res", res)
+                    setQuestion(res.question)
+                    setQuestionId(res.id)
+                 
+                    setTime(60000)
+                    setIsTime(true)
+                    setCorrectAnswer(Number(res.correct_answer))
+                    const mockAnswers = [
+                        {
+                            id: 1,
+                            answer: res.answer_1
+                        },
+                        {
+                            id: 2,
+                            answer: res.answer_2
+                        },
+                        {
+                            id: 3,
+                            answer: res.answer_3
+                        },
+                        {
+                            id: 4,
+                            answer: res.answer_4
+                        }
+                    ]
 
-        setAnswers(mockAnswers)
-      })
+                    setAnswers(mockAnswers)
+                })
+        
     }, [])
-    
+
     useEffect(() => {
         const unloadCallback = (event) => {
-          event.preventDefault();
-          console.log(event)
-          event.returnValue = "";
-          return "";
+            event.preventDefault();
+            console.log(event)
+            event.returnValue = "";
+            return "";
         };
-      
+
         window.addEventListener("beforeunload", unloadCallback);
         return () => {
             window.removeEventListener("beforeunload", unloadCallback)
         }
-      }, []);
+    }, []);
 
     const renderer = ({ hours, minutes, seconds, completed }) => {
         if (completed) {
@@ -177,6 +163,7 @@ function Quiz({ changeStatus, run }) {
                     <CButton style={{ color: "#fff", borderRadius: "50%", height: "150px", width: "150px", fontWight: "bold", boxShadow: "10px 10px 20px rgb(56, 41, 41)" }} color="danger" onClick={() => {
                         setOpen(false)
                         scoreChange(run, isWicket)
+                        answeredQuestionUpdating(questionId)
                         changeStatus()
                     }}>
                         Next
@@ -189,16 +176,16 @@ function Quiz({ changeStatus, run }) {
             </CModal>
 
             <div className='points animate__animated animate__bounceInDown'>
-                <Button  color="error" size="small" style={{height: 45, width: 20, marginTop: "10px"}} onClick={() => exitMatch()}>
-                <ExitToAppIcon style={{fontSize: '3em'}} />
+                <Button color="error" size="small" style={{ height: 45, width: 20, marginTop: "10px" }} onClick={() => exitMatch()}>
+                    <ExitToAppIcon style={{ fontSize: '3em' }} />
                 </Button>
                 <div style={{ position: 'relative' }}>
                     <img src={Ball} width={60} height={60} className="time-ball" />
                     <div style={{ position: 'absolute', top: "45%", left: "50%", transform: "translate(-50%, -50%)" }}>
-                        <Countdown
-                            date={Date.now() + 60000}
+                        {isTime && (<Countdown
+                            date={Date.now() + time}
                             renderer={renderer}
-                        />
+                        />)}
                     </div>
                 </div>
 

@@ -36,7 +36,7 @@ const MatchSelectionPage = () => {
                 setTimeout(
                     () => {
                         if (match.id != JSON.parse(sessionStorage.getItem('matchSession'))?.id)
-                            sessionStorage.setItem("matchSession", JSON.stringify({ ...match, current: 1, score: 0, wickets: 0 }));
+                            sessionStorage.setItem("matchSession", JSON.stringify({ ...match, current: 1, score: 0, wickets: 0, answeredQuestions: [] }));
                         navigate.push('/match')
                     },
                     3000

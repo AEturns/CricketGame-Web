@@ -5,3 +5,12 @@ export const scoreChange = (run, wicket) => {
     match.current = match.current + 1
     sessionStorage.setItem("matchSession", JSON.stringify(match))
 }
+
+export const answeredQuestionUpdating = (id) => {
+    let match = JSON.parse(sessionStorage.getItem("matchSession"))
+    if(!match.answeredQuestions.includes(id)) {
+        match.answeredQuestions.push(id)
+        sessionStorage.setItem("matchSession", JSON.stringify(match))
+    }
+   
+}
