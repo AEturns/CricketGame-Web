@@ -48,10 +48,9 @@ function MatchPage({ navigation }) {
   const navigate = useHistory()
   return !sessionStorage.getItem("matchSession") ?
     <Redirect replace to="/selection" /> : (
-      <Container className='margin-issue' style={{ textAlign: 'center', marginTop: (JSON.parse(sessionStorage.getItem("matchSession")).current > JSON.parse(sessionStorage.getItem("matchSession")).matchSize ? '0%' : "5%") }} fixed>
+      <Container className='margin-issue' style={{ textAlign: 'center', marginTop: (JSON.parse(sessionStorage.getItem("matchSession")).current > JSON.parse(sessionStorage.getItem("matchSession")).attributes.matchSize ? '0%' : "5%") }} fixed>
         <Prompt
            message={(location, action) => {
-            console.log(action)
             // if (action === 'POP') {
             //   Swal.fire({
             //     title: `Are you sure you want to Leave ?`,
@@ -71,7 +70,7 @@ function MatchPage({ navigation }) {
               : `Are you sure you want to leave the match?`
           }}
         />
-        {JSON.parse(sessionStorage.getItem("matchSession")).current > JSON.parse(sessionStorage.getItem("matchSession")).matchSize ?
+        {JSON.parse(sessionStorage.getItem("matchSession")).current > JSON.parse(sessionStorage.getItem("matchSession")).attributes.matchSize ?
           <Completed match={JSON.parse(sessionStorage.getItem("matchSession"))} />
           :
           state ?

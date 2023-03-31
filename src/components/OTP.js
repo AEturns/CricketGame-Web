@@ -8,7 +8,7 @@ function OTP({ generatedOTP, username, mobile }) {
     const [name, setName] = useState("")
     const [otp, setOTP] = useState("")
     const [mobileValidationAlert, setMobileValidationAlert] = useState(false)
-    console.log(generatedOTP, username, mobile)
+
     const handleNextBtn = async () => {
         setMobileValidationAlert(false)
 

@@ -14,3 +14,10 @@ export const answeredQuestionUpdating = (id) => {
     }
    
 }
+
+export const completeMatchStatus = () => {
+    let match = JSON.parse(sessionStorage.getItem("matchSession"))
+    match.isCompleted = true
+    sessionStorage.setItem("matchSession", JSON.stringify(match))
+   
+}

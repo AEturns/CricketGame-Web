@@ -98,7 +98,7 @@ function RunSelection({ changeStatus }) {
 
           <p style={{ color: "#fff", fontWeight: 'bold', fontSize: "1.2em", margin: 5 }}>{JSON.parse(sessionStorage.getItem("matchSession")).score} / {JSON.parse(sessionStorage.getItem("matchSession")).wickets}</p>
           <hr style={{ borderWidth: "2px", borderColor: "#fff", opacity: 100, padding: 0, margin: 0 }} />
-          <p style={{ color: "#fff", fontWeight: 'bold', fontSize: "0.5em", margin: 5 }}> Balls {JSON.parse(sessionStorage.getItem("matchSession")).current - 1}/{JSON.parse(sessionStorage.getItem("matchSession")).matchSize}</p>
+          <p style={{ color: "#fff", fontWeight: 'bold', fontSize: "0.5em", margin: 5 }}> Balls {JSON.parse(sessionStorage.getItem("matchSession")).current - 1}/{JSON.parse(sessionStorage.getItem("matchSession")).attributes.matchSize}</p>
 
         </Box>
       </div>

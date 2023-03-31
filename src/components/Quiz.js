@@ -73,11 +73,10 @@ function Quiz({ changeStatus, run }) {
             getQuestion(run, JSON.parse(sessionStorage.getItem('matchSession'))?.answeredQuestions)
                 .then(res => {
                     setPostCalled(postCalled + 1)
-                    console.log("res", res)
                     setQuestion(res.question)
                     setQuestionId(res.id)
                  
-                    setTime(60000)
+                    setTime(1000 * Number(res.durations))
                     setIsTime(true)
                     setCorrectAnswer(Number(res.correct_answer))
                     const mockAnswers = [
@@ -107,7 +106,6 @@ function Quiz({ changeStatus, run }) {
     useEffect(() => {
         const unloadCallback = (event) => {
             event.preventDefault();
-            console.log(event)
             event.returnValue = "";
             return "";
         };
@@ -200,7 +198,7 @@ function Quiz({ changeStatus, run }) {
 
                     <p style={{ color: "#fff", fontWeight: 'bold', fontSize: "1.2em", margin: 5 }}>{JSON.parse(sessionStorage.getItem("matchSession")).score} / {JSON.parse(sessionStorage.getItem("matchSession")).wickets}</p>
                     <hr style={{ borderWidth: "2px", borderColor: "#fff", opacity: 100, padding: 0, margin: 0 }} />
-                    <p style={{ color: "#fff", fontWeight: 'bold', fontSize: "0.5em", margin: 5 }}> Balls {JSON.parse(sessionStorage.getItem("matchSession")).current}/{JSON.parse(sessionStorage.getItem("matchSession")).matchSize}</p>
+                    <p style={{ color: "#fff", fontWeight: 'bold', fontSize: "0.5em", margin: 5 }}> Balls {JSON.parse(sessionStorage.getItem("matchSession")).current}/{JSON.parse(sessionStorage.getItem("matchSession")).attributes.matchSize}</p>
 
                 </Box>
             </div>

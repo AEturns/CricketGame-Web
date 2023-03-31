@@ -35,9 +35,20 @@ const validateAnswers = async (questionId, answer) => {
     }
 }
 
-const completeMatch = async (userId, score, wickets) => {
+const getLeaderBoard = async (campaignId) => {
 
-    const data = { userId, score, wickets }
+    try {
+        const response = await axios.get(API_PATHS.GET_LEADERBOARD_URL + campaignId + '?populate=leaderboards')
+        return response.data
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+
+const completeMatch = async (userId, score, campaign) => {
+
+    const data = { data: { player: userId, score, campaign: campaign } }
 
     try {
         const response = await axios.post(API_PATHS.COMPLETE_MATCH_URL, data)
@@ -51,5 +62,6 @@ export {
     getAllMatches,
     validateAnswers,
     getQuestion,
+    getLeaderBoard,
     completeMatch
 }

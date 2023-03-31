@@ -1,13 +1,15 @@
 import { CDropdown, CDropdownItem, CDropdownMenu, CDropdownToggle, CModal, CModalBody } from '@coreui/react'
 import { Button, Card, CardActionArea, CardContent, CardMedia, Chip, Container, createTheme, List, ListItem, ListItemButton, ListItemText, ThemeProvider, Typography } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Redirect, useHistory, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { animateCSS } from '../animation/triggerAnimation'
 import Logo from '../assets/images/Logo-01.png'
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import GamepadIcon from '@mui/icons-material/Gamepad';
-import { LANGUAGE_ID, leaderboard, matches, STRINGS } from '../config/const'
+import { LANGUAGE_ID, leaderboard, MAIN_API, MAIN_PROXY_API, matches, STRINGS } from '../config/const'
+import { getAllMatches } from '../services/match.service'
+import moment from 'moment/moment'
 
 
 
@@ -15,14 +17,22 @@ const MatchSelectionPage = () => {
 
     const navigate = useHistory()
     const [open, setOpen] = useState(false)
-    const [selectedMatch, setSelectedMatch] = useState(0)
-
+    const [selectedMatch, setSelectedMatch] = useState(null)
+    const [selectedLeaderBoard, setSelectedLeaderBoard] = useState([])
     const [leaderboardVisible, setLeaderboardVisible] = useState(false)
+    const [allMatches, setAllMatches] = useState([])
+    useEffect(() => {
+        getAllMatches()
+            .then(res => {
+                setAllMatches(res.data)
+            })
+    }, [])
+
 
     const handleStartBtn = async (match) => {
         Swal.fire({
-            title: `MATCH ${match.matchSize}/${match.matchSize}`,
-            html: rulesGenerator(match.rules),
+            title: match.attributes.campaign_name,
+            html: rulesGenerator(match.attributes.rules),
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#d33',
@@ -36,7 +46,7 @@ const MatchSelectionPage = () => {
                 setTimeout(
                     () => {
                         if (match.id != JSON.parse(sessionStorage.getItem('matchSession'))?.id)
-                            sessionStorage.setItem("matchSession", JSON.stringify({ ...match, current: 1, score: 0, wickets: 0, answeredQuestions: [] }));
+                            sessionStorage.setItem("matchSession", JSON.stringify({ ...match, current: 1, score: 0, wickets: 0, answeredQuestions: [], isCompleted: false }));
                         navigate.push('/match')
                     },
                     3000
@@ -48,9 +58,11 @@ const MatchSelectionPage = () => {
     }
 
     const rulesGenerator = (rules) => {
+        if (rules?.length == 0)
+            return ''
         let html = `<div style="text-align:left">Rules: <ul>`
         rules.forEach(element => {
-            html = html + `<li>${element}</li>`
+            html = html + `<li>${element.rule}</li>`
         });
         return html + '</ul></div>'
     }
@@ -76,24 +88,26 @@ const MatchSelectionPage = () => {
             <CModal style={{ marginTop: "15%", background: 'none', border: 0 }} visible={leaderboardVisible} onClose={() => setLeaderboardVisible(false)}>
 
                 <CModalBody className='leaderboard-modal p-4'  >
-                    <h2 style={{ textAlign: 'center' }}>Leaderboard <h4 style={{ fontSize: '0.5em' }}>(Match 10/10)</h4></h2>
-                    <List className='card-list-list' >
-                        <ListItem disablePadding>
-                            <ListItemButton style={{ backgroundColor: "#1e2430" }}>
-                                <ListItemText primary="Name" />
-                                <ListItemText primary="Highest Score" style={{ textAlign: 'right' }} />
-                            </ListItemButton>
-
-                        </ListItem>
-                        {leaderboard.map((item, key) => (
+                    <h2 style={{ textAlign: 'center' }}>Leaderboard <h4 style={{ fontSize: '0.5em' }}>({selectedMatch?.attributes.campaign_name})</h4></h2>
+                    {selectedLeaderBoard?.length == 0 ? <p style={{ textAlign: 'center', marginTop: '40px' }}>Haven't Played Anyone Yet</p> :
+                        <List className='card-list-list' >
                             <ListItem disablePadding>
-                                <ListItemButton key={key}>
-                                    <ListItemText primary={item.name} />
-                                    <ListItemText primary={item.score} style={{ textAlign: 'right' }} />
+                                <ListItemButton style={{ backgroundColor: "#1e2430" }}>
+                                    <ListItemText primary="Name" />
+                                    <ListItemText primary="Highest Score" style={{ textAlign: 'right' }} />
                                 </ListItemButton>
+
                             </ListItem>
-                        ))}
-                    </List>
+                            {selectedLeaderBoard.map((item, key) => (
+                                <ListItem disablePadding>
+                                    <ListItemButton key={key}>
+                                        <ListItemText primary={item.attributes.player} />
+                                        <ListItemText primary={item.attributes.score} style={{ textAlign: 'right' }} />
+                                    </ListItemButton>
+                                </ListItem>
+                            ))}
+                        </List>
+                    }
                     <div style={{ display: 'flex', justifyContent: 'end' }}>
                         <Button
                             onClick={() => setLeaderboardVisible(false)}
@@ -113,7 +127,7 @@ const MatchSelectionPage = () => {
                 </div>
                 <div className='card-list animate__animated animate__backInDown'>
                     <List className='card-list-list'>
-                        {matches.map((match, key) => (
+                        {allMatches.map((match, key) => (
                             <ListItem component="div" disablePadding>
                                 <Card key={key} sx={{ width: 300, height: 265, borderRadius: 10, boxShadow: '10px 10px 20px rgb(56, 41, 41)', textAlign: "center" }} className='animate__animated animate__backInDown mb-5'>
                                     <CardActionArea
@@ -122,8 +136,8 @@ const MatchSelectionPage = () => {
                                         <CardMedia
                                             component="img"
                                             height="120"
-                                            image={match.image}
-                                            alt={match.matchSize}
+                                            image={MAIN_PROXY_API + match.attributes.wallpaper.data[0].attributes.url}
+                                            alt={match.attributes.campaign_name}
                                             onClick={() => {
                                                 handleStartBtn(match)
                                             }}
@@ -133,12 +147,13 @@ const MatchSelectionPage = () => {
 
 
                                             <Typography gutterBottom variant="h6" component="div">
-                                                MATCH {match.matchSize}/{match.matchSize}
+                                                {match.attributes.campaign_name}
+
                                             </Typography>
                                             <Typography gutterBottom variant="h8" component="div" >
-                                                <span>Win Prize Rs. {match.winPrize}</span>
+                                                <span>Win Prize Rs. {match.attributes.prize}</span>
                                                 <p style={{ fontSize: '0.5em', paddingBottom: 5, margin: 0 }}>
-                                                    (Time Period : {match.startTime} - {match.endTime})
+                                                    (Time Period : {moment(match.attributes.start_time).format("DD MM YYYY")} - {moment(match.attributes.end_time).format("DD MM YYYY")})
                                                 </p>
                                             </Typography>
 
@@ -147,6 +162,8 @@ const MatchSelectionPage = () => {
                                                     <Chip style={{ color: "white", cursor: 'pointer' }}
                                                         icon={<EmojiEventsIcon style={{ color: "white" }} />}
                                                         onClick={() => {
+                                                            setSelectedMatch(match)
+                                                            setSelectedLeaderBoard(match.attributes.leaderboards.data)
                                                             setLeaderboardVisible(!leaderboardVisible)
                                                         }}
                                                         label="Leaderboard" />
@@ -181,7 +198,7 @@ const MatchSelectionPage = () => {
                 <div className="mt-5 animate__animated animate__bounce  animate__1 animate__delay-5s">
                     <img src={Logo} className="logo-img" />
                     <span style={{ color: "#fff", fontSize: "0.8em", padding: 0, margin: 3, display: "flex", justifyContent: 'center' }}>
-                        <span style={{paddingTop: "5px"}}>Logged In As: </span>
+                        <span style={{ paddingTop: "5px" }}>Logged In As: </span>
                         <CDropdown style={{ marginLeft: "10px" }} variant="input-group" placement='top' direction="dropup-center">
                             <CDropdownToggle variant="ghost" placement="bottom-end" style={{ padding: 0, marginLeft: "10px", marginBottom: "10px" }} caret={false}>
                                 <span style={{ color: "#cf4036", fontWeight: 'bold', fontSize: "0.7em", paddingBottom: "1000px" }}>{localStorage.getItem("username")}</span>
