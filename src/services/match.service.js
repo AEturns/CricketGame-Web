@@ -46,9 +46,9 @@ const getLeaderBoard = async (campaignId) => {
 }
 
 
-const completeMatch = async (userId, score, campaign) => {
+const completeMatch = async (userId, mobile, points, score, campaign) => {
 
-    const data = { data: { player: userId, score, campaign: campaign } }
+    const data = { data: { player: userId, mobile, points, score, campaign: campaign } }
 
     try {
         const response = await axios.post(API_PATHS.COMPLETE_MATCH_URL, data)

@@ -33,6 +33,7 @@ function OTP({ generatedOTP, username, mobile }) {
         setTimeout(
             () => {
                 localStorage.setItem("username", username)
+                localStorage.setItem("mobile", mobile)
                 navigate.push('/selection')
             },
             1000

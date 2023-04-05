@@ -10,8 +10,10 @@ import GamepadIcon from '@mui/icons-material/Gamepad';
 import { LANGUAGE_ID, leaderboard, MAIN_API, MAIN_PROXY_API, matches, STRINGS } from '../config/const'
 import { getAllMatches } from '../services/match.service'
 import moment from 'moment/moment'
-
-
+import Rank1 from '../assets/images/rank_1.png'
+import Rank2 from '../assets/images/rank_2.png'
+import Rank3 from '../assets/images/rank_3.png'
+import Trophy from '../assets/images/trophy.png'
 
 const MatchSelectionPage = () => {
 
@@ -67,6 +69,15 @@ const MatchSelectionPage = () => {
         return html + '</ul></div>'
     }
 
+    const checkLeaderboard = (leaderboard) => {
+        console.log(leaderboard)
+        const mobile = localStorage.getItem('mobile')
+        const data = leaderboard.find(element => element.attributes.mobile == mobile)
+
+        if (data) return false
+        else return true
+    }
+
     const theme = createTheme({
         components: {
             MuiIcon: {
@@ -88,12 +99,13 @@ const MatchSelectionPage = () => {
             <CModal style={{ marginTop: "15%", background: 'none', border: 0 }} visible={leaderboardVisible} onClose={() => setLeaderboardVisible(false)}>
 
                 <CModalBody className='leaderboard-modal p-4'  >
-                    <h2 style={{ textAlign: 'center' }}>Leaderboard <h4 style={{ fontSize: '0.5em' }}>({selectedMatch?.attributes.campaign_name})</h4></h2>
+                    <h2 style={{ textAlign: 'center' }}><img style={{ marginRight: 25 }} src={Trophy} height={35} />Leaderboard <img style={{ marginLeft: 20 }} src={Trophy} height={35} /><h4 style={{ fontSize: '0.5em' }}>({selectedMatch?.attributes.campaign_name})</h4></h2>
                     {selectedLeaderBoard?.length == 0 ? <p style={{ textAlign: 'center', marginTop: '40px' }}>Haven't Played Anyone Yet</p> :
                         <List className='card-list-list' >
                             <ListItem disablePadding>
                                 <ListItemButton style={{ backgroundColor: "#1e2430" }}>
-                                    <ListItemText primary="Name" />
+                                    <ListItemText primary="Rank" />
+                                    <ListItemText primary="Name" style={{ textAlign: 'center' }} />
                                     <ListItemText primary="Highest Score" style={{ textAlign: 'right' }} />
                                 </ListItemButton>
 
@@ -101,6 +113,7 @@ const MatchSelectionPage = () => {
                             {selectedLeaderBoard.map((item, key) => (
                                 <ListItem disablePadding>
                                     <ListItemButton key={key}>
+                                        <ListItemText primary={<div>{key + 1}<img style={{ marginLeft: 10 }} src={key == 0 ? Rank1 : (key == 1 ? Rank2 : (key == 2 ? Rank3 : ''))} height={35} /></div>} />
                                         <ListItemText primary={item.attributes.player} />
                                         <ListItemText primary={item.attributes.score} style={{ textAlign: 'right' }} />
                                     </ListItemButton>
@@ -133,15 +146,18 @@ const MatchSelectionPage = () => {
                                     <CardActionArea
 
                                     >
-                                        <CardMedia
-                                            component="img"
-                                            height="120"
-                                            image={MAIN_PROXY_API + match.attributes.wallpaper.data[0].attributes.url}
-                                            alt={match.attributes.campaign_name}
-                                            onClick={() => {
-                                                handleStartBtn(match)
-                                            }}
-                                        />
+                                        <div style={{position: 'relative', textAlign: 'center', color: 'red', fontSize: '2em', fontWeight: 'bolder', WebkitTextStroke: '1px #000'}}>
+                                            <CardMedia
+                                                component="img"
+                                                height="120"
+                                                image={MAIN_PROXY_API + match.attributes.wallpaper.data[0].attributes.url}
+                                                alt={match.attributes.campaign_name}
+                                                onClick={() => {
+                                                    if (checkLeaderboard(match.attributes.leaderboards.data)) handleStartBtn(match)
+                                                }}
+                                            />
+                                            <div hidden={checkLeaderboard(match.attributes.leaderboards.data)} style={{position: 'absolute', top: '25px', right: '14px', transform: 'rotate(30deg)'}} class="bottom-left">Played</div>
+                                        </div>
 
                                         <CardContent className='match-card-content'>
 
@@ -170,13 +186,13 @@ const MatchSelectionPage = () => {
                                                 </ThemeProvider>
 
                                                 <ThemeProvider theme={theme}>
-                                                    <Chip
+                                                    {checkLeaderboard(match.attributes.leaderboards.data) ? <Chip
                                                         style={{ color: "white", cursor: 'pointer' }}
                                                         icon={<GamepadIcon style={{ color: "white" }} />}
                                                         onClick={() => {
                                                             handleStartBtn(match)
                                                         }}
-                                                        label="Play" />
+                                                        label="Play" /> : null}
                                                 </ThemeProvider>
 
                                             </Typography>
@@ -206,6 +222,7 @@ const MatchSelectionPage = () => {
                             <CDropdownMenu className="pt-0" placement="bottom-end">
                                 <CDropdownItem onClick={() => {
                                     localStorage.removeItem("username")
+                                    localStorage.removeItem("mobile")
                                     window.location.reload(false);
                                 }
                                 } style={{ color: 'red', cursor: 'pointer' }}>
