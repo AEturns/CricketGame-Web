@@ -43,7 +43,10 @@ function Completed({ match }) {
     const getLeaderBoardById = () => {
         getLeaderBoard(match.id)
             .then(res => {
-                setleaderBoard(res.data.attributes.leaderboards.data)
+                const data = res.data.attributes.leaderboards.data?.sort(function(a, b) { 
+                    return b.attributes.points - a.attributes.points 
+                  });
+                setleaderBoard(data)
             })
     }
 

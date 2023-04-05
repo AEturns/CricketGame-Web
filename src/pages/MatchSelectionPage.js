@@ -70,12 +70,25 @@ const MatchSelectionPage = () => {
     }
 
     const checkLeaderboard = (leaderboard) => {
-        console.log(leaderboard)
+
         const mobile = localStorage.getItem('mobile')
         const data = leaderboard.find(element => element.attributes.mobile == mobile)
 
-        if (data) return false
-        else return true
+        if (!data) return true
+        else {
+            let updatedDate = new Date(data.attributes.updatedAt)
+            updatedDate.setDate(updatedDate.getDate() + 1)
+            if (updatedDate < new Date()) return true
+            else return false
+        }
+
+    }
+
+    const handleLeaderBoard = (leaderBoard) => {
+        const data = leaderBoard.sort(function (a, b) {
+            return b.attributes.points - a.attributes.points
+        });
+        setSelectedLeaderBoard(data)
     }
 
     const theme = createTheme({
@@ -146,7 +159,7 @@ const MatchSelectionPage = () => {
                                     <CardActionArea
 
                                     >
-                                        <div style={{position: 'relative', textAlign: 'center', color: 'red', fontSize: '2em', fontWeight: 'bolder', WebkitTextStroke: '1px #000'}}>
+                                        <div style={{ position: 'relative', textAlign: 'center', color: 'red', fontSize: '2em', fontWeight: 'bolder', WebkitTextStroke: '1px #000' }}>
                                             <CardMedia
                                                 component="img"
                                                 height="120"
@@ -156,7 +169,7 @@ const MatchSelectionPage = () => {
                                                     if (checkLeaderboard(match.attributes.leaderboards.data)) handleStartBtn(match)
                                                 }}
                                             />
-                                            <div hidden={checkLeaderboard(match.attributes.leaderboards.data)} style={{position: 'absolute', top: '25px', right: '14px', transform: 'rotate(30deg)'}} class="bottom-left">Played</div>
+                                            <div hidden={checkLeaderboard(match.attributes.leaderboards.data)} style={{ position: 'absolute', top: '25px', right: '14px', transform: 'rotate(30deg)' }} class="bottom-left">Played</div>
                                         </div>
 
                                         <CardContent className='match-card-content'>
@@ -179,7 +192,7 @@ const MatchSelectionPage = () => {
                                                         icon={<EmojiEventsIcon style={{ color: "white" }} />}
                                                         onClick={() => {
                                                             setSelectedMatch(match)
-                                                            setSelectedLeaderBoard(match.attributes.leaderboards.data)
+                                                            handleLeaderBoard(match.attributes.leaderboards.data)
                                                             setLeaderboardVisible(!leaderboardVisible)
                                                         }}
                                                         label="Leaderboard" />
