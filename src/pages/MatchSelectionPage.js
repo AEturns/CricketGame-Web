@@ -107,28 +107,36 @@ const MatchSelectionPage = () => {
         },
     });
 
+    const checkCurrentUser = (listMobile) => {
+        const mobile = localStorage.getItem('mobile')
+        if(listMobile == mobile) return "red"
+        else return "#fff"
+    }
+
+    
+
     return !localStorage.getItem("username") ? <Redirect replace to="/login" /> : (
         <Container className='margin-issue' style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', marginTop: '3%' }} fixed>
-            <CModal style={{ marginTop: "15%", background: 'none', border: 0 }} visible={leaderboardVisible} onClose={() => setLeaderboardVisible(false)}>
+            <CModal size='lg' style={{ marginTop: "15%", background: 'none', border: 0 }} visible={leaderboardVisible} onClose={() => setLeaderboardVisible(false)}>
 
                 <CModalBody className='leaderboard-modal p-4'  >
                     <h2 style={{ textAlign: 'center' }}><img style={{ marginRight: 25 }} src={Trophy} height={35} />Leaderboard <img style={{ marginLeft: 20 }} src={Trophy} height={35} /><h4 style={{ fontSize: '0.5em' }}>({selectedMatch?.attributes.campaign_name})</h4></h2>
-                    {selectedLeaderBoard?.length == 0 ? <p style={{ textAlign: 'center', marginTop: '40px' }}>Haven't Played Anyone Yet</p> :
+                    {selectedLeaderBoard?.length == 0 ? <p style={{ textAlign: 'center', marginTop: '40px' }}>{STRINGS.NO_PLAYERS_MESSAGE[LANGUAGE_ID]}</p> :
                         <List className='card-list-list' >
                             <ListItem disablePadding>
                                 <ListItemButton style={{ backgroundColor: "#1e2430" }}>
                                     <ListItemText primary="Rank" />
-                                    <ListItemText primary="Name" style={{ textAlign: 'center' }} />
-                                    <ListItemText primary="Highest Score" style={{ textAlign: 'right' }} />
+                                    <ListItemText primary={STRINGS.NAME[LANGUAGE_ID]} />
+                                    <ListItemText primary={STRINGS.HIGHEST_SCORE[LANGUAGE_ID]} style={{ textAlign: 'right' }} />
                                 </ListItemButton>
 
                             </ListItem>
                             {selectedLeaderBoard.map((item, key) => (
                                 <ListItem disablePadding>
                                     <ListItemButton key={key}>
-                                        <ListItemText primary={<div>{key + 1}<img style={{ marginLeft: 10 }} src={key == 0 ? Rank1 : (key == 1 ? Rank2 : (key == 2 ? Rank3 : ''))} height={35} /></div>} />
-                                        <ListItemText primary={item.attributes.player} />
-                                        <ListItemText primary={item.attributes.score} style={{ textAlign: 'right' }} />
+                                        <ListItemText  primary={<div>{key + 1}</div>} />
+                                        <ListItemText style={{ color: checkCurrentUser(item.attributes.mobile)}} primary={item.attributes.player} />
+                                        <ListItemText primary={<>{item.attributes.score}<img style={{ marginLeft: 10 }} src={key == 0 ? Rank1 : (key == 1 ? Rank2 : (key == 2 ? Rank3 : ''))} width={25} /></>} style={{ textAlign: 'right' }} />
                                     </ListItemButton>
                                 </ListItem>
                             ))}
@@ -180,9 +188,9 @@ const MatchSelectionPage = () => {
 
                                             </Typography>
                                             <Typography gutterBottom variant="h8" component="div" >
-                                                <span>Win Prize Rs. {match.attributes.prize}</span>
+                                                <span>{STRINGS.WIN_PRIZE[LANGUAGE_ID]} Rs. {match.attributes.prize}</span>
                                                 <p style={{ fontSize: '0.5em', paddingBottom: 5, margin: 0 }}>
-                                                    (Time Period : {moment(match.attributes.start_time).format("DD MM YYYY")} - {moment(match.attributes.end_time).format("DD MM YYYY")})
+                                                    ({STRINGS.TIME_PERIOD[LANGUAGE_ID]} : {moment(match.attributes.start_time).format("DD MM YYYY")} - {moment(match.attributes.end_time).format("DD MM YYYY")})
                                                 </p>
                                             </Typography>
 

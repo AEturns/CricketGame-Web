@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import Lottie from 'react-lottie'
 import { useHistory } from 'react-router';
 import * as animationData from '../assets/lottie/107653-trophy.json'
-import { leaderboard } from '../config/const';
+import { LANGUAGE_ID, STRINGS, leaderboard } from '../config/const';
 import { useEffect } from 'react';
 import { completeMatch, getLeaderBoard } from '../services/match.service';
 import { completeMatchStatus } from '../util/scoreCalculator';
@@ -23,31 +23,46 @@ const defaultOptions = {
 function Completed({ match }) {
     const navigate = useHistory()
     const [leaderBoard, setleaderBoard] = useState([])
+    const [gotLeaderBoard, setGotLeaderBoard] = useState(false)
 
     useEffect(() => {
+         complete()
+    }, [gotLeaderBoard])
 
-        if (!JSON.parse(sessionStorage.getItem('matchSession'))?.isCompleted) {
+    const complete = () => {
+        getLeaderBoardById()
+        if (!JSON.parse(sessionStorage.getItem('matchSession'))?.isCompleted && gotLeaderBoard) {
             const matchData = JSON.parse(sessionStorage.getItem('matchSession'))
-            completeMatch(localStorage.getItem("username"), localStorage.getItem("mobile"), Number(matchData.score), `${matchData.score}/${matchData.wickets}`, matchData.id)
+            
+            const mobile = localStorage.getItem('mobile')
+            const data = leaderBoard.find(element => element?.attributes?.mobile == mobile)
+            console.log("dataInFind", data, leaderboard)
+            completeMatch(localStorage.getItem("username"), localStorage.getItem("mobile"), Number(matchData.score), `${matchData.score}/${matchData.wickets}`, matchData.id, data ? data.id : null, )
                 .then(() => {
                     completeMatchStatus()
                     getLeaderBoardById()
                 })
 
-        } else {
-            getLeaderBoardById()
-        }
+        } 
+    }
 
-    }, [])
-
-    const getLeaderBoardById = () => {
+    const getLeaderBoardById = async () => {
         getLeaderBoard(match.id)
             .then(res => {
+                console.log("res", res.data)
                 const data = res.data.attributes.leaderboards.data?.sort(function(a, b) { 
                     return b.attributes.points - a.attributes.points 
                   });
+                  console.log(data)
                 setleaderBoard(data)
+                setGotLeaderBoard(true)
             })
+    }
+
+    const checkCurrentUser = (listMobile) => {
+        const mobile = localStorage.getItem('mobile')
+        if(listMobile == mobile) return "red"
+        else return "#fff"
     }
 
     return (
@@ -68,25 +83,25 @@ function Completed({ match }) {
                 <List className='card-list-list completed-leaderboard' >
                     <ListItem disablePadding>
                         <ListItemButton style={{ backgroundColor: "#1e2430", color: "#fff" }}>
-                            <ListItemText primary="Rank" />
-                            <ListItemText primary="Name" style={{ textAlign: 'left' }}/>
-                            <ListItemText primary="Highest Score" style={{ textAlign: 'right' }} />
+                            <ListItemText  primary="Rank" />
+                            <ListItemText primary={STRINGS.NAME[LANGUAGE_ID]} style={{ textAlign: 'left' }}/>
+                            <ListItemText primary={STRINGS.HIGHEST_SCORE[LANGUAGE_ID]} style={{ textAlign: 'right' }} />
                         </ListItemButton>
 
                     </ListItem>
                     {leaderBoard.map((item, key) => (
                         <ListItem disablePadding>
                             <ListItemButton key={key} style={{ backgroundColor: "#2a3244", color: "#fff" }}>
-                                <ListItemText  primary={<div>{key + 1}<img style={{ marginLeft: 10 }} src={key == 0 ? Rank1 : (key == 1 ? Rank2 : (key == 2 ? Rank3 : ''))} height={35} /></div>} />
-                                <ListItemText primary={item.attributes.player} />
-                                <ListItemText primary={`${item.attributes.score}`} style={{ textAlign: 'right' }} />
+                                <ListItemText  primary={<div>{key + 1} </div>} />
+                                <ListItemText style={{color: checkCurrentUser(item.attributes.mobile)}} primary={item.attributes.player} />
+                                <ListItemText primary={<>{item.attributes.score}<img style={{ marginLeft: 10 }} src={key == 0 ? Rank1 : (key == 1 ? Rank2 : (key == 2 ? Rank3 : ''))} height={35} /></>} style={{ textAlign: 'right' }} />
                             </ListItemButton>
                         </ListItem>
                     ))}
                 </List>
 
             </div>
-            <Button variant="contained" color="error"
+            <Button variant="contained" color="error" className='mt-2'
                 onClick={() => {
 
                     navigate.push('/selection')

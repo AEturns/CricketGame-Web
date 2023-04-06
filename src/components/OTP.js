@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router';
 import { animateCSS } from '../animation/triggerAnimation';
 import BallImage from '../assets/images/ball.png';
+import { LANGUAGE_ID, STRINGS } from '../config/const';
 function OTP({ generatedOTP, username, mobile }) {
     const navigate = useHistory()
     const [name, setName] = useState("")
@@ -53,7 +54,7 @@ function OTP({ generatedOTP, username, mobile }) {
             <div style={{ marginTop: '60px' }} className='animate__animated animate__lightSpeedInLeft'>
                 <div className='input-container-number'>
                     {/* <span style={{ fontWeight: 'bold', fontSize: '0.6em', color: "#000" }}>{generatedOTP}</span> */}
-                    <p style={{ fontWeight: 'bold', fontSize: '1em', color: "#fff" }}>OTP (One Time Password)</p>
+                    <p style={{ fontWeight: 'bold', fontSize: '1em', color: "#fff" }}>{STRINGS.OTP_HEADING[LANGUAGE_ID]}</p>
                     <div className='input-with-number'>
                         <TextField
                             variant="standard"
@@ -77,9 +78,9 @@ function OTP({ generatedOTP, username, mobile }) {
                         />
 
                         {mobileValidationAlert ?
-                            <span className='validation-msg-otp'><p className='validation-msg animate__animated animate__slideInDown'>Invalid OTP! Please Re-try.</p></span> :
+                            <span className='validation-msg-otp'><p className='validation-msg animate__animated animate__slideInDown'>{STRINGS.INVALID_OTP_MESSAGE[LANGUAGE_ID]}</p></span> :
                             <p></p>}
-                        <p style={{ fontWeight: 'bold', fontSize: '0.9em', color: "#fff" }}>We have sent an SMS to your phone</p>
+                        <p style={{ fontWeight: 'bold', fontSize: '0.9em', color: "#fff" }}>{STRINGS.OTP_MESSAGE[LANGUAGE_ID]}</p>
                     </div>
                 </div>
             </div>

@@ -17,10 +17,20 @@ export const API_PATHS = {
     SEND_SMS_URL: SMS_API + '?username=' + SMS_CREDENTIALS.USERNAME + '&password=' + SMS_CREDENTIALS.PASSWORD + '&from=' + SMS_CREDENTIALS.FROM
 }
 
-export const LANGUAGE_ID = 0
+export const LANGUAGE_ID = 1
 
 export const STRINGS = {
-    MATCH_SELECTION_HEADING: ['Please Select Your Match','කරුණාකර ක්‍රිකට් තරඟයක් තෝරන්න']
+    MATCH_SELECTION_HEADING: ['Please Select Your Match','Please Select Your Match'],
+    WIN_PRIZE: ['Win Prize', 'දිනුම් මිල'],
+    TIME_PERIOD: ['Time Period','කාල සීමාව'],
+    NAME: ['Name', 'නම'],
+    HIGHEST_SCORE: ['Highest Score', 'වැඩිම ලකුණු'],
+    MOBILE_NUMBER: ['Mobile Number','දුරකථන අංකය'],
+    VALID_MOBILE_MESSAGE: ['Enter a valid mobile number !', 'වලංගු ජංගම දුරකථන අංකයක් ඇතුළත් කරන්න !'],
+    OTP_HEADING: ['OTP (One Time Password)', 'OTP (එක් වරක් මුරපදය)'],
+    OTP_MESSAGE: ['We have sent an SMS to your phone','අපි ඔබගේ දුරකථනයට කෙටි පණිවුඩයක් යවා ඇත'],
+    INVALID_OTP_MESSAGE: ['Invalid OTP! Please Re-try.', 'වලංගු නොවන OTP! කරුණාකර නැවත උත්සාහ කරන්න.'],
+    NO_PLAYERS_MESSAGE: ['Anyone Havent Played  Yet','කවුරුවත් තවම සෙල්ලම් කර නැත']
 }
 
 

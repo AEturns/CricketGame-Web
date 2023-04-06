@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router'
 import { animateCSS } from '../animation/triggerAnimation'
 import BallImage from '../assets/images/ball.png';
+import { LANGUAGE_ID, STRINGS } from '../config/const';
 function Login({changeStatus}) {
 
     const navigate = useHistory()
@@ -58,7 +59,7 @@ function Login({changeStatus}) {
         <>
             <div className='animate__animated animate__lightSpeedInLeft '>
                 <div className='input-container-name'>
-                    <p style={{ fontWeight: 'bold', fontSize: '1em', color: "#fff" }}>Name</p>
+                    <p style={{ fontWeight: 'bold', fontSize: '1em', color: "#fff" }}>{STRINGS.NAME[LANGUAGE_ID]}</p>
                     <div className='input-with-name'>
                         <TextField
                             variant="standard"
@@ -84,7 +85,7 @@ function Login({changeStatus}) {
             <br />
             <div className='animate__animated animate__lightSpeedInLeft'>
                 <div className='input-container-number'>
-                    <p style={{ fontWeight: 'bold', fontSize: '1em', color: "#fff" }}>Mobile number</p>
+                    <p style={{ fontWeight: 'bold', fontSize: '1em', color: "#fff" }}>{STRINGS.MOBILE_NUMBER[LANGUAGE_ID]}</p>
                     <div className='input-with-number'>
                         <TextField
                             variant="standard"
@@ -106,7 +107,7 @@ function Login({changeStatus}) {
                             }}
 
                         />
-                        {mobileValidationAlert ? <p className='validation-msg animate__animated animate__slideInDown'>Enter a valid mobile number !</p> : <p></p>}
+                        {mobileValidationAlert ? <p className='validation-msg animate__animated animate__slideInDown'>{STRINGS.VALID_MOBILE_MESSAGE[LANGUAGE_ID]}</p> : <p></p>}
                     </div>
                 </div>
             </div>
