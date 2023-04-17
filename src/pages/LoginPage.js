@@ -27,11 +27,11 @@ const LoginPage = () => {
 
 
     const sendOTPmessage = async (name, mobileNumber) => {
-        const otp = generateOTP(6)
+        const {otp, decryptedOTP} = generateOTP(6)
         setGeneratedOTP(otp)
         setName(name)
         setMobileNumber(mobileNumber)
-        await sendOTP(generateMessage(name, otp), mobileGenerator(mobileNumber)).then(() => {
+        await sendOTP(decryptedOTP, mobileGenerator(mobileNumber), name).then(() => {
             setSnackBarState({ open: true, vertical: 'bottom', horizontal: 'center', message: 'OTP has sent to your mobile number !!' })
         }).catch((e) => {
             setSnackBarState({ open: true, vertical: 'bottom', horizontal: 'center', message: e.message })
