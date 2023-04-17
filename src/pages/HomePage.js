@@ -10,8 +10,9 @@ const HomePage = () => {
 
     const handleStartBtn = async () => {
         animateCSS(".start-btn", 'bounceOutDown', true, 1000)
+        animateCSS(".faq-btn", 'bounceOutUp', true, 1000)
         animateCSS(".start-content", 'bounceOutUp', true, 1000)
-    
+
         setTimeout(
             () => {
                 navigate.push('/login')
@@ -21,7 +22,7 @@ const HomePage = () => {
     }
 
     return (
-        <Container style={{ textAlign: 'center'}} fixed>
+        <Container style={{ textAlign: 'center' }} fixed>
             <div className='start-content animate__slow'>
                 <div className='animate__animated animate__backInDown'>
                     <img src={HomeImage} className="home-img animate__animated animate__bounce  animate__1 animate__delay-5s" />
@@ -32,9 +33,27 @@ const HomePage = () => {
                 <Button
                     variant="contained"
                     color="error"
-                    className="start-btn animate__slow"
+                    className="start-btn animate__slow m-1"
                     onClick={() => handleStartBtn()}>
                     PLAY NOW
+                </Button>
+                <Button
+                    variant="contained"
+                    color="error"
+                    className="faq-btn animate__slow m-1"
+                    style={{ borderRadius: '50%' }}
+                    onClick={() => {
+                        animateCSS(".faq-btn", 'bounceOutDown', true, 1000)
+                        animateCSS(".start-btn", 'bounceOutUp', true, 1000)
+                        animateCSS(".start-content", 'bounceOutUp', true, 1000)
+                        setTimeout(
+                            () => {
+                                navigate.push('/faq')
+                            },
+                            1000
+                        );
+                    }}>
+                    ?
                 </Button>
             </div>
         </Container>

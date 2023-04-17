@@ -1,5 +1,6 @@
 const MAIN_API = process.env.REACT_APP_API_PATH
 export const MAIN_PROXY_API = process.env.REACT_APP_API_PROXY_PATH
+export const MAIN_PROXY_CONFIG_API = process.env.REACT_APP_CONFIG_API_PROXY_PATH
 const SMS_API = process.env.REACT_APP_SMS_PATH
 const SMS_CREDENTIALS = {
     USERNAME: process.env.REACT_APP_SMS_USERNAME,
@@ -14,7 +15,7 @@ export const API_PATHS = {
     GET_LEADERBOARD_URL: MAIN_API + 'campaigns/',
     VALIDATE_ANSWER_URL: MAIN_API,
     COMPLETE_MATCH_URL: MAIN_API + 'leaderboards',
-    SEND_SMS_URL: SMS_API + '?username=' + SMS_CREDENTIALS.USERNAME + '&password=' + SMS_CREDENTIALS.PASSWORD + '&from=' + SMS_CREDENTIALS.FROM
+    SEND_SMS_URL: MAIN_PROXY_CONFIG_API + '/config/otp'
 }
 
 export const LANGUAGE_ID = 1

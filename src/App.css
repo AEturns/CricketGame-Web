@@ -58,6 +58,12 @@ body {
   overflow: auto;
 }
 
+.card-list-faq {
+  width: 100%;
+  max-height: 550px;
+  overflow: auto;
+}
+
 .completed-leaderboard {
   border: #000;
   border-radius: 20px;

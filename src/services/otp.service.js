@@ -2,9 +2,13 @@ import axios from "axios";
 import { API_PATHS } from "../config/const";
 
 const sendOTP = async (message, mobileNo) => {
-    const URL = API_PATHS.SEND_SMS_URL + '&to=' + mobileNo + '&msg=' + message + '&msg_ref_num=A001'
+    const URL = API_PATHS.SEND_SMS_URL
     try {
-        const response = await axios.post(URL)
+        const body = {
+            message: message,
+            mobile: mobileNo
+        }
+        const response = await axios.post(URL, body)
         return response?.data
     } catch (e) {
         return e
