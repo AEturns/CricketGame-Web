@@ -15,7 +15,9 @@ export const API_PATHS = {
     GET_LEADERBOARD_URL: MAIN_API + 'campaigns/',
     VALIDATE_ANSWER_URL: MAIN_API,
     COMPLETE_MATCH_URL: MAIN_API + 'leaderboards',
-    SEND_SMS_URL: MAIN_PROXY_CONFIG_API + '/config/otp'
+    SEND_SMS_URL: MAIN_PROXY_CONFIG_API + '/config/otp',
+    USER_SUBSCRIBE_URL: MAIN_PROXY_CONFIG_API + '/config/subscribe',
+    USER_UNSUBSCRIBE_URL: MAIN_PROXY_CONFIG_API + '/config/unsubscribe'
 }
 
 export const LANGUAGE_ID = 1

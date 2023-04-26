@@ -13,6 +13,19 @@ const loginRegister = async (username, password) => {
     }
 }
 
+const userSubscribe = async (userId, mobile, campaignId, status, matchName) => {
+
+    const data = { userId, mobile, campaignId, matchName }
+
+    try {
+    const response = await axios.post(status ? API_PATHS.USER_SUBSCRIBE_URL : API_PATHS.USER_UNSUBSCRIBE_URL, data)
+    return response.data
+    } catch (e) {
+        console.log(e)
+    }
+}
+
 export {
-    loginRegister
+    loginRegister,
+    userSubscribe
 }

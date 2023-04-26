@@ -10,6 +10,7 @@ import { completeMatchStatus } from '../util/scoreCalculator';
 import Rank1 from '../assets/images/rank_1.png'
 import Rank2 from '../assets/images/rank_2.png'
 import Rank3 from '../assets/images/rank_3.png'
+import { userSubscribe } from '../services/user.service';
 
 const defaultOptions = {
     loop: false,
@@ -26,34 +27,35 @@ function Completed({ match }) {
     const [gotLeaderBoard, setGotLeaderBoard] = useState(false)
 
     useEffect(() => {
-         complete()
+        complete()
     }, [gotLeaderBoard])
 
     const complete = () => {
         getLeaderBoardById()
         if (!JSON.parse(sessionStorage.getItem('matchSession'))?.isCompleted && gotLeaderBoard) {
             const matchData = JSON.parse(sessionStorage.getItem('matchSession'))
-            
+
             const mobile = localStorage.getItem('mobile')
             const data = leaderBoard.find(element => element?.attributes?.mobile == mobile)
             console.log("dataInFind", data, leaderboard)
-            completeMatch(localStorage.getItem("username"), localStorage.getItem("mobile"), Number(matchData.score), `${matchData.score}/${matchData.wickets}`, matchData.id, data ? data.id : null, )
+            completeMatch(localStorage.getItem("username"), localStorage.getItem("mobile"), Number(matchData.score), `${matchData.score}/${matchData.wickets}`, matchData.id, data ? data.id : null,)
                 .then(() => {
+                    userSubscribe(data.id, localStorage.getItem("mobile"), match.id, 1, match.attributes.campaign_name)
                     completeMatchStatus()
                     getLeaderBoardById()
                 })
 
-        } 
+        }
     }
 
     const getLeaderBoardById = async () => {
         getLeaderBoard(match.id)
             .then(res => {
                 console.log("res", res.data)
-                const data = res.data.attributes.leaderboards.data?.sort(function(a, b) { 
-                    return b.attributes.points - a.attributes.points 
-                  });
-                  console.log(data)
+                const data = res.data.attributes.leaderboards.data?.sort(function (a, b) {
+                    return b.attributes.points - a.attributes.points
+                });
+                console.log(data)
                 setleaderBoard(data)
                 setGotLeaderBoard(true)
             })
@@ -61,7 +63,7 @@ function Completed({ match }) {
 
     const checkCurrentUser = (listMobile) => {
         const mobile = localStorage.getItem('mobile')
-        if(listMobile == mobile) return "red"
+        if (listMobile == mobile) return "red"
         else return "#fff"
     }
 
@@ -83,8 +85,8 @@ function Completed({ match }) {
                 <List className='card-list-list completed-leaderboard' >
                     <ListItem disablePadding>
                         <ListItemButton style={{ backgroundColor: "#1e2430", color: "#fff" }}>
-                            <ListItemText  primary="Rank" />
-                            <ListItemText primary={STRINGS.NAME[LANGUAGE_ID]} style={{ textAlign: 'left' }}/>
+                            <ListItemText primary="Rank" />
+                            <ListItemText primary={STRINGS.NAME[LANGUAGE_ID]} style={{ textAlign: 'left' }} />
                             <ListItemText primary={STRINGS.HIGHEST_SCORE[LANGUAGE_ID]} style={{ textAlign: 'right' }} />
                         </ListItemButton>
 
@@ -92,8 +94,8 @@ function Completed({ match }) {
                     {leaderBoard.map((item, key) => (
                         <ListItem disablePadding>
                             <ListItemButton key={key} style={{ backgroundColor: "#2a3244", color: "#fff" }}>
-                                <ListItemText  primary={<div>{key + 1} </div>} />
-                                <ListItemText style={{color: checkCurrentUser(item.attributes.mobile)}} primary={item.attributes.player} />
+                                <ListItemText primary={<div>{key + 1} </div>} />
+                                <ListItemText style={{ color: checkCurrentUser(item.attributes.mobile) }} primary={item.attributes.player} />
                                 <ListItemText primary={<>{item.attributes.score}<img style={{ marginLeft: 10 }} src={key == 0 ? Rank1 : (key == 1 ? Rank2 : (key == 2 ? Rank3 : ''))} height={35} /></>} style={{ textAlign: 'right' }} />
                             </ListItemButton>
                         </ListItem>

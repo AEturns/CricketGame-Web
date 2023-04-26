@@ -14,6 +14,7 @@ import Rank1 from '../assets/images/rank_1.png'
 import Rank2 from '../assets/images/rank_2.png'
 import Rank3 from '../assets/images/rank_3.png'
 import Trophy from '../assets/images/trophy.png'
+import { userSubscribe } from '../services/user.service'
 
 const MatchSelectionPage = () => {
 
@@ -29,6 +30,24 @@ const MatchSelectionPage = () => {
                 setAllMatches(res.data)
             })
     }, [])
+
+    const handleUnsubscribeBtn = async (match) => {
+        Swal.fire({
+            title: "Are you sure?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#bbb',
+            confirmButtonText: 'Unsubscribe'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const mobile = localStorage.getItem('mobile')
+                const data = match.attributes.leaderboards.data.find(element => element.attributes.mobile == mobile)
+                userSubscribe(data.id, mobile, match.id, 0)
+            }
+        })
+    
+    }
 
 
     const handleStartBtn = async (match) => {
@@ -84,6 +103,12 @@ const MatchSelectionPage = () => {
 
     }
 
+    const checkSubscribedLeaderboard = (leaderboard) => {
+
+        const mobile = localStorage.getItem('mobile')
+        return leaderboard.find(element => element.attributes.mobile == mobile)
+    }
+
     const handleLeaderBoard = (leaderBoard) => {
         const data = leaderBoard.sort(function (a, b) {
             return b.attributes.points - a.attributes.points
@@ -109,11 +134,11 @@ const MatchSelectionPage = () => {
 
     const checkCurrentUser = (listMobile) => {
         const mobile = localStorage.getItem('mobile')
-        if(listMobile == mobile) return "red"
+        if (listMobile == mobile) return "red"
         else return "#fff"
     }
 
-    
+
 
     return !localStorage.getItem("username") ? <Redirect replace to="/login" /> : (
         <Container className='margin-issue' style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', marginTop: '3%' }} fixed>
@@ -134,8 +159,8 @@ const MatchSelectionPage = () => {
                             {selectedLeaderBoard.map((item, key) => (
                                 <ListItem disablePadding>
                                     <ListItemButton key={key}>
-                                        <ListItemText  primary={<div>{key + 1}</div>} />
-                                        <ListItemText style={{ color: checkCurrentUser(item.attributes.mobile)}} primary={item.attributes.player} />
+                                        <ListItemText primary={<div>{key + 1}</div>} />
+                                        <ListItemText style={{ color: checkCurrentUser(item.attributes.mobile) }} primary={item.attributes.player} />
                                         <ListItemText primary={<>{item.attributes.score}<img style={{ marginLeft: 10 }} src={key == 0 ? Rank1 : (key == 1 ? Rank2 : (key == 2 ? Rank3 : ''))} width={25} /></>} style={{ textAlign: 'right' }} />
                                     </ListItemButton>
                                 </ListItem>
@@ -196,8 +221,8 @@ const MatchSelectionPage = () => {
 
                                             <Typography variant="body2" style={{ display: 'flex', justifyContent: 'space-around' }}>
                                                 <ThemeProvider theme={theme}>
-                                                    <Chip style={{ color: "white", cursor: 'pointer' }}
-                                                        icon={<EmojiEventsIcon style={{ color: "white" }} />}
+                                                    <Chip style={{ color: "white", cursor: 'pointer', fontSize: '0.8em' }}
+                                                        icon={<EmojiEventsIcon style={{ color: "white", fontSize: '1.3em' }} />}
                                                         onClick={() => {
                                                             setSelectedMatch(match)
                                                             handleLeaderBoard(match.attributes.leaderboards.data)
@@ -208,12 +233,21 @@ const MatchSelectionPage = () => {
 
                                                 <ThemeProvider theme={theme}>
                                                     {checkLeaderboard(match.attributes.leaderboards.data) ? <Chip
-                                                        style={{ color: "white", cursor: 'pointer' }}
-                                                        icon={<GamepadIcon style={{ color: "white" }} />}
+                                                        style={{ color: "white", cursor: 'pointer' , fontSize: '0.8em'}}
+                                                        icon={<GamepadIcon style={{ color: "white", fontSize: '1.3em' }} />}
                                                         onClick={() => {
                                                             handleStartBtn(match)
                                                         }}
                                                         label="Play" /> : null}
+                                                </ThemeProvider>
+                                                <ThemeProvider theme={theme}>
+                                                    {checkSubscribedLeaderboard(match.attributes.leaderboards.data) ? <Chip
+                                                        style={{ color: "white", cursor: 'pointer' , fontSize: '0.8em'}}
+                                                        icon={<GamepadIcon style={{ color: "white", fontSize: '1.3em' }} />}
+                                                        onClick={() => {
+                                                            handleUnsubscribeBtn(match)
+                                                        }}
+                                                        label="Unsbscribe" /> : null}
                                                 </ThemeProvider>
 
                                             </Typography>
