@@ -66,7 +66,6 @@ const MatchSelectionPage = () => {
   useEffect(() => {
     const queryParameters = new URLSearchParams(window.location.search);
     const userRef = queryParameters.get("ref");
-    const username = queryParameters.get("request-ref");
     axios
       .get(
         "https://ideabiz.lk/apicall/widget/pin/subscription/v1/status/" +
@@ -80,15 +79,21 @@ const MatchSelectionPage = () => {
         }
       )
       .then((res) => {
-        console.log(res.data);
+        if (!res) navigate.push("/");
         if (
           res.data.status == "ALREADY_SUBSCRIBED" ||
           res.data.status == "SUBSCRIBED"
         ) {
           localStorage.setItem("username", res.data.requestRef);
-          localStorage.setItem("mobile",  `0${res.data.msisdn.substring(3)}`);
-          localStorage.setItem("mycricq-userRef",  userRef);
+          localStorage.setItem("mobile", `0${res.data.msisdn.substring(3)}`);
+          localStorage.setItem("mycricq-userRef", userRef);
+        } else {
+          navigate.push("/");
         }
+      })
+      .catch((e) => {
+        console.log(e);
+        navigate.push("/");
       });
   }, []);
 
@@ -238,9 +243,7 @@ const MatchSelectionPage = () => {
     else return "#fff";
   };
 
-  return !localStorage.getItem("username") ? (
-    <Redirect replace to="/login" />
-  ) : (
+  return (
     <Container
       className="margin-issue"
       style={{

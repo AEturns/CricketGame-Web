@@ -37,6 +37,19 @@ const userUnsubscribeFromApp = async (mobile) => {
     }
 }
 
+
+// const userCheckFromIdeaBiz = async (userRef) => {
+
+//     const data = { mobile }
+
+//     try {
+//     const response = await axios.get(API_PATHS.USER_UNSUBSCRIBE_FROM_APP_URL, data)
+//     return response.data
+//     } catch (e) {
+//         throw e
+//     }
+// }
+
 export {
     loginRegister,
     userSubscribe,
