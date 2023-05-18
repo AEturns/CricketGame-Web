@@ -57,15 +57,21 @@ const MatchSelectionPage = () => {
   const [leaderboardVisible, setLeaderboardVisible] = useState(false);
   const [allMatches, setAllMatches] = useState([]);
 
-  useEffect(() => {
-    getAllMatches().then((res) => {
-      setAllMatches(res.data);
-    });
-  }, []);
+  // useEffect(() => {
+  //   getAllMatches().then((res) => {
+  //     setAllMatches(res.data);
+  //   });
+  // }, []);
 
   useEffect(() => {
     const queryParameters = new URLSearchParams(window.location.search);
     const userRef = queryParameters.get("ref");
+
+    if(!localStorage.setItem("username") || !localStorage.setItem("mobile") || !localStorage.setItem("mycricq-userRef")) {
+      navigate.push("/");
+      return
+    }
+
     axios
       .get(
         "https://ideabiz.lk/apicall/widget/pin/subscription/v1/status/" +
@@ -87,6 +93,10 @@ const MatchSelectionPage = () => {
           localStorage.setItem("username", res.data.requestRef);
           localStorage.setItem("mobile", `0${res.data.msisdn.substring(3)}`);
           localStorage.setItem("mycricq-userRef", userRef);
+
+          getAllMatches().then((res) => {
+            setAllMatches(res.data);
+          });
         } else {
           navigate.push("/");
         }
