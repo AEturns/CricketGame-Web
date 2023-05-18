@@ -35,12 +35,12 @@ function Completed({ match }) {
         if (!JSON.parse(sessionStorage.getItem('matchSession'))?.isCompleted && gotLeaderBoard) {
             const matchData = JSON.parse(sessionStorage.getItem('matchSession'))
 
-            const mobile = localStorage.getItem('mobile')
+            const mobile = localStorage.getItem('mycricq-mobile')
             const data = leaderBoard.find(element => element?.attributes?.mobile == mobile)
             console.log("dataInFind", data, leaderboard)
-            completeMatch(localStorage.getItem("username"), localStorage.getItem("mobile"), Number(matchData.score), `${matchData.score}/${matchData.wickets}`, matchData.id, data ? data.id : null,)
+            completeMatch(localStorage.getItem("mycricq-username"), localStorage.getItem("mycricq-mobile"), Number(matchData.score), `${matchData.score}/${matchData.wickets}`, matchData.id, data ? data.id : null,)
                 .then(() => {
-                    userSubscribe(data.id, localStorage.getItem("mobile"), match.id, 1, match.attributes.campaign_name)
+                    userSubscribe(data.id, localStorage.getItem("mycricq-mobile"), match.id, 1, match.attributes.campaign_name)
                     completeMatchStatus()
                     getLeaderBoardById()
                 })
@@ -62,7 +62,7 @@ function Completed({ match }) {
     }
 
     const checkCurrentUser = (listMobile) => {
-        const mobile = localStorage.getItem('mobile')
+        const mobile = localStorage.getItem('mycricq-mobile')
         if (listMobile == mobile) return "red"
         else return "#fff"
     }

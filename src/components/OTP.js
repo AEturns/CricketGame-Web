@@ -33,8 +33,8 @@ function OTP({ generatedOTP, username, mobile }) {
         animateCSS(".logo-img", 'bounceOutDown', true, 1000)
         setTimeout(
             () => {
-                localStorage.setItem("username", username)
-                localStorage.setItem("mobile", mobile)
+                localStorage.setItem("mycricq-username", username)
+                localStorage.setItem("mycricq-mobile", mobile)
                 window.location.replace('https://widget.ideabiz.lk/web/reg/initiate/f80afe230d921f615599cee2828f4532')
             },
             1000

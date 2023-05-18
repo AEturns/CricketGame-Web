@@ -67,7 +67,7 @@ const MatchSelectionPage = () => {
     const queryParameters = new URLSearchParams(window.location.search);
     const userRef = queryParameters.get("ref");
 
-    if(!localStorage.setItem("username") || !localStorage.setItem("mobile") || !localStorage.setItem("mycricq-userRef")) {
+    if(!localStorage.setItem("mycricq-username") || !localStorage.setItem("mycricq-mobile") || !localStorage.setItem("mycricq-userRef")) {
       navigate.push("/");
       return
     }
@@ -90,8 +90,8 @@ const MatchSelectionPage = () => {
           res.data.status == "ALREADY_SUBSCRIBED" ||
           res.data.status == "SUBSCRIBED"
         ) {
-          localStorage.setItem("username", res.data.requestRef);
-          localStorage.setItem("mobile", `0${res.data.msisdn.substring(3)}`);
+          localStorage.setItem("mycricq-username", res.data.requestRef);
+          localStorage.setItem("mycricq-mobile", `0${res.data.msisdn.substring(3)}`);
           localStorage.setItem("mycricq-userRef", userRef);
 
           getAllMatches().then((res) => {
@@ -117,7 +117,7 @@ const MatchSelectionPage = () => {
       confirmButtonText: "Unsubscribe",
     }).then((result) => {
       if (result.isConfirmed) {
-        const mobile = localStorage.getItem("mobile");
+        const mobile = localStorage.getItem("mycricq-mobile");
         const data = match.attributes.leaderboards.data.find(
           (element) => element.attributes.mobile == mobile
         );
@@ -136,12 +136,12 @@ const MatchSelectionPage = () => {
       confirmButtonText: "Unsubscribe From MyCricQ",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const mobile = localStorage.getItem("mobile");
+        const mobile = localStorage.getItem("mycricq-mobile");
 
         await userUnsubscribeFromApp(mobile)
           .then(() => {
-            localStorage.removeItem("username");
-            localStorage.removeItem("mobile");
+            localStorage.removeItem("mycricq-username");
+            localStorage.removeItem("mycricq-mobile");
             localStorage.removeItem("mycricq-userRef");
             window.location.reload(false);
           })
@@ -205,7 +205,7 @@ const MatchSelectionPage = () => {
   };
 
   const checkLeaderboard = (leaderboard) => {
-    const mobile = localStorage.getItem("mobile");
+    const mobile = localStorage.getItem("mycricq-mobile");
     const data = leaderboard.find(
       (element) => element.attributes.mobile == mobile
     );
@@ -220,7 +220,7 @@ const MatchSelectionPage = () => {
   };
 
   const checkSubscribedLeaderboard = (leaderboard) => {
-    const mobile = localStorage.getItem("mobile");
+    const mobile = localStorage.getItem("mycricq-mobile");
     return leaderboard.find((element) => element.attributes.mobile == mobile);
   };
 
@@ -248,7 +248,7 @@ const MatchSelectionPage = () => {
   });
 
   const checkCurrentUser = (listMobile) => {
-    const mobile = localStorage.getItem("mobile");
+    const mobile = localStorage.getItem("mycricq-mobile");
     if (listMobile == mobile) return "red";
     else return "#fff";
   };
@@ -561,8 +561,8 @@ const MatchSelectionPage = () => {
               <CDropdownMenu className="pt-0" placement="bottom-end">
                 <CDropdownItem
                   onClick={() => {
-                    localStorage.removeItem("username");
-                    localStorage.removeItem("mobile");
+                    localStorage.removeItem("mycricq-username");
+                    localStorage.removeItem("mycricq-mobile");
                     localStorage.removeItem("mycricq-userRef");
                     window.location.reload(false);
                   }}
