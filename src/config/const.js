@@ -1,6 +1,8 @@
 const MAIN_API = process.env.REACT_APP_API_PATH
 export const MAIN_PROXY_API = process.env.REACT_APP_API_PROXY_PATH
 export const MAIN_PROXY_CONFIG_API = process.env.REACT_APP_CONFIG_API_PROXY_PATH
+export const WEB_SUBSCRIPTION_PATH = process.env.REACT_APP_WEB_SUBSCRIPTION
+export const WEB_URL = "http://localhost:3000"
 const SMS_API = process.env.REACT_APP_SMS_PATH
 const SMS_CREDENTIALS = {
     USERNAME: process.env.REACT_APP_SMS_USERNAME,
@@ -17,7 +19,8 @@ export const API_PATHS = {
     COMPLETE_MATCH_URL: MAIN_API + 'leaderboards',
     SEND_SMS_URL: MAIN_PROXY_CONFIG_API + '/config/otp',
     USER_SUBSCRIBE_URL: MAIN_PROXY_CONFIG_API + '/config/subscribe',
-    USER_UNSUBSCRIBE_URL: MAIN_PROXY_CONFIG_API + '/config/unsubscribe'
+    USER_UNSUBSCRIBE_URL: MAIN_PROXY_CONFIG_API + '/config/unsubscribe',
+    USER_UNSUBSCRIBE_FROM_APP_URL: MAIN_PROXY_CONFIG_API + '/config/unsubscribe-app'
 }
 
 export const LANGUAGE_ID = 1

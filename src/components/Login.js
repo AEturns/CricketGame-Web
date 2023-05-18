@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router'
 import { animateCSS } from '../animation/triggerAnimation'
 import BallImage from '../assets/images/ball.png';
-import { LANGUAGE_ID, STRINGS } from '../config/const';
+import { LANGUAGE_ID, STRINGS, WEB_SUBSCRIPTION_PATH } from '../config/const';
 function Login({changeStatus}) {
 
     const navigate = useHistory()
@@ -20,16 +20,16 @@ function Login({changeStatus}) {
         }
 
 
-        if (mobileNumber == "") {
-            animateCSS(".input-with-number", 'jello', true, 0)
-            return
-        }
+        // if (mobileNumber == "") {
+        //     animateCSS(".input-with-number", 'jello', true, 0)
+        //     return
+        // }
 
-        if (mobileNumber.length != 10) {
-            if (mobileValidationAlert) animateCSS(".input-with-number", 'jello', true, 0)
-            setMobileValidationAlert(true)
-            return
-        }
+        // if (mobileNumber.length != 10) {
+        //     if (mobileValidationAlert) animateCSS(".input-with-number", 'jello', true, 0)
+        //     setMobileValidationAlert(true)
+        //     return
+        // }
 
 
 
@@ -40,8 +40,9 @@ function Login({changeStatus}) {
         // animateCSS(".next-btn", 'bounceOutDown', true, 1000)
         setTimeout(
             () => {
-                changeStatus(name, mobileNumber)
+                // changeStatus(name, mobileNumber)
                 //navigate.push('/otp')
+                window.location.replace(WEB_SUBSCRIPTION_PATH + "?request-ref=" + name)
             },
             1000
         );
@@ -57,7 +58,7 @@ function Login({changeStatus}) {
     });
     return (
         <>
-            <div className='animate__animated animate__lightSpeedInLeft '>
+            <div className='animate__animated animate__lightSpeedInLeft mt-3'>
                 <div className='input-container-name'>
                     <p style={{ fontWeight: 'bold', fontSize: '1em', color: "#fff" }}>{STRINGS.NAME[LANGUAGE_ID]}</p>
                     <div className='input-with-name'>
@@ -83,7 +84,7 @@ function Login({changeStatus}) {
                 </div>
             </div>
             <br />
-            <div className='animate__animated animate__lightSpeedInLeft'>
+            {/* <div className='animate__animated animate__lightSpeedInLeft'>
                 <div className='input-container-number'>
                     <p style={{ fontWeight: 'bold', fontSize: '1em', color: "#fff" }}>{STRINGS.MOBILE_NUMBER[LANGUAGE_ID]}</p>
                     <div className='input-with-number'>
@@ -110,7 +111,7 @@ function Login({changeStatus}) {
                         {mobileValidationAlert ? <p className='validation-msg animate__animated animate__slideInDown'>{STRINGS.VALID_MOBILE_MESSAGE[LANGUAGE_ID]}</p> : <p></p>}
                     </div>
                 </div>
-            </div>
+            </div> */}
             <br />
             <div className='animate__animated animate__backInUp '>
                 <Button

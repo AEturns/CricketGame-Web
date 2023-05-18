@@ -25,7 +25,20 @@ const userSubscribe = async (userId, mobile, campaignId, status, matchName) => {
     }
 }
 
+const userUnsubscribeFromApp = async (mobile) => {
+
+    const data = { mobile }
+
+    try {
+    const response = await axios.post(API_PATHS.USER_UNSUBSCRIBE_FROM_APP_URL, data)
+    return response.data
+    } catch (e) {
+        throw e
+    }
+}
+
 export {
     loginRegister,
-    userSubscribe
+    userSubscribe,
+    userUnsubscribeFromApp
 }

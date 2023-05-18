@@ -27,7 +27,8 @@ const OTPPage = () => {
         animateCSS(".logo-img", 'bounceOutDown', true, 1000)
         setTimeout(
             () => {
-                navigate.push('/selection')
+                // navigate.push('/selection')
+                window.location.replace('https://widget.ideabiz.lk/web/reg/initiate/f80afe230d921f615599cee2828f4532');
             },
             1000
         );

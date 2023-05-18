@@ -35,7 +35,7 @@ function OTP({ generatedOTP, username, mobile }) {
             () => {
                 localStorage.setItem("username", username)
                 localStorage.setItem("mobile", mobile)
-                navigate.push('/selection')
+                window.location.replace('https://widget.ideabiz.lk/web/reg/initiate/f80afe230d921f615599cee2828f4532')
             },
             1000
         );
