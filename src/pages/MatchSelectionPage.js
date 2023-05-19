@@ -557,7 +557,7 @@ const MatchSelectionPage = () => {
                     paddingBottom: "1000px",
                   }}
                 >
-                  {localStorage.getItem("username")}
+                  {localStorage.getItem("mycricq-username")}
                 </span>
               </CDropdownToggle>
               <CDropdownMenu className="pt-0" placement="bottom-end">
