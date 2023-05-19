@@ -40,9 +40,12 @@ function Completed({ match }) {
             console.log("dataInFind", data, leaderboard)
             completeMatch(localStorage.getItem("mycricq-username"), localStorage.getItem("mycricq-mobile"), Number(matchData.score), `${matchData.score}/${matchData.wickets}`, matchData.id, data ? data.id : null,)
                 .then(() => {
-                    userSubscribe(data.id, localStorage.getItem("mycricq-mobile"), match.id, 1, match.attributes.campaign_name)
-                    completeMatchStatus()
-                    getLeaderBoardById()
+                    console.log("DONEEEEE")
+                    userSubscribe(data.id, localStorage.getItem("mycricq-mobile"), match.id, 1, match.attributes.campaign_name).then(() => {
+                        completeMatchStatus()
+                        getLeaderBoardById()
+                    })
+                   
                 })
 
         }
