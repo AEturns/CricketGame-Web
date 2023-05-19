@@ -69,10 +69,10 @@ const MatchSelectionPage = () => {
     const queryParameters = new URLSearchParams(window.location.search);
     const userRef = queryParameters.get("ref");
 
-    if(!localStorage.getItem("mycricq-username") || !localStorage.getItem("mycricq-mobile") || !localStorage.getItem("mycricq-userRef")) {
-      navigate.push("/");
-      return
-    }
+    // if(!localStorage.getItem("mycricq-username") || !localStorage.getItem("mycricq-mobile") || !localStorage.getItem("mycricq-userRef")) {
+    //   navigate.push("/");
+    //   return
+    // }
 
     axios
       .get(
