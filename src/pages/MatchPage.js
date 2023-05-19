@@ -46,7 +46,7 @@ function MatchPage({ navigation }) {
   // }, [])
 
   const navigate = useHistory()
-  return !sessionStorage.getItem("matchSession") ?
+  return !sessionStorage.getItem("mycricq-matchSession") ?
     <Redirect replace to="/selection" /> : (
       <Container className='margin-issue' style={{ textAlign: 'center', marginTop: (JSON.parse(sessionStorage.getItem("mycricq-matchSession")).current > JSON.parse(sessionStorage.getItem("mycricq-matchSession")).attributes.matchSize ? '0%' : "5%") }} fixed>
         <Prompt
