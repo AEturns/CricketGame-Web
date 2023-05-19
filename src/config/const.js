@@ -2,7 +2,10 @@ const MAIN_API = process.env.REACT_APP_API_PATH
 export const MAIN_PROXY_API = process.env.REACT_APP_API_PROXY_PATH
 export const MAIN_PROXY_CONFIG_API = process.env.REACT_APP_CONFIG_API_PROXY_PATH
 export const WEB_SUBSCRIPTION_PATH = process.env.REACT_APP_WEB_SUBSCRIPTION
-export const WEB_URL = "http://localhost:3000"
+export const WEB_URL = process.env.REACT_APP_WEB_URL 
+//export const WEB_URL = "http://localhost:3000"
+export const WEB_SUBSCRIPTION_STATUS_PATH = process.env.REACT_APP_WEB_SUBSCRIPTION_STATUS
+export const WEB_SUBSCRIPTION_TOKEN = `Bearer ${process.env.REACT_APP_WEB_SUBSCRIPTION_TOKEN}`
 const SMS_API = process.env.REACT_APP_SMS_PATH
 const SMS_CREDENTIALS = {
     USERNAME: process.env.REACT_APP_SMS_USERNAME,

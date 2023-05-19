@@ -32,8 +32,8 @@ function Completed({ match }) {
 
     const complete = () => {
         getLeaderBoardById()
-        if (!JSON.parse(sessionStorage.getItem('matchSession'))?.isCompleted && gotLeaderBoard) {
-            const matchData = JSON.parse(sessionStorage.getItem('matchSession'))
+        if (!JSON.parse(sessionStorage.getItem('mycricq-matchSession'))?.isCompleted && gotLeaderBoard) {
+            const matchData = JSON.parse(sessionStorage.getItem('mycricq-matchSession'))
 
             const mobile = localStorage.getItem('mycricq-mobile')
             const data = leaderBoard.find(element => element?.attributes?.mobile == mobile)
@@ -107,7 +107,7 @@ function Completed({ match }) {
                 onClick={() => {
 
                     navigate.push('/selection')
-                    sessionStorage.removeItem("matchSession")
+                    sessionStorage.removeItem("mycricq-matchSession")
                 }}
             >
                 Play Another Match

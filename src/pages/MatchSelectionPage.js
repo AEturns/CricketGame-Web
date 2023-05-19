@@ -36,6 +36,8 @@ import {
   MAIN_PROXY_API,
   matches,
   STRINGS,
+  WEB_SUBSCRIPTION_STATUS_PATH,
+  WEB_SUBSCRIPTION_TOKEN,
 } from "../config/const";
 import { getAllMatches } from "../services/match.service";
 import moment from "moment/moment";
@@ -67,19 +69,19 @@ const MatchSelectionPage = () => {
     const queryParameters = new URLSearchParams(window.location.search);
     const userRef = queryParameters.get("ref");
 
-    if(!localStorage.setItem("mycricq-username") || !localStorage.setItem("mycricq-mobile") || !localStorage.setItem("mycricq-userRef")) {
+    if(!localStorage.getItem("mycricq-username") || !localStorage.getItem("mycricq-mobile") || !localStorage.getItem("mycricq-userRef")) {
       navigate.push("/");
       return
     }
 
     axios
       .get(
-        "https://ideabiz.lk/apicall/widget/pin/subscription/v1/status/" +
+        WEB_SUBSCRIPTION_STATUS_PATH +
           userRef,
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer 266cd29a-4383-3ecd-915e-011a19843f0c",
+            Authorization: WEB_SUBSCRIPTION_TOKEN,
             Accept: "application/json",
           },
         }
@@ -165,7 +167,7 @@ const MatchSelectionPage = () => {
       confirmButtonColor: "#d33",
       cancelButtonColor: "#bbb",
       confirmButtonText:
-        match.id != JSON.parse(sessionStorage.getItem("matchSession"))?.id
+        match.id != JSON.parse(sessionStorage.getItem("mycricq-matchSession"))?.id
           ? "Play Now"
           : "Continue Match",
     }).then((result) => {
@@ -175,10 +177,10 @@ const MatchSelectionPage = () => {
 
         setTimeout(() => {
           if (
-            match.id != JSON.parse(sessionStorage.getItem("matchSession"))?.id
+            match.id != JSON.parse(sessionStorage.getItem("mycricq-matchSession"))?.id
           )
             sessionStorage.setItem(
-              "matchSession",
+              "mycricq-matchSession",
               JSON.stringify({
                 ...match,
                 current: 1,

@@ -70,7 +70,7 @@ function Quiz({ changeStatus, run }) {
 
     useEffect(() => {
       
-            getQuestion(run, JSON.parse(sessionStorage.getItem('matchSession'))?.answeredQuestions)
+            getQuestion(run, JSON.parse(sessionStorage.getItem('mycricq-matchSession'))?.answeredQuestions)
                 .then(res => {
                     setPostCalled(postCalled + 1)
                     setQuestion(res.question)
@@ -196,9 +196,9 @@ function Quiz({ changeStatus, run }) {
                     }}
                 >
 
-                    <p style={{ color: "#fff", fontWeight: 'bold', fontSize: "1.2em", margin: 5 }}>{JSON.parse(sessionStorage.getItem("matchSession")).score} / {JSON.parse(sessionStorage.getItem("matchSession")).wickets}</p>
+                    <p style={{ color: "#fff", fontWeight: 'bold', fontSize: "1.2em", margin: 5 }}>{JSON.parse(sessionStorage.getItem("mycricq-matchSession")).score} / {JSON.parse(sessionStorage.getItem("mycricq-matchSession")).wickets}</p>
                     <hr style={{ borderWidth: "2px", borderColor: "#fff", opacity: 100, padding: 0, margin: 0 }} />
-                    <p style={{ color: "#fff", fontWeight: 'bold', fontSize: "0.5em", margin: 5 }}> Balls {JSON.parse(sessionStorage.getItem("matchSession")).current}/{JSON.parse(sessionStorage.getItem("matchSession")).attributes.matchSize}</p>
+                    <p style={{ color: "#fff", fontWeight: 'bold', fontSize: "0.5em", margin: 5 }}> Balls {JSON.parse(sessionStorage.getItem("mycricq-matchSession")).current}/{JSON.parse(sessionStorage.getItem("mycricq-matchSession")).attributes.matchSize}</p>
 
                 </Box>
             </div>
