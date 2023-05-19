@@ -15,7 +15,7 @@ const HomePage = () => {
 
     setTimeout(() => {
       if (localStorage.getItem("mycricq-userRef"))
-        window.location.replace(WEB_URL + "selection?request-ref=" + localStorage.getItem("mycricq-userRef"));
+        window.location.replace(WEB_URL + "selection?ref=" + localStorage.getItem("mycricq-userRef"));
       else navigate.push("/login");
     }, 1000);
   };
