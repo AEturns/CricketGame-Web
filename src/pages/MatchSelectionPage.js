@@ -123,7 +123,11 @@ const MatchSelectionPage = () => {
         const data = match.attributes.leaderboards.data.find(
           (element) => element.attributes.mobile == mobile
         );
-        userSubscribe(data.id, mobile, match.id, 0);
+        userSubscribe(data.id, mobile, match.id, 0).then(() => {
+          getAllMatches().then((res) => {
+            setAllMatches(res.data);
+          });
+        });
       }
     });
   };
