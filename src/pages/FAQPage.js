@@ -16,15 +16,15 @@ function FAQPage() {
                 event.preventDefault()
                 setVisible1(!visible1)
             }}>
-                <h3>How to Play the Game?</h3>
+                <h3>How to Play MyCricQ?</h3>
             </CButton>
 
             <CCollapse visible={visible1}>
                 <CCard className="mt-3">
                     <CCardBody>
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
-                        squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt
-                        sapiente ea proident.
+                        <p>Interactive cricket related quiz game where the player is able to provide answers to the questions and win amazing prizes for the set period. User is able to create an alias, select different quizzes with run points. </p>
+                        <p>අන්තර්ක්‍රියාකාරී ක්‍රිකට් ආශ්‍රිත ප්‍රශ්න විචාරාත්මක ක්‍රීඩාවක් වන අතර එහිදී ක්‍රීඩකයාට ප්‍රශ්නවලට පිළිතුරු සැපයීමට සහ නියමිත කාල සීමාව සඳහා පුදුමාකාර ත්‍යාග දිනා ගැනීමට හැකි වේ. පරිශීලකයාට අන්වර්ථයක් නිර්මාණය කිරීමට, ධාවන ලකුණු සමඟ විවිධ ප්‍රශ්නාවලිය තෝරා ගැනීමට හැකිය.</p>
+                        <p>ஊடாடும் கிரிக்கெட் தொடர்பான வினாடி வினா விளையாட்டு, இதில் வீரர் கேள்விகளுக்கான பதில்களை வழங்க முடியும் மற்றும் குறிப்பிட்ட காலத்திற்கு அற்புதமான பரிசுகளை வெல்ல முடியும். பயனர் மாற்றுப்பெயரை உருவாக்கலாம், ரன் புள்ளிகளுடன் வெவ்வேறு வினாடி வினாக்களை தேர்ந்தெடுக்கலாம்.</p>
                     </CCardBody>
                 </CCard>
             </CCollapse>
@@ -39,9 +39,9 @@ function FAQPage() {
             <CCollapse visible={visible2}>
                 <CCard className="mt-3">
                     <CCardBody>
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
-                        squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt
-                        sapiente ea proident.
+                        <p>If you want Unsubscribe from our service, you can press "unsubscribe from MyCricQ" button after login to your account. Otherwise, You can simply send and sms typing "UNREG MYCRICQ" to 87798 </p>
+                    <p>ඔබට අපගේ සේවාවෙන් දායකත්වයෙන් ඉවත් වීමට අවශ්‍ය නම්, ඔබගේ ගිණුමට පිවිසීමෙන් පසු ඔබට "MyCricQ වෙතින් දායකත්වයෙන් ඉවත් වන්න" බොත්තම එබිය හැක. එසේ නොමැතිනම්, ඔබට "UNREG MYCRICQ" ලෙස ටයිප් කර 87798 ට කෙටි පණිවිඩයක් යැවිය හැක.</p>
+                    <p>எங்கள் சேவையிலிருந்து நீங்கள் குழுவிலக விரும்பினால், உங்கள் கணக்கில் உள்நுழைந்த பிறகு "MyCricQ இலிருந்து குழுவிலகு" பொத்தானை அழுத்தலாம். இல்லையெனில், "UNREG MYCRICQ" என தட்டச்சு செய்து 87798 க்கு எஸ்எம்எஸ் அனுப்பலாம்.</p>
                     </CCardBody>
                 </CCard>
             </CCollapse>

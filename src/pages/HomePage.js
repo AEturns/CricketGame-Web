@@ -44,7 +44,7 @@ const HomePage = () => {
           variant="contained"
           color="error"
           className="faq-btn animate__slow m-1"
-          style={{ borderRadius: "50%" }}
+          // style={{ borderRadius: "50%" }}
           onClick={() => {
             animateCSS(".faq-btn", "bounceOutDown", true, 1000);
             animateCSS(".start-btn", "bounceOutUp", true, 1000);
@@ -54,7 +54,7 @@ const HomePage = () => {
             }, 1000);
           }}
         >
-          ?
+          FAQ
         </Button>
       </div>
     </Container>

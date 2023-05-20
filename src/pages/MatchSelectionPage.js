@@ -583,6 +583,15 @@ const MatchSelectionPage = () => {
                 </span>
               </CDropdownToggle>
               <CDropdownMenu className="pt-0" placement="bottom-end">
+              <CDropdownItem
+                  onClick={() => {
+                    navigate.push("/faq");
+                  }}
+                  style={{ color: "black", cursor: "pointer" }}
+                >
+                  {/* <CIcon icon={cilAccountLogout} className="me-2 " /> */}
+                  FAQ
+                </CDropdownItem>
                 <CDropdownItem
                   onClick={() => {
                     localStorage.removeItem("mycricq-username");
