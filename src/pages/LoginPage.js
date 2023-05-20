@@ -42,11 +42,12 @@ const LoginPage = () => {
 
 
     return (
-        <Container style={{ textAlign: 'center', marginTop: '5%' }} fixed>
+        <Container style={{ textAlign: 'center', marginTop: '10%' }} fixed>
             <div className='top-heading mb-3'>
                 <h2 style={{ color: '#cf4036', fontWeight: 'bold', fontSize: '2em', WebkitTextStroke: "0.5px #BD1307" }} className="animate__animated animate__bounceInDown">Login</h2>
 
             </div>
+            <div className='mt-5'>
 
             {state == "LOGIN" ?
                 <Login
@@ -58,8 +59,9 @@ const LoginPage = () => {
                 /> :
                 <OTP generatedOTP={generatedOTP} username={name} mobile={mobileNumber} />
             }
+            </div>
 
-            <div className='animate__animated animate__backInUp'>
+            <div className='animate__animated animate__backInUp mt-5'>
                 <img src={Logo} className="logo-img animate__slow" />
             </div>
             <Snackbar

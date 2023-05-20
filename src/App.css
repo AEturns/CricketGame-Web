@@ -111,8 +111,8 @@ body {
 
 @media (max-height:700px) {
   .logo-img {
-    margin-top: 10px !important;
-    width: 180px !important;
+    margin-top: 5px !important;
+    width: 150px !important;
   }
 }
 

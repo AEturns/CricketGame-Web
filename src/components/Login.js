@@ -20,28 +20,16 @@ function Login({changeStatus}) {
         }
 
 
-        // if (mobileNumber == "") {
-        //     animateCSS(".input-with-number", 'jello', true, 0)
-        //     return
-        // }
-
-        // if (mobileNumber.length != 10) {
-        //     if (mobileValidationAlert) animateCSS(".input-with-number", 'jello', true, 0)
-        //     setMobileValidationAlert(true)
-        //     return
-        // }
-
-
-
         animateCSS(".input-container-name", 'bounceOutRight', true, 1000)
         animateCSS(".input-container-number", 'bounceOutLeft', true, 1000)
+
+        animateCSS(".top-heading", 'bounceOutUp', true, 1000)
+        animateCSS(".logo-img", 'bounceOutDown', true, 1000)
+        animateCSS(".next-btn", 'bounceOutDown', true, 1000)
+
         
-        // animateCSS(".top-heading", 'bounceOutUp', true, 1000)
-        // animateCSS(".next-btn", 'bounceOutDown', true, 1000)
         setTimeout(
             () => {
-                // changeStatus(name, mobileNumber)
-                //navigate.push('/otp')
                 window.location.replace(WEB_SUBSCRIPTION_PATH + "?request-ref=" + name)
             },
             1000
