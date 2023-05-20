@@ -114,6 +114,10 @@ body {
     margin-top: 5px !important;
     width: 150px !important;
   }
+
+  .award-animation {
+    height: 130px !important;
+  }
 }
 
 @media (max-height:900px) {
@@ -129,16 +133,7 @@ body {
   
 }
 
-@media (max-height:700px) {
 
-
-
-  .award-animation {
-    height: 200px;
-  }
-  
-  
-}
 
 @media (max-height:620px) {
   .card-list-list {
