@@ -39,7 +39,8 @@ export const STRINGS = {
     OTP_HEADING: ['OTP (One Time Password)', 'OTP (එක් වරක් මුරපදය)'],
     OTP_MESSAGE: ['We have sent an SMS to your phone','අපි ඔබගේ දුරකථනයට කෙටි පණිවුඩයක් යවා ඇත'],
     INVALID_OTP_MESSAGE: ['Invalid OTP! Please Re-try.', 'වලංගු නොවන OTP! කරුණාකර නැවත උත්සාහ කරන්න.'],
-    NO_PLAYERS_MESSAGE: ['Anyone Havent Played  Yet','කවුරුවත් තවම සෙල්ලම් කර නැත']
+    NO_PLAYERS_MESSAGE: ['Anyone Havent Played  Yet','කවුරුවත් තවම සෙල්ලම් කර නැත'],
+    COME_BACK_MSG: ['Come back tomorrow to play again','ආපසු සෙල්ලම් කරන්න හෙට දින පෑමිනෙන්න']
 }
 
 

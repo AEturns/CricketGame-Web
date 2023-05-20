@@ -381,7 +381,7 @@ const MatchSelectionPage = () => {
                         color: "red",
                         fontSize: "2em",
                         fontWeight: "bolder",
-                        WebkitTextStroke: "1px #000",
+                        
                       }}
                     >
                       <CardMedia
@@ -408,10 +408,27 @@ const MatchSelectionPage = () => {
                           top: "25px",
                           right: "14px",
                           transform: "rotate(30deg)",
+                          WebkitTextStroke: "1px #000",
                         }}
                         class="bottom-left"
                       >
                         Played
+                      </div>
+                      <div
+                        hidden={checkLeaderboard(
+                          match.attributes.leaderboards.data
+                        )}
+                        style={{
+                          position: "absolute",
+                          top: "100px",
+                          right: "30px",
+                          fontSize: "0.3em",
+                          color: "#fff",
+                          WebkitTextStroke: "0.2px #000",
+                        }}
+                        class="bottom-left"
+                      >
+                        {STRINGS.COME_BACK_MSG[LANGUAGE_ID]}
                       </div>
                     </div>
 
