@@ -116,6 +116,7 @@ body {
   }
 
   .award-animation {
+    margin-top: 2px !important;
     height: 130px !important;
   }
 }
