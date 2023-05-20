@@ -149,6 +149,7 @@ const MatchSelectionPage = () => {
             localStorage.removeItem("mycricq-username");
             localStorage.removeItem("mycricq-mobile");
             localStorage.removeItem("mycricq-userRef");
+            sessionStorage.removeItem("mycricq-matchSession")
             window.location.reload(false);
           })
           .catch((e) => {
@@ -587,6 +588,7 @@ const MatchSelectionPage = () => {
                     localStorage.removeItem("mycricq-username");
                     localStorage.removeItem("mycricq-mobile");
                     localStorage.removeItem("mycricq-userRef");
+                    sessionStorage.removeItem("mycricq-matchSession")
                     window.location.reload(false);
                   }}
                   style={{ color: "black", cursor: "pointer" }}
