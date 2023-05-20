@@ -589,7 +589,7 @@ const MatchSelectionPage = () => {
                     localStorage.removeItem("mycricq-mobile");
                     localStorage.removeItem("mycricq-userRef");
                     sessionStorage.removeItem("mycricq-matchSession")
-                    window.location.reload(false);
+                    navigate.push("/");
                   }}
                   style={{ color: "black", cursor: "pointer" }}
                 >
