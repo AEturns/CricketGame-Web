@@ -38,7 +38,7 @@ const HomePage = () => {
           className="start-btn animate__slow m-1"
           onClick={() => handleStartBtn()}
         >
-          PLAY NOW
+          SUBSCRIBE TO PLAY
         </Button>
         <Button
           variant="contained"

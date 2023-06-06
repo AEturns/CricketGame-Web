@@ -1,54 +1,204 @@
-import { CButton, CCard, CCardBody, CCollapse, CContainer } from '@coreui/react'
-import React, { useState } from 'react'
-import { Container } from '@mui/system'
-import { List } from '@mui/material'
+import {
+  CButton,
+  CCard,
+  CCardBody,
+  CCollapse,
+  CContainer,
+} from "@coreui/react";
+import React, { useState } from "react";
+import { Container } from "@mui/system";
+import { List } from "@mui/material";
 function FAQPage() {
-    const [visible1, setVisible1] = useState(false)
-    const [visible2, setVisible2] = useState(false)
-    return (
-        <Container style={{ textAlign: 'center', marginTop: '5%' }} fixed>
-            <div className='top-heading mb-3'>
-                <h2 style={{ color: '#cf4036', fontWeight: 'bold', fontSize: '2em', WebkitTextStroke: "0.5px #BD1307" }} className="animate__animated animate__bounceInDown">FAQ</h2>
+  const [visible1, setVisible1] = useState(false);
+  const [visible2, setVisible2] = useState(false);
+  const [visible3, setVisible3] = useState(false);
+  const [visible4, setVisible4] = useState(false);
+  const [visible5, setVisible5] = useState(false);
+  const [visible6, setVisible6] = useState(false);
+  return (
+    <Container style={{ textAlign: "center", marginTop: "5%" }} fixed>
+      <div className="top-heading mb-3">
+        <h2
+          style={{
+            color: "#cf4036",
+            fontWeight: "bold",
+            fontSize: "2em",
+            WebkitTextStroke: "0.5px #BD1307",
+          }}
+          className="animate__animated animate__bounceInDown"
+        >
+          FAQ
+        </h2>
+      </div>
+      <List className="card-list-faq" style={{ padding: "30px" }}>
+        <CButton
+          color="light"
+          variant="ghost"
+          onClick={(event) => {
+            event.preventDefault();
+            setVisible1(!visible1);
+          }}
+        >
+          <h3>MyCrickQ යනු කුමක්ද?</h3>
+        </CButton>
 
-            </div>
-            <List className='card-list-faq' style={{padding: '30px'}}>
-            <CButton color="light" variant="ghost" onClick={(event) => {
-                event.preventDefault()
-                setVisible1(!visible1)
-            }}>
-                <h3>How to Play MyCricQ?</h3>
-            </CButton>
+        <CCollapse visible={visible1}>
+          <CCard className="mt-3">
+            <CCardBody>
+              <p>
+                MyCrickQ යනු ක්‍රිකට් ක්‍රීඩාවේ විවිධ කාණ්ඩයන්ට සහ ප්‍රබේදයන්ට
+                අයත් game එකක් ලෙස paly කල හැකි ප්‍රශ්න ඇතුලත් Digital Online
+                Quiz Platform එකකි. මෙය ශ්‍රී ලංකාවේ ඇති සියලුම දුරකථන සන්නිවේදන
+                ආයතනවල සහයෝගයෙන් සහ සම්බන්ධතාවයෙන් යුත් අධ්‍යාපන හා විනෝදාස්වාදය
+                පදනම් කරගත් ඩිජිටල් සේවාවක් ලෙස සකසා ඇත. තෝරාගත් ප්‍රශ්නාවලියෙහි
+                විනෝදාස්වාදය නොකැඩි පවත්වා ගැනීම සඳහා සියලුම සහභාගිවන්නන් /
+                ජයග්‍රාහකයින් කාලය පදනම් කරගත් පද්ධතියක් මගින් ඇගයීමට ලක් කරනු
+                ලබන Mobile subscription ආකෘතියක් හරහා සේවාව මෙහෙයවනු ලැබේ.
+              </p>
+            </CCardBody>
+          </CCard>
+        </CCollapse>
+        <br />
+        <CButton
+          className="mt-4"
+          color="light"
+          variant="ghost"
+          onClick={(event) => {
+            event.preventDefault();
+            setVisible2(!visible2);
+          }}
+        >
+          <h3>මෙම ක්‍රීඩාව සිදු කරන්නේ කෙසේද?</h3>
+        </CButton>
 
-            <CCollapse visible={visible1}>
-                <CCard className="mt-3">
-                    <CCardBody>
-                        <p>Interactive cricket related quiz game where the player is able to provide answers to the questions and win amazing prizes for the set period. User is able to create an alias, select different quizzes with run points. </p>
-                        <p>අන්තර්ක්‍රියාකාරී ක්‍රිකට් ආශ්‍රිත ප්‍රශ්න විචාරාත්මක ක්‍රීඩාවක් වන අතර එහිදී ක්‍රීඩකයාට ප්‍රශ්නවලට පිළිතුරු සැපයීමට සහ නියමිත කාල සීමාව සඳහා පුදුමාකාර ත්‍යාග දිනා ගැනීමට හැකි වේ. පරිශීලකයාට අන්වර්ථයක් නිර්මාණය කිරීමට, ධාවන ලකුණු සමඟ විවිධ ප්‍රශ්නාවලිය තෝරා ගැනීමට හැකිය.</p>
-                        <p>ஊடாடும் கிரிக்கெட் தொடர்பான வினாடி வினா விளையாட்டு, இதில் வீரர் கேள்விகளுக்கான பதில்களை வழங்க முடியும் மற்றும் குறிப்பிட்ட காலத்திற்கு அற்புதமான பரிசுகளை வெல்ல முடியும். பயனர் மாற்றுப்பெயரை உருவாக்கலாம், ரன் புள்ளிகளுடன் வெவ்வேறு வினாடி வினாக்களை தேர்ந்தெடுக்கலாம்.</p>
-                    </CCardBody>
-                </CCard>
-            </CCollapse>
-            <br />
-            <CButton className='mt-4' color="light" variant="ghost" onClick={(event) => {
-                event.preventDefault()
-                setVisible2(!visible2)
-            }}>
-                <h3>How to Unsubscribe? </h3>
-            </CButton>
+        <CCollapse visible={visible2}>
+          <CCard className="mt-3">
+            <CCardBody style={{ textAlign: "left" }}>
+              <p>ඔබ කල යුතු වන්නේ;</p>
+              <ul>
+                <li>පළමු පියවර: MyCrickQ.com වෙබ් අඩවියට පිවිසෙන්න</li>
+                <li>
+                  දෙවන පියවර: ඔබ තෝරාගත් වර්ගයේ ප්‍රශ්නාවලිය play කිරීම තහවුරු
+                  කිරීම සඳහා ඔබේ ජංගම දුරකථන අංකය ඇතුළත් කර, එයට ලැබෙන OTP අංකය
+                  හරහා එය තහවුරු කරන්න.
+                </li>
+              </ul>
+            </CCardBody>
+          </CCard>
+        </CCollapse>
 
-            <CCollapse visible={visible2}>
-                <CCard className="mt-3">
-                    <CCardBody>
-                        <p>If you want Unsubscribe from our service, you can press "unsubscribe from MyCricQ" button after login to your account. Otherwise, You can simply send and sms typing "UNREG MYCRICQ" to 87798 </p>
-                    <p>ඔබට අපගේ සේවාවෙන් දායකත්වයෙන් ඉවත් වීමට අවශ්‍ය නම්, ඔබගේ ගිණුමට පිවිසීමෙන් පසු ඔබට "MyCricQ වෙතින් දායකත්වයෙන් ඉවත් වන්න" බොත්තම එබිය හැක. එසේ නොමැතිනම්, ඔබට "UNREG MYCRICQ" ලෙස ටයිප් කර 87798 ට කෙටි පණිවිඩයක් යැවිය හැක.</p>
-                    <p>எங்கள் சேவையிலிருந்து நீங்கள் குழுவிலக விரும்பினால், உங்கள் கணக்கில் உள்நுழைந்த பிறகு "MyCricQ இலிருந்து குழுவிலகு" பொத்தானை அழுத்தலாம். இல்லையெனில், "UNREG MYCRICQ" என தட்டச்சு செய்து 87798 க்கு எஸ்எம்எஸ் அனுப்பலாம்.</p>
-                    </CCardBody>
-                </CCard>
-            </CCollapse>
-            
-            </List>
-        </Container>
-    )
+        <br />
+        <CButton
+          className="mt-4"
+          color="light"
+          variant="ghost"
+          onClick={(event) => {
+            event.preventDefault();
+            setVisible3(!visible3);
+          }}
+        >
+          <h3>සේවාවෙන් ඉවත් වන්නේ කෙසේද?</h3>
+        </CButton>
+
+        <CCollapse visible={visible3}>
+          <CCard className="mt-3">
+            <CCardBody style={{ textAlign: "left" }}>
+              <p>ඔබ කල යුතු වන්නේ;</p>
+              <ul>
+                <li> MyCrickQ.com වෙබ් අඩවිය වෙත පිවිසෙන්න.</li>
+                <li>
+                  එහි ඔබ ලියාපදිංචි වූ ප්‍රශ්න වර්ගය මත click කර එවිට එන
+                  unregister බොත්තම මත click කරන්න.
+                </li>
+                <li>
+                  ඔබේ ගිණුම තුලට ගොස් (වම්පස ඉහල කෙලවර සඳහන් මිනිස් රූපය) ඔබ
+                  ලියාපදිංචි වී ඇති සේවාවෙන් ඉවත් වීමට එහි සඳහන් button 1ක
+                  (බොත්තම) click කරන්න.{" "}
+                </li>
+              </ul>
+            </CCardBody>
+          </CCard>
+        </CCollapse>
+
+        <br />
+        <CButton
+          className="mt-4"
+          color="light"
+          variant="ghost"
+          onClick={(event) => {
+            event.preventDefault();
+            setVisible4(!visible4);
+          }}
+        >
+          <h3>MyCrickQ.com වෙත ලියාපදිංචි වීම</h3>
+        </CButton>
+
+        <CCollapse visible={visible4}>
+          <CCard className="mt-3">
+            <CCardBody >
+              <p>විවිධ ප්‍රශ්න කාණ්ඩ ඇතුලත් MyCrickQ.com හී කැමති ප්‍රශ්න කාණ්ඩයක් වෙත ලියාපදිංචි වූ විට පාරිභෝගිකයාට වේලාව ගණනය කිරීමේ පදනම යටතේ පිළිතුරු ලබා දීමට සිදුවන ප්‍රශ්න 10ක් සෑම දිනකම ලැබෙන අතර ඒ සඳහා දිනකට රු.6ක් සහ අදාළ බදු අයවේ. ඔබට ලබාගැනීමට අවශ්‍ය ලකුණු ප්‍රමාණය මුලින්ම තීරණය කර (ක්‍රිකට් ක්‍රීඩාවේ ලකුණු ලැබෙන ආකාරයට), ප්‍රශ්නයට මුහුණ දීම කල හැකි අතර, තෝරාගත් ලකුණු ප්‍රමාණයට අනුව ප්‍රශ්ණයේ දුෂ්කරතාවය සහ පහසුබව තීරණය වේ. (උදාහරණ : ලකුණු 6ක ප්‍රශ්ණයක් වඩා දුෂ්කර වන අතර ලකුණු 1ක ප්‍රශ්ණයක් වඩා පහසු වේ.)</p>
+             
+            </CCardBody>
+          </CCard>
+        </CCollapse>
+
+        <br />
+        <CButton
+          className="mt-4"
+          color="light"
+          variant="ghost"
+          onClick={(event) => {
+            event.preventDefault();
+            setVisible5(!visible5);
+          }}
+        >
+          <h3>ජයග්‍රාහකයෙකු තෝරා ගනු ලබන්නේ කෙසේද? </h3>
+        </CButton>
+
+        <CCollapse visible={visible5}>
+          <CCard className="mt-3">
+            <CCardBody style={{ textAlign: "left" }}>
+              <p>ඔබ කල යුතු වන්නේ;</p>
+              <ul>
+                <li>MyCrickQ.com තරඟයේදී අවම කාල රාමුවක් තුළ ලබා දුන් වැඩිම ලකුණු ප්‍රමාණය අයත් නිවැරදි පිළිතුරු ගණන අනුව ජයග්‍රාහකයෙකු තෝරා ගනු ලැබේ. </li>
+                <li>
+                තෝරාගන්නා ලකුණු ප්‍රමාණයට අනුව පිළිතුරු ලබාදීමට ලැබෙන කාලය වෙනස්වේ. අඩු ලකුණු සදහා වැඩි කාලයක්ද, වැඩි ලකුණු සදහා අඩු කාලයක්ද ලැබේ.
+                </li>
+                <li>
+                තරඟයේදී වැඩිම ලකුණු ප්‍රමාණයක් රැස් කරගන්නා ආකාරයට ජයග්‍රාහකයා තේරී පත් වේ
+                </li>
+                <li>
+                කාර්යාලීය වැඩකරන තෙදිනක් තුල ජයග්‍රාහකයාව දුරකතනයෙන් සම්බන්ද කර ගනු ලැබේ.
+                </li>
+              </ul>
+            </CCardBody>
+          </CCard>
+        </CCollapse>
+
+        <br />
+        <CButton
+          className="mt-4"
+          color="light"
+          variant="ghost"
+          onClick={(event) => {
+            event.preventDefault();
+            setVisible6(!visible6);
+          }}
+        >
+          <h3>MyCrickQ.com පිළිබඳ වැඩිදුර තොරතුරු</h3>
+        </CButton>
+
+        <CCollapse visible={visible6}>
+          <CCard className="mt-3">
+            <CCardBody>
+              <p>MyCrickQ.com විසින් එහි ඇති සෑම ප්‍රශ්න කාණ්ඩයකටම අදාළව මුදල් තෑගි,තෑගි වවුචර, ජංගම දුරකථන, Laptop පරිගණක සහ තවත් වටිනා විදුලි උපකරණ ඇතුළුව ජයග්‍රාහී ත්‍යාග පිරිනැමේ.</p>
+             
+            </CCardBody>
+          </CCard>
+        </CCollapse>
+      </List>
+    </Container>
+  );
 }
 
-export default FAQPage
+export default FAQPage;
