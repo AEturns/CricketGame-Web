@@ -54,7 +54,7 @@ const HomePage = () => {
             }, 1000);
           }}
         >
-          FAQ
+          FAQ / T&C
         </Button>
       </div>
     </Container>
