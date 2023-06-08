@@ -60,7 +60,7 @@ const HomePage = () => {
             }, 1000);
           }}
         >
-          FAQ / T&C
+          FAQ
         </Button>
         <div className="animate__animated animate__backInUp animate__delay-1s">
           <div className="tc-btn animate__slow m-1">

@@ -27,7 +27,7 @@ function FAQPage() {
           }}
           className="animate__animated animate__bounceInDown"
         >
-          FAQ & T&C
+          FAQ
         </h2>
       </div>
       <List className="card-list-faq" style={{ padding: "30px" }}>

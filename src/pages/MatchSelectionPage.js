@@ -594,7 +594,16 @@ const MatchSelectionPage = () => {
                   style={{ color: "black", cursor: "pointer" }}
                 >
                   {/* <CIcon icon={cilAccountLogout} className="me-2 " /> */}
-                  FAQ / T&C
+                  FAQ
+                </CDropdownItem>
+                <CDropdownItem
+                  onClick={() => {
+                    navigate.push("/tc");
+                  }}
+                  style={{ color: "black", cursor: "pointer" }}
+                >
+                  {/* <CIcon icon={cilAccountLogout} className="me-2 " /> */}
+                  Terms & Conditions
                 </CDropdownItem>
                 <CDropdownItem
                   onClick={() => {
