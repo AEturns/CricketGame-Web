@@ -421,10 +421,14 @@ const MatchSelectionPage = () => {
                         )}
                         style={{
                           position: "absolute",
-                          top: "100px",
+                          top: "110px",
                           right: "30px",
                           fontSize: "0.3em",
                           color: "#fff",
+                          backgroundColor: "rgb(150, 41, 41)", 
+                          padding: "5px",
+                          borderRadius: "20px",
+                          border: "10px",
                           WebkitTextStroke: "0.2px #000",
                         }}
                         class="bottom-left"

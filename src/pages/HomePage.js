@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { animateCSS } from "../animation/triggerAnimation";
 import HomeImage from "../assets/images/Logo-01.png";
 import { WEB_SUBSCRIPTION_PATH, WEB_URL } from "../config/const";
+import { CLink } from "@coreui/react";
 
 const HomePage = () => {
   const navigate = useHistory();
@@ -12,10 +13,12 @@ const HomePage = () => {
     animateCSS(".start-btn", "bounceOutDown", true, 1000);
     animateCSS(".faq-btn", "bounceOutUp", true, 1000);
     animateCSS(".start-content", "bounceOutUp", true, 1000);
-
+    animateCSS(".tc-btn", "bounceOutDown", true, 1000);
     setTimeout(() => {
       if (localStorage.getItem("mycricq-userRef"))
-        window.location.replace(WEB_URL + "selection?ref=" + localStorage.getItem("mycricq-userRef"));
+        window.location.replace(
+          WEB_URL + "selection?ref=" + localStorage.getItem("mycricq-userRef")
+        );
       else navigate.push("/login");
     }, 1000);
   };
@@ -38,7 +41,9 @@ const HomePage = () => {
           className="start-btn animate__slow m-1"
           onClick={() => handleStartBtn()}
         >
-          SUBSCRIBE TO PLAY
+          {localStorage.getItem("mycricq-userRef")
+            ? "PLAY NOW"
+            : "SUBSCRIBE TO PLAY"}
         </Button>
         <Button
           variant="contained"
@@ -49,6 +54,7 @@ const HomePage = () => {
             animateCSS(".faq-btn", "bounceOutDown", true, 1000);
             animateCSS(".start-btn", "bounceOutUp", true, 1000);
             animateCSS(".start-content", "bounceOutUp", true, 1000);
+            animateCSS(".tc-btn", "bounceOutUp", true, 1000);
             setTimeout(() => {
               navigate.push("/faq");
             }, 1000);
@@ -56,6 +62,28 @@ const HomePage = () => {
         >
           FAQ / T&C
         </Button>
+        <div className="animate__animated animate__backInUp animate__delay-1s">
+          <div className="tc-btn animate__slow m-1">
+            <CLink
+              style={{
+                cursor: "pointer",
+                color: "#BD1307",
+                fontWeight: "bold",
+              }}
+              onClick={() => {
+                animateCSS(".tc-btn", "bounceOutDown", true, 1000);
+                animateCSS(".faq-btn", "bounceOutUp", true, 1000);
+                animateCSS(".start-btn", "bounceOutUp", true, 1000);
+                animateCSS(".start-content", "bounceOutUp", true, 1000);
+                setTimeout(() => {
+                  navigate.push("/tc");
+                }, 1000);
+              }}
+            >
+              Terms & Conditions
+            </CLink>
+          </div>
+        </div>
       </div>
     </Container>
   );
