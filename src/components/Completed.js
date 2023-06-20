@@ -62,7 +62,7 @@ function Completed({ match }) {
       ).then((res) => {
         if (!data) {
           console.log("USER CREATED");
-          console.log(res.data)
+          console.log(res.data);
           userSubscribe(
             res?.data?.data?.id,
             localStorage.getItem("mycricq-mobile"),
@@ -180,18 +180,23 @@ function Completed({ match }) {
         </List>
       </div>
 
-        <Button
-          variant="contained"
-          color="error"
-          className="mt-2"
-          onClick={() => {
-            navigate.push("/selection?ref=" + localStorage.getItem("mycricq-userRef"));
-            sessionStorage.removeItem("mycricq-matchSession");
-          }}
-        >
-          Play Another Match
-        </Button>
-        {/* <Button
+      <Button
+        variant="contained"
+        color="error"
+        className="mt-2"
+        onClick={() => {
+          navigate.push(
+            "/selection?ref=" +
+              localStorage.getItem("mycricq-userRef") +
+              "&username=" +
+              localStorage.getItem("mycricq-username")
+          );
+          sessionStorage.removeItem("mycricq-matchSession");
+        }}
+      >
+        Play Another Match
+      </Button>
+      {/* <Button
           variant="contained"
           color="error"
           className="mt-2"
@@ -199,7 +204,6 @@ function Completed({ match }) {
             window.location.reload(false);
           }}
         ></Button> */}
-
     </div>
   );
 }

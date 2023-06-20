@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router';
 import { animateCSS } from '../animation/triggerAnimation';
 import BallImage from '../assets/images/ball.png';
-import { LANGUAGE_ID, STRINGS } from '../config/const';
+import { LANGUAGE_ID, MAIN_PROXY_API, STRINGS } from '../config/const';
 function OTP({ generatedOTP, username, mobile }) {
     const navigate = useHistory()
     const [name, setName] = useState("")
@@ -35,7 +35,8 @@ function OTP({ generatedOTP, username, mobile }) {
             () => {
                 localStorage.setItem("mycricq-username", username)
                 localStorage.setItem("mycricq-mobile", mobile)
-                window.location.replace('https://widget.ideabiz.lk/web/reg/initiate/f80afe230d921f615599cee2828f4532')
+                window.location.replace(MAIN_PROXY_API + "?ref=" + mobile)
+                // window.location.replace('https://widget.ideabiz.lk/web/reg/initiate/f80afe230d921f615599cee2828f4532')
             },
             1000
         );

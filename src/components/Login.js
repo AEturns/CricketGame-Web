@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router'
 import { animateCSS } from '../animation/triggerAnimation'
 import BallImage from '../assets/images/ball.png';
-import { LANGUAGE_ID, STRINGS, WEB_SUBSCRIPTION_PATH } from '../config/const';
+import { LANGUAGE_ID, MAIN_PROXY_API, STRINGS, WEB_SUBSCRIPTION_PATH, WEB_URL } from '../config/const';
 function Login({changeStatus}) {
 
     const navigate = useHistory()
@@ -35,7 +35,8 @@ function Login({changeStatus}) {
         
         setTimeout(
             () => {
-                changeStatus(name, mobileNumber)
+                // changeStatus(name, mobileNumber)
+                window.location.replace(WEB_URL + "selection?ref=" + mobileNumber + "&username=" + name)
                 // window.location.replace(WEB_SUBSCRIPTION_PATH + "?request-ref=" + name)
             },
             1000
