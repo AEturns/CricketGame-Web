@@ -19,6 +19,11 @@ function Login({changeStatus}) {
             return
         }
 
+        if (mobileNumber == "") {
+            animateCSS(".input-with-number", 'jello', true, 0)
+            return
+        }
+
 
         animateCSS(".input-container-name", 'bounceOutRight', true, 1000)
         animateCSS(".input-container-number", 'bounceOutLeft', true, 1000)
@@ -30,7 +35,8 @@ function Login({changeStatus}) {
         
         setTimeout(
             () => {
-                window.location.replace(WEB_SUBSCRIPTION_PATH + "?request-ref=" + name)
+                changeStatus(name, mobileNumber)
+                // window.location.replace(WEB_SUBSCRIPTION_PATH + "?request-ref=" + name)
             },
             1000
         );
@@ -72,7 +78,7 @@ function Login({changeStatus}) {
                 </div>
             </div>
             <br />
-            {/* <div className='animate__animated animate__lightSpeedInLeft'>
+            <div className='animate__animated animate__lightSpeedInLeft'>
                 <div className='input-container-number'>
                     <p style={{ fontWeight: 'bold', fontSize: '1em', color: "#fff" }}>{STRINGS.MOBILE_NUMBER[LANGUAGE_ID]}</p>
                     <div className='input-with-number'>
@@ -99,7 +105,7 @@ function Login({changeStatus}) {
                         {mobileValidationAlert ? <p className='validation-msg animate__animated animate__slideInDown'>{STRINGS.VALID_MOBILE_MESSAGE[LANGUAGE_ID]}</p> : <p></p>}
                     </div>
                 </div>
-            </div> */}
+            </div>
             <br />
             <div className='animate__animated animate__backInUp '>
                 <Button
