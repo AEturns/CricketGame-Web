@@ -43,7 +43,8 @@ function OTP({ generatedOTP, username, mobile, serverRef }) {
                 () => {
                     localStorage.setItem("mycricq-username", username)
                     localStorage.setItem("mycricq-mobile", mobile)
-                    window.location.replace('https://widget.ideabiz.lk/web/reg/initiate/f80afe230d921f615599cee2828f4532')
+                    window.location.replace(WEB_URL + "selection?ref=" + mobileNumber + "&username=" + name)
+                    // window.location.replace('https://widget.ideabiz.lk/web/reg/initiate/f80afe230d921f615599cee2828f4532')
                 },
                 1000
             );
