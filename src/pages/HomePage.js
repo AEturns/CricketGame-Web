@@ -15,9 +15,9 @@ const HomePage = () => {
     animateCSS(".start-content", "bounceOutUp", true, 1000);
     animateCSS(".tc-btn", "bounceOutDown", true, 1000);
     setTimeout(() => {
-      if (localStorage.getItem("mycricq-userRef"))
+      if (localStorage.getItem("mycricq-mobile") && localStorage.getItem("mycricq-username"))
         window.location.replace(
-          WEB_URL + "selection?ref=" + localStorage.getItem("mycricq-userRef")
+          WEB_URL + "selection?ref=" + localStorage.getItem("mycricq-mobile") + "&username=" + localStorage.getItem("mycricq-username")
         );
       else navigate.push("/login");
     }, 1000);
@@ -41,7 +41,7 @@ const HomePage = () => {
           className="start-btn animate__slow m-1"
           onClick={() => handleStartBtn()}
         >
-          {localStorage.getItem("mycricq-userRef")
+          {localStorage.getItem("mycricq-mobile") && localStorage.getItem("mycricq-username")
             ? "PLAY NOW"
             : "SUBSCRIBE TO PLAY"}
         </Button>

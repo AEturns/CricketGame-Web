@@ -67,46 +67,16 @@ const MatchSelectionPage = () => {
 
   useEffect(() => {
     const queryParameters = new URLSearchParams(window.location.search);
-    const userRef = queryParameters.get("ref");
 
-    // if(!localStorage.getItem("mycricq-username") || !localStorage.getItem("mycricq-mobile") || !localStorage.getItem("mycricq-userRef")) {
-    //   navigate.push("/");
-    //   return
-    // }
+    const mobileRef = queryParameters.get("ref");
+    const username = queryParameters.get("username");
 
-    axios
-      .get(
-        WEB_SUBSCRIPTION_STATUS_PATH +
-          userRef,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: WEB_SUBSCRIPTION_TOKEN,
-            Accept: "application/json",
-          },
-        }
-      )
-      .then((res) => {
-        if (!res) navigate.push("/");
-        if (
-          res.data.status == "ALREADY_SUBSCRIBED" ||
-          res.data.status == "SUBSCRIBED"
-        ) {
-          localStorage.setItem("mycricq-username", res.data.requestRef);
-          localStorage.setItem("mycricq-mobile", `0${res.data.msisdn.substring(3)}`);
-          localStorage.setItem("mycricq-userRef", userRef);
-
-          getAllMatches().then((res) => {
-            setAllMatches(res.data);
-          });
-        } else {
-          navigate.push("/");
-        }
-      })
-      .catch((e) => {
-        console.log(e);
-        navigate.push("/");
-      });
+    if (
+      !localStorage.getItem("mycricq-username") &&
+      !localStorage.getItem("mycricq-mobile")
+    ) {
+      if (!mobileRef && !username) navigate.push("/");
+    }
   }, []);
 
   const handleUnsubscribeBtn = async (match) => {
@@ -149,7 +119,7 @@ const MatchSelectionPage = () => {
             localStorage.removeItem("mycricq-username");
             localStorage.removeItem("mycricq-mobile");
             localStorage.removeItem("mycricq-userRef");
-            sessionStorage.removeItem("mycricq-matchSession")
+            sessionStorage.removeItem("mycricq-matchSession");
             navigate.push("/");
           })
           .catch((e) => {
@@ -172,7 +142,8 @@ const MatchSelectionPage = () => {
       confirmButtonColor: "#d33",
       cancelButtonColor: "#bbb",
       confirmButtonText:
-        match.id != JSON.parse(sessionStorage.getItem("mycricq-matchSession"))?.id
+        match.id !=
+        JSON.parse(sessionStorage.getItem("mycricq-matchSession"))?.id
           ? "Play Now"
           : "Continue Match",
     }).then((result) => {
@@ -182,7 +153,8 @@ const MatchSelectionPage = () => {
 
         setTimeout(() => {
           if (
-            match.id != JSON.parse(sessionStorage.getItem("mycricq-matchSession"))?.id
+            match.id !=
+            JSON.parse(sessionStorage.getItem("mycricq-matchSession"))?.id
           )
             sessionStorage.setItem(
               "mycricq-matchSession",
@@ -382,7 +354,6 @@ const MatchSelectionPage = () => {
                         color: "red",
                         fontSize: "2em",
                         fontWeight: "bolder",
-                        
                       }}
                     >
                       <CardMedia
@@ -425,7 +396,7 @@ const MatchSelectionPage = () => {
                           right: "30px",
                           fontSize: "0.3em",
                           color: "#fff",
-                          backgroundColor: "rgb(150, 41, 41)", 
+                          backgroundColor: "rgb(150, 41, 41)",
                           padding: "5px",
                           borderRadius: "20px",
                           border: "10px",
@@ -587,7 +558,7 @@ const MatchSelectionPage = () => {
                 </span>
               </CDropdownToggle>
               <CDropdownMenu className="pt-0" placement="bottom-end">
-              <CDropdownItem
+                <CDropdownItem
                   onClick={() => {
                     navigate.push("/faq");
                   }}
@@ -610,7 +581,7 @@ const MatchSelectionPage = () => {
                     localStorage.removeItem("mycricq-username");
                     localStorage.removeItem("mycricq-mobile");
                     localStorage.removeItem("mycricq-userRef");
-                    sessionStorage.removeItem("mycricq-matchSession")
+                    sessionStorage.removeItem("mycricq-matchSession");
                     navigate.push("/");
                   }}
                   style={{ color: "black", cursor: "pointer" }}
