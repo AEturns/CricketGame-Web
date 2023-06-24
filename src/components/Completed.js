@@ -185,7 +185,7 @@ function Completed({ match }) {
           color="error"
           className="mt-2"
           onClick={() => {
-            navigate.push("/selection?ref=" + localStorage.getItem("mycricq-userRef"));
+            navigate.push("/selection?ref=" + localStorage.getItem("mycricq-mobile") + "&username=" + localStorage.getItem("mycricq-username"));
             sessionStorage.removeItem("mycricq-matchSession");
           }}
         >
