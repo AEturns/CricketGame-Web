@@ -77,6 +77,10 @@ const MatchSelectionPage = () => {
     ) {
       if (!mobileRef && !username) navigate.push("/");
     }
+
+    getAllMatches().then((res) => {
+      setAllMatches(res.data);
+    });
   }, []);
 
   const handleUnsubscribeBtn = async (match) => {

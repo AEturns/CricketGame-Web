@@ -37,7 +37,7 @@ const LoginPage = () => {
     setMobileNumber(mobileNumber);
     await sendOTP(mobileNumber)
       .then((res) => {
-        setServerRef(res?.data?.serverRef)
+        setServerRef(res?.data?.data.serverRef)
         setSnackBarState({
           open: true,
           vertical: "bottom",
