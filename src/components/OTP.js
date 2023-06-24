@@ -4,12 +4,18 @@ import { useHistory } from 'react-router';
 import { animateCSS } from '../animation/triggerAnimation';
 import BallImage from '../assets/images/ball.png';
 import { LANGUAGE_ID, STRINGS } from '../config/const';
-function OTP({ generatedOTP, username, mobile }) {
+import { validateOTP } from '../services/otp.service';
+function OTP({ generatedOTP, username, mobile, serverRef }) {
     const navigate = useHistory()
     const [name, setName] = useState("")
     const [otp, setOTP] = useState("")
     const [mobileValidationAlert, setMobileValidationAlert] = useState(false)
-
+    const [snackBarState, setSnackBarState] = useState({
+        open: false,
+        vertical: "bottom",
+        horizontal: "center",
+        message: "",
+      });
     const handleNextBtn = async () => {
         setMobileValidationAlert(false)
 
@@ -18,27 +24,40 @@ function OTP({ generatedOTP, username, mobile }) {
             return
         }
 
-        if (otp != generatedOTP) {
-            setMobileValidationAlert(true)
-            if (mobileValidationAlert)
-                animateCSS(".input-with-number", 'jello', true, 0)
+        // if (otp != generatedOTP) {
+        //     setMobileValidationAlert(true)
+        //     if (mobileValidationAlert)
+        //         animateCSS(".input-with-number", 'jello', true, 0)
 
-            return
-        }
+        //     return
+        // }
+
+        await validateOTP(otp, serverRef)
+        .then((res) => {
+    
+            animateCSS(".input-container-number", 'bounceOutLeft', true, 1000)
+            animateCSS(".top-heading", 'bounceOutUp', true, 1000)
+            animateCSS(".next-btn", 'bounceOutDown', true, 1000)
+            animateCSS(".logo-img", 'bounceOutDown', true, 1000)
+            setTimeout(
+                () => {
+                    localStorage.setItem("mycricq-username", username)
+                    localStorage.setItem("mycricq-mobile", mobile)
+                    window.location.replace('https://widget.ideabiz.lk/web/reg/initiate/f80afe230d921f615599cee2828f4532')
+                },
+                1000
+            );
+        })
+        .catch((e) => {
+          setSnackBarState({
+            open: true,
+            vertical: "bottom",
+            horizontal: "center",
+            message: e.message,
+          });
+        });
 
 
-        animateCSS(".input-container-number", 'bounceOutLeft', true, 1000)
-        animateCSS(".top-heading", 'bounceOutUp', true, 1000)
-        animateCSS(".next-btn", 'bounceOutDown', true, 1000)
-        animateCSS(".logo-img", 'bounceOutDown', true, 1000)
-        setTimeout(
-            () => {
-                localStorage.setItem("mycricq-username", username)
-                localStorage.setItem("mycricq-mobile", mobile)
-                window.location.replace('https://widget.ideabiz.lk/web/reg/initiate/f80afe230d921f615599cee2828f4532')
-            },
-            1000
-        );
     }
 
     const classes = (theme) => createStyles({

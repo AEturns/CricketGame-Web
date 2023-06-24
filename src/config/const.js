@@ -21,6 +21,8 @@ export const API_PATHS = {
     VALIDATE_ANSWER_URL: MAIN_API,
     COMPLETE_MATCH_URL: MAIN_API + 'leaderboards',
     SEND_SMS_URL: MAIN_PROXY_CONFIG_API + '/config/otp',
+    SUBSCRIBE_OTP: MAIN_PROXY_CONFIG_API + '/config/subscribe-otp',
+    VALIDATE_OTP: MAIN_PROXY_CONFIG_API + '/config/validate-otp',
     USER_SUBSCRIBE_URL: MAIN_PROXY_CONFIG_API + '/config/subscribe',
     USER_UNSUBSCRIBE_URL: MAIN_PROXY_CONFIG_API + '/config/unsubscribe',
     USER_UNSUBSCRIBE_FROM_APP_URL: MAIN_PROXY_CONFIG_API + '/config/unsubscribe-app'
