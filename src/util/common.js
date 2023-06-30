@@ -9,3 +9,8 @@ export const generateIdsParams = (ids) => {
 
     return param
 }
+
+export const displayAmountWithCommas = (amount) => {
+    const formattedAmount = amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return formattedAmount
+  }

@@ -50,6 +50,7 @@ import {
   userUnsubscribeFromApp,
 } from "../services/user.service";
 import axios from "axios";
+import { displayAmountWithCommas } from "../util/common";
 
 const MatchSelectionPage = () => {
   const navigate = useHistory();
@@ -419,7 +420,7 @@ const MatchSelectionPage = () => {
                       <Typography gutterBottom variant="h8" component="div">
                         <span>
                           {STRINGS.WIN_PRIZE[LANGUAGE_ID]} Rs.{" "}
-                          {match.attributes.prize}
+                          {displayAmountWithCommas(match.attributes.prize)}
                         </span>
                         <p
                           style={{
