@@ -32,7 +32,7 @@ export const LANGUAGE_ID = 1
 
 export const STRINGS = {
     MATCH_SELECTION_HEADING: ['Please Select Your Match','Please Select Your Match'],
-    WIN_PRIZE: ['Win Prize', 'දිනුම් මිල'],
+    WIN_PRIZE: ['Win Prize', 'දිනුම් ත්‍යාගය'],
     TIME_PERIOD: ['Time Period','කාල සීමාව'],
     NAME: ['Name', 'නම'],
     HIGHEST_SCORE: ['Highest Score', 'වැඩිම ලකුණු'],
