@@ -5,7 +5,7 @@ import { styled } from '@mui/material/styles';
 import { CButton, CModal, CModalFooter } from '@coreui/react';
 import Lottie from 'lottie-react';
 import * as animationData from '../assets/lottie/77706-wicket.json'
-import * as animationOne from '../assets/lottie/78820-number-1-animation.json'
+import * as animationOne from '../assets/lottie/number_one.json'
 import * as animationTwo from '../assets/lottie/115328-number-2-liquid-effect.json'
 import * as animationSix from '../assets/lottie/77705-score-6.json'
 import * as animationFour from '../assets/lottie/77707-scored-4.json'
