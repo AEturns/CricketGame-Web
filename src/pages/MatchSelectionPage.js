@@ -212,7 +212,7 @@ const MatchSelectionPage = () => {
     const data = leaderBoard.sort(function (a, b) {
       return b.attributes.points - a.attributes.points;
     });
-    setSelectedLeaderBoard(data);
+    setSelectedLeaderBoard(data.slice(0, 10));
   };
 
   const theme = createTheme({
