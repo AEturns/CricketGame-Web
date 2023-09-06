@@ -52,11 +52,12 @@ function Completed({ match }) {
         (element) => element?.attributes?.mobile == mobile
       );
       console.log("dataInFind", data, leaderboard);
+      
       completeMatch(
         localStorage.getItem("mycricq-username"),
         localStorage.getItem("mycricq-mobile"),
-        Number(matchData.score),
-        `${matchData.score}/${matchData.wickets}`,
+        data ? Number(data?.attributes?.points) + Number(matchData.score) : Number(matchData.score),
+        `${data ? Number(data?.attributes?.points) + Number(matchData.score) : Number(matchData.score)}/${matchData.wickets}`,
         matchData.id,
         data ? data.id : null
       ).then((res) => {
