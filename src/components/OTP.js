@@ -36,7 +36,7 @@ function OTP({ generatedOTP, username, mobile, serverRef }) {
         //     return
         // }
 
-        await validateOTP(otp, serverRef)
+        await validateOTP(mobile, otp, serverRef)
         .then((res) => {
     
             animateCSS(".input-container-number", 'bounceOutLeft', true, 1000)

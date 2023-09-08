@@ -15,11 +15,12 @@ const sendOTP = async (mobileNo) => {
     }
 }
 
-const validateOTP = async (otp, serverRef) => {
+const validateOTP = async (mobile, otp, serverRef) => {
     const URL = API_PATHS.VALIDATE_OTP
     try {
         const body = {
             otp,
+            mobile,
             serverRef
         }
         
