@@ -10,13 +10,14 @@ import {
   generateOTP,
   mobileGenerator,
 } from "../util/otpGenerator";
+import { WEB_URL } from "../config/const";
 
 const LoginPage = () => {
   const [state, setState] = useState("LOGIN");
   const [generatedOTP, setGeneratedOTP] = useState(null);
   const [name, setName] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
-  const [serverRef, setServerRef] = useState("")
+  const [serverRef, setServerRef] = useState("");
 
   const [snackBarState, setSnackBarState] = useState({
     open: false,
@@ -37,7 +38,13 @@ const LoginPage = () => {
     setMobileNumber(mobileNumber);
     await sendOTP(mobileNumber)
       .then((res) => {
-        setServerRef(res?.data?.data.serverRef)
+        setServerRef(res?.data?.data.serverRef);
+        if(res.data?.statusCode == "E1351" || res.data?.statusDetail == "user already registered" ) {
+          localStorage.setItem("mycricq-username", name)
+          localStorage.setItem("mycricq-mobile", mobileNumber)
+          window.location.replace(WEB_URL + "selection?ref=" + mobileNumber + "&username=" + name)
+          return
+        }
         setSnackBarState({
           open: true,
           vertical: "bottom",
@@ -74,9 +81,9 @@ const LoginPage = () => {
         {state == "LOGIN" ? (
           <Login
             changeStatus={async (name, mobileNumber) => {
-              await sendOTPmessage(name, mobileNumber).then(() =>
-                setState("OTP")
-              );
+              await sendOTPmessage(name, mobileNumber).then((res) => {
+                setState("OTP");
+              });
             }}
           />
         ) : (
