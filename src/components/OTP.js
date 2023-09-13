@@ -61,19 +61,19 @@ function OTP({ generatedOTP, username, mobile, serverRef }) {
                 return
             }
     
-            // animateCSS(".input-container-number", 'bounceOutLeft', true, 1000)
-            // animateCSS(".top-heading", 'bounceOutUp', true, 1000)
-            // animateCSS(".next-btn", 'bounceOutDown', true, 1000)
-            // animateCSS(".logo-img", 'bounceOutDown', true, 1000)
-            // setTimeout(
-            //     () => {
-            //         localStorage.setItem("mycricq-username", username)
-            //         localStorage.setItem("mycricq-mobile", mobile)
-            //         window.location.replace(WEB_URL + "selection?ref=" + mobile + "&username=" + username)
-            //         // window.location.replace('https://widget.ideabiz.lk/web/reg/initiate/f80afe230d921f615599cee2828f4532')
-            //     },
-            //     1000
-            // );
+            animateCSS(".input-container-number", 'bounceOutLeft', true, 1000)
+            animateCSS(".top-heading", 'bounceOutUp', true, 1000)
+            animateCSS(".next-btn", 'bounceOutDown', true, 1000)
+            animateCSS(".logo-img", 'bounceOutDown', true, 1000)
+            setTimeout(
+                () => {
+                    localStorage.setItem("mycricq-username", username)
+                    localStorage.setItem("mycricq-mobile", mobile)
+                    window.location.replace(WEB_URL + "selection?ref=" + mobile + "&username=" + username)
+                    // window.location.replace('https://widget.ideabiz.lk/web/reg/initiate/f80afe230d921f615599cee2828f4532')
+                },
+                1000
+            );
         })
         .catch((e) => {
           setSnackBarState({
