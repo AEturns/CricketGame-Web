@@ -5,6 +5,7 @@ import { animateCSS } from '../animation/triggerAnimation';
 import BallImage from '../assets/images/ball.png';
 import { LANGUAGE_ID, STRINGS, WEB_URL } from '../config/const';
 import { validateOTP } from '../services/otp.service';
+import Swal from 'sweetalert2';
 function OTP({ generatedOTP, username, mobile, serverRef }) {
     const navigate = useHistory()
     const [name, setName] = useState("")
@@ -38,6 +39,17 @@ function OTP({ generatedOTP, username, mobile, serverRef }) {
 
         await validateOTP(mobile, otp, serverRef)
         .then((res) => {
+
+            console.log("validate OTP" , res.data.statusCode)
+
+            if(res.data.statusCode == "E1601") {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Please recharge and try again",
+                  });
+                return
+            }
     
             animateCSS(".input-container-number", 'bounceOutLeft', true, 1000)
             animateCSS(".top-heading", 'bounceOutUp', true, 1000)
