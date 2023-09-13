@@ -42,7 +42,7 @@ function OTP({ generatedOTP, username, mobile, serverRef }) {
 
             console.log("validate OTP" , res.data.statusCode)
 
-            if(res.data.statusCode == "E1601") {
+            if(res?.data?.statusCode == "E1601") {
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
@@ -50,20 +50,30 @@ function OTP({ generatedOTP, username, mobile, serverRef }) {
                   });
                 return
             }
+
+            
+            if(res?.data?.statusCode == "E1850") {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "OTP is invalid",
+                  });
+                return
+            }
     
-            animateCSS(".input-container-number", 'bounceOutLeft', true, 1000)
-            animateCSS(".top-heading", 'bounceOutUp', true, 1000)
-            animateCSS(".next-btn", 'bounceOutDown', true, 1000)
-            animateCSS(".logo-img", 'bounceOutDown', true, 1000)
-            setTimeout(
-                () => {
-                    localStorage.setItem("mycricq-username", username)
-                    localStorage.setItem("mycricq-mobile", mobile)
-                    window.location.replace(WEB_URL + "selection?ref=" + mobile + "&username=" + username)
-                    // window.location.replace('https://widget.ideabiz.lk/web/reg/initiate/f80afe230d921f615599cee2828f4532')
-                },
-                1000
-            );
+            // animateCSS(".input-container-number", 'bounceOutLeft', true, 1000)
+            // animateCSS(".top-heading", 'bounceOutUp', true, 1000)
+            // animateCSS(".next-btn", 'bounceOutDown', true, 1000)
+            // animateCSS(".logo-img", 'bounceOutDown', true, 1000)
+            // setTimeout(
+            //     () => {
+            //         localStorage.setItem("mycricq-username", username)
+            //         localStorage.setItem("mycricq-mobile", mobile)
+            //         window.location.replace(WEB_URL + "selection?ref=" + mobile + "&username=" + username)
+            //         // window.location.replace('https://widget.ideabiz.lk/web/reg/initiate/f80afe230d921f615599cee2828f4532')
+            //     },
+            //     1000
+            // );
         })
         .catch((e) => {
           setSnackBarState({
