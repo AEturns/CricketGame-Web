@@ -40,7 +40,7 @@ function OTP({ generatedOTP, username, mobile, serverRef }) {
         await validateOTP(mobile, otp, serverRef)
         .then((res) => {
 
-            console.log("validate OTP" , res.data.statusCode)
+            console.log(res)
 
             if(res?.data?.statusCode == "E1601") {
                 Swal.fire({
@@ -76,12 +76,11 @@ function OTP({ generatedOTP, username, mobile, serverRef }) {
             );
         })
         .catch((e) => {
-          setSnackBarState({
-            open: true,
-            vertical: "bottom",
-            horizontal: "center",
-            message: e.message,
-          });
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "OTP is invalid",
+              });
         });
 
 

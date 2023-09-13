@@ -27,7 +27,7 @@ const validateOTP = async (mobile, otp, serverRef) => {
         const response = await axios.post(URL, body)
         return response?.data
     } catch (e) {
-        return e
+        throw e
     }
 }
 
