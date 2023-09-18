@@ -73,20 +73,20 @@ function TCPage() {
               <p>
                 You hereby agree that You have read and fully understood the
                 terms and conditions of the third party mobile network
-                operator/s at https://dlg.dialog.lk/tc/vas. Your use of this
+                operator/s at https://www.mobitel.lk/si/general-terms-and-conditions. Your use of this
                 website constitutes Your agreement to follow and be bound by
                 such terms and conditions.
               </p>
               <p>
                 තුන්වන පාර්ශ්වයේ ජංගම ජාල ක්‍රිකාකරු/ක්‍රියාකරුවන් සඳහා වන,
-                https://dlg.dialog.lk/tc/vas වෙබ් අඩවියේ තිබෙන නියමයන් සහ
+                https://www.mobitel.lk/si/general-terms-and-conditions වෙබ් අඩවියේ තිබෙන නියමයන් සහ
                 කොන්දේසි ඔබ විසින් කියවා මැනවින් වටහා ගෙන ඇති බවට ඔබ මෙයින්
                 එකඟවනු ලැබේ. මෙම වෙබ් අඩවිය ඔබ විසින් භාවිත කිරීම හේතුවෙන්ම මෙම
                 නියමයන් සහ කොන්දේසි අනුගමනය කොට ඒවායින් බැඳී සිටින බවට වන ඔබගේ
                 එකඟතාව පිළිබිඹු වන බව සලකන්න.
               </p>
               <p>
-                https://dlg.dialog.lk/tc/vas இணையத்தளத்தில் மூன்றாம் தரப்பு
+                https://www.mobitel.lk/si/general-terms-and-conditions இணையத்தளத்தில் மூன்றாம் தரப்பு
                 கையடக்கத்தொலைபேசி வலைப்பின்னல் இயக்குனர்/களின் நியதிகள் மற்றும்
                 நிபந்தனைகளை நீங்கள் வாசித்து முழுமையாக புரிந்து கொண்டீர்கள்
                 என்பதை இத்தால் ஒப்புக்கொள்கிறீர்கள். இந்த இணையத்தளத்தை நீங்கள்
