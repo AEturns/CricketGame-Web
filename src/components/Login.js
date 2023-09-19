@@ -106,7 +106,13 @@ function Login({changeStatus}) {
                     </div>
                 </div>
             </div>
-            <br />
+            <div style={{color: "white", fontSize: "0.8em"}}>
+            <span >Rs. 6.00 + taxes daily</span> <br />
+            <span >Rs. 180.00 + taxes monthly</span> <br />
+            <span >(Auto renewal)</span>
+            </div>
+            
+            {/* <br /> */}
             <div className='animate__animated animate__backInUp '>
                 <Button
                     variant="contained"
