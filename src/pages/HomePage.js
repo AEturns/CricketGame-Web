@@ -4,7 +4,9 @@ import { useHistory } from "react-router-dom";
 import { animateCSS } from "../animation/triggerAnimation";
 import HomeImage from "../assets/images/Logo-01.png";
 import { WEB_SUBSCRIPTION_PATH, WEB_URL } from "../config/const";
-import { CLink } from "@coreui/react";
+import { CCol, CLink, CRow, CWidgetStatsE } from "@coreui/react";
+import { CChartBar, CChartLine } from "@coreui/react-chartjs";
+import StatisticsWidgets from "../components/StatisticsWidgets";
 
 const HomePage = () => {
   const navigate = useHistory();
@@ -15,9 +17,16 @@ const HomePage = () => {
     animateCSS(".start-content", "bounceOutUp", true, 1000);
     animateCSS(".tc-btn", "bounceOutDown", true, 1000);
     setTimeout(() => {
-      if (localStorage.getItem("mycricq-mobile") && localStorage.getItem("mycricq-username"))
+      if (
+        localStorage.getItem("mycricq-mobile") &&
+        localStorage.getItem("mycricq-username")
+      )
         window.location.replace(
-          WEB_URL + "selection?ref=" + localStorage.getItem("mycricq-mobile") + "&username=" + localStorage.getItem("mycricq-username")
+          WEB_URL +
+            "selection?ref=" +
+            localStorage.getItem("mycricq-mobile") +
+            "&username=" +
+            localStorage.getItem("mycricq-username")
         );
       else navigate.push("/login");
     }, 1000);
@@ -41,7 +50,8 @@ const HomePage = () => {
           className="start-btn animate__slow m-1"
           onClick={() => handleStartBtn()}
         >
-          {localStorage.getItem("mycricq-mobile") && localStorage.getItem("mycricq-username")
+          {localStorage.getItem("mycricq-mobile") &&
+          localStorage.getItem("mycricq-username")
             ? "PLAY NOW"
             : "SUBSCRIBE TO PLAY"}
         </Button>
@@ -85,6 +95,10 @@ const HomePage = () => {
           </div>
         </div>
       </div>
+      <div className="mt-5 animate__animated animate__backInUp animate__delay-1s">
+      <StatisticsWidgets />
+      </div>
+     
     </Container>
   );
 };

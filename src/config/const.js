@@ -25,7 +25,8 @@ export const API_PATHS = {
     VALIDATE_OTP: MAIN_PROXY_CONFIG_API + '/config/validate-otp',
     USER_SUBSCRIBE_URL: MAIN_PROXY_CONFIG_API + '/config/subscribe',
     USER_UNSUBSCRIBE_URL: MAIN_PROXY_CONFIG_API + '/config/unsubscribe',
-    USER_UNSUBSCRIBE_FROM_APP_URL: MAIN_PROXY_CONFIG_API + '/config/unsubscribe-app'
+    USER_UNSUBSCRIBE_FROM_APP_URL: MAIN_PROXY_CONFIG_API + '/config/unsubscribe-app',
+    USER_STAT: MAIN_API + 'dashboard-datas',
 }
 
 export const LANGUAGE_ID = 1

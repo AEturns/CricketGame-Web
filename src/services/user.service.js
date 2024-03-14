@@ -37,6 +37,17 @@ const userUnsubscribeFromApp = async (mobile, serverRef) => {
     }
 }
 
+const getUserStats = async () => {
+
+    try {
+    const response = await axios.get(API_PATHS.USER_STAT)
+    return response.data
+    } catch (e) {
+        throw e
+    }
+}
+
+
 
 // const userCheckFromIdeaBiz = async (userRef) => {
 
@@ -53,5 +64,6 @@ const userUnsubscribeFromApp = async (mobile, serverRef) => {
 export {
     loginRegister,
     userSubscribe,
-    userUnsubscribeFromApp
+    userUnsubscribeFromApp,
+    getUserStats
 }
