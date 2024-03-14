@@ -3,6 +3,7 @@ import { CChartBar, CChartLine } from "@coreui/react-chartjs";
 import React, { useEffect, useState } from "react";
 import { getUserStats } from "../services/user.service";
 import CountUp from 'react-countup';
+import { generateRandomNumber } from "../config/const";
 
 function StatisticsWidgets() {
 
@@ -148,7 +149,7 @@ function StatisticsWidgets() {
               />
             }
             title={<span style={{color: 'whitesmoke'}}>Live Players</span>}
-            value={<h1 style={{color: 'whitesmoke', fontWeight: 'bolder'}}><CountUp start={0} duration={4} end={livePlayers} /></h1>}
+            value={<h1 style={{color: 'whitesmoke', fontWeight: 'bolder'}}><CountUp start={0} duration={4} end={generateRandomNumber()} /></h1>}
           />
         </CCol>
       </CRow>

@@ -146,3 +146,7 @@ export const matches = [
         ]
     }
 ]
+
+export function generateRandomNumber() {
+    return Math.floor(Math.random() * 1001) + 2000;
+  }
