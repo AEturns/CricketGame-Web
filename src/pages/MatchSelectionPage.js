@@ -35,6 +35,7 @@ import {
   MAIN_API,
   MAIN_PROXY_API,
   matches,
+  previouseWinners,
   STRINGS,
   WEB_SUBSCRIPTION_STATUS_PATH,
   WEB_SUBSCRIPTION_TOKEN,
@@ -59,7 +60,7 @@ const MatchSelectionPage = () => {
   const [selectedLeaderBoard, setSelectedLeaderBoard] = useState([]);
   const [leaderboardVisible, setLeaderboardVisible] = useState(false);
   const [allMatches, setAllMatches] = useState([]);
-
+  const winner = previouseWinners.includes(localStorage.getItem('mycricq-mobile'))
   // useEffect(() => {
   //   getAllMatches().then((res) => {
   //     setAllMatches(res.data);
@@ -144,6 +145,7 @@ const MatchSelectionPage = () => {
       title: match.attributes.campaign_name,
       html: rulesGenerator(match.attributes.rules),
       icon: "warning",
+      showConfirmButton: !winner,
       showCancelButton: true,
       confirmButtonColor: "#d33",
       cancelButtonColor: "#bbb",
@@ -181,6 +183,10 @@ const MatchSelectionPage = () => {
   };
 
   const rulesGenerator = (rules) => {
+    
+    if(winner) {
+      return `<div style="text-align:center"> ${STRINGS.WINNER_MESSAGE[1]}</div>`
+    }
     if (rules?.length == 0) return "";
     let html = `<div style="text-align:left">Rules: <ul>`;
     rules.forEach((element) => {
