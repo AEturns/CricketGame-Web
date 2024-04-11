@@ -185,7 +185,7 @@ const MatchSelectionPage = () => {
   const rulesGenerator = (rules) => {
     
     if(winner) {
-      return `<div style="text-align:center"> ${STRINGS.WINNER_MESSAGE[1]}</div>`
+      return `<div style="text-align:center"> ${STRINGS.WINNER_MESSAGE[LANGUAGE_ID]}</div>`
     }
     if (rules?.length == 0) return "";
     let html = `<div style="text-align:left">Rules: <ul>`;
