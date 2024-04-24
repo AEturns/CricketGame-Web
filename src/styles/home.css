@@ -1,20 +1,35 @@
 .home-img {
     display: block;
-    margin-top: 100px;
+    margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
-    width: 700px;
+    width: 200px;
     
+}
+
+.home-cricket-image {
+    width: 500px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    z-index: 10;
+}
+
+.home-cricket-image:hover {
+    transform: scale(1.1);
 }
 
 @media (max-width:600px) {
 
     .home-img {
-        width: 300px;
+        width: 180px;
         margin-top: 16%;
         display: block;
         margin-left: auto;
         margin-right: auto;
+    }
+
+    .home-cricket-image {
+        width: 100%;
     }
   
 

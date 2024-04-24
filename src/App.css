@@ -5,7 +5,7 @@
 
 /* width */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
 }
 
 /* Track */
@@ -30,10 +30,10 @@
 
 body {
   background-color: #000;
-  background-image: url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1305&q=80');
+  background-image: url('./assets/images/bg-dd-white.png');
   background-repeat: no-repeat;
   background-size: cover;
-  backdrop-filter: brightness(60%) blur(5px);
+  /* backdrop-filter: brightness(80%) blur(1px); */
   position: fixed; 
   top: 0; 
   left: 0; 
@@ -47,14 +47,29 @@ body {
 
 }
 
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background-color: rgba(255, 255, 255, 0.9);  */
+}
+
+.match-card {
+  width: 400px;
+  height: 265;
+}
+
 .card-list {
-  margin-left: 50px;
+  margin-left: 10px;
   margin-top: 30px;
 }
 
 .card-list-list {
   width: 100%;
-  max-height: 420px;
+  max-height: 100%;
   overflow: auto;
 }
 
@@ -65,20 +80,23 @@ body {
 }
 
 .completed-leaderboard {
-  border: #000;
+  border: #fff;
+  background-color: #fff;
   border-radius: 20px;
   max-width: 500px;
 }
 
 .score-label {
-  color: rgb(196, 177, 10);
+  color: #FFC003;
+  -webkit-text-stroke: 1px black;
   font-size: 2em;
   font-weight: bolder;
   text-shadow: 20px 20px 20px rgb(54, 56, 41);
 }
 
 .score-points {
-  color: rgb(226, 207, 35);
+  color: #FFC003;
+  -webkit-text-stroke: 1px black;
   font-size: larger;
   font-weight: bolder;
   font-size: 3em;
@@ -89,8 +107,9 @@ body {
 @media (max-height:1400px) {
 
   .card-list-list {
-    height: 340px;
+    height: 100%;
   }
+
 
   .award-animation {
     height: 220px;
@@ -101,11 +120,13 @@ body {
 
 @media (max-height:1200px) {
   .logo-img {
-    margin-top: 60px !important;
+    margin-top: 40px !important;
   }
 
+ 
+
   .card-list-list {
-    height: 340px;
+    height: 100%;
   }
 }
 
@@ -113,6 +134,9 @@ body {
   .logo-img {
     margin-top: 5px !important;
     width: 150px !important;
+  }
+  .match-card {
+    width: 310px;
   }
 
   .award-animation {
@@ -127,6 +151,10 @@ body {
     margin-left: 40px;
   }
 
+  .match-card {
+    width: 315px;
+  }
+
   .award-animation {
     height: 200px;
   }
@@ -138,7 +166,7 @@ body {
 
 @media (max-height:620px) {
   .card-list-list {
-    max-height: 280px;
+    max-height: 100%;
   }
 
   .award-animation {
@@ -258,8 +286,8 @@ body {
 }
 
 .leaderboard-modal {
-  background-color: #192130;
-  color: #dadae7;
+  background-color: white;
+  color: #192130;
 }
 
 @media (max-width:550px) {
@@ -291,7 +319,7 @@ body {
 
   body {
 
-    background-image: url("https://images.unsplash.com/photo-1512719994953-eabf50895df7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=429&q=80");
+    background-image: url("./assets/images/bg-mmm-white.png");
     background-repeat: repeat;
   }
 
@@ -316,7 +344,7 @@ body {
 
 .logo-img {
   display: block;
-  margin-top: 80px;
+  margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
   width: 200px;

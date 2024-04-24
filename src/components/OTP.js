@@ -99,7 +99,7 @@ function OTP({ generatedOTP, username, mobile, serverRef }) {
             <div style={{ marginTop: '60px' }} className='animate__animated animate__lightSpeedInLeft'>
                 <div className='input-container-number'>
                     {/* <span style={{ fontWeight: 'bold', fontSize: '0.6em', color: "#000" }}>{generatedOTP}</span> */}
-                    <p style={{ fontWeight: 'bold', fontSize: '1em', color: "#fff" }}>{STRINGS.OTP_HEADING[LANGUAGE_ID]}</p>
+                    <p style={{ fontWeight: 'bold', fontSize: '1.1em', color: "#cf4036", }}>{STRINGS.OTP_HEADING[LANGUAGE_ID]}</p>
                     <div className='input-with-number'>
                         <TextField
                             variant="standard"
@@ -125,7 +125,7 @@ function OTP({ generatedOTP, username, mobile, serverRef }) {
                         {mobileValidationAlert ?
                             <span className='validation-msg-otp'><p className='validation-msg animate__animated animate__slideInDown'>{STRINGS.INVALID_OTP_MESSAGE[LANGUAGE_ID]}</p></span> :
                             <p></p>}
-                        <p style={{ fontWeight: 'bold', fontSize: '0.9em', color: "#fff" }}>{STRINGS.OTP_MESSAGE[LANGUAGE_ID]}</p>
+                        <p style={{ fontWeight: 'bold', fontSize: '0.9em', color: "#cf4036", }}>{STRINGS.OTP_MESSAGE[LANGUAGE_ID]}</p>
                     </div>
                 </div>
             </div>

@@ -204,7 +204,7 @@ function Quiz({ changeStatus, run }) {
             </div>
             <br />
             <div className='question animate__animated animate__lightSpeedInRight'>
-                <h3 className='question' style={{ color: "#fff" }}>{question}</h3>
+                <h3 className='question' style={{ color: "#192130" }}>{question}</h3>
             </div>
             <div className='input-container-number mt-4 '>
                 {answers.map((item, key) => (

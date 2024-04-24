@@ -1,10 +1,13 @@
 import {
+  CCard,
+  CCol,
   CDropdown,
   CDropdownItem,
   CDropdownMenu,
   CDropdownToggle,
   CModal,
   CModalBody,
+  CRow,
 } from "@coreui/react";
 import {
   Button,
@@ -60,7 +63,9 @@ const MatchSelectionPage = () => {
   const [selectedLeaderBoard, setSelectedLeaderBoard] = useState([]);
   const [leaderboardVisible, setLeaderboardVisible] = useState(false);
   const [allMatches, setAllMatches] = useState([]);
-  const winner = previouseWinners.includes(localStorage.getItem('mycricq-mobile'))
+  const winner = previouseWinners.includes(
+    localStorage.getItem("mycricq-mobile")
+  );
   // useEffect(() => {
   //   getAllMatches().then((res) => {
   //     setAllMatches(res.data);
@@ -119,7 +124,7 @@ const MatchSelectionPage = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         const mobile = localStorage.getItem("mycricq-mobile");
-        const serverRef = localStorage.getItem("mycricq-userRef")
+        const serverRef = localStorage.getItem("mycricq-userRef");
 
         await userUnsubscribeFromApp(mobile, serverRef)
           .then(() => {
@@ -183,9 +188,8 @@ const MatchSelectionPage = () => {
   };
 
   const rulesGenerator = (rules) => {
-    
-    if(winner) {
-      return `<div style="text-align:center"> ${STRINGS.WINNER_MESSAGE[LANGUAGE_ID]}</div>`
+    if (winner) {
+      return `<div style="text-align:center"> ${STRINGS.WINNER_MESSAGE[LANGUAGE_ID]}</div>`;
     }
     if (rules?.length == 0) return "";
     let html = `<div style="text-align:left">Rules: <ul>`;
@@ -241,7 +245,7 @@ const MatchSelectionPage = () => {
   const checkCurrentUser = (listMobile) => {
     const mobile = localStorage.getItem("mycricq-mobile");
     if (listMobile == mobile) return "red";
-    else return "#fff";
+    else return "#192130";
   };
 
   return (
@@ -261,23 +265,53 @@ const MatchSelectionPage = () => {
         visible={leaderboardVisible}
         onClose={() => setLeaderboardVisible(false)}
       >
-        <CModalBody className="leaderboard-modal p-4">
-          <h2 style={{ textAlign: "center" }}>
-            <img style={{ marginRight: 25 }} src={Trophy} height={35} />
-            Leaderboard{" "}
-            <img style={{ marginLeft: 20 }} src={Trophy} height={35} />
-            <h4 style={{ fontSize: "0.5em" }}>
-              ({selectedMatch?.attributes.campaign_name})
-            </h4>
-          </h2>
+        <CModalBody className="leaderboard-modal">
+          <div style={{background: 'linear-gradient(180deg, rgba(255,192,3,1) 0%, rgba(255,233,169,1) 65%)', borderRadius: '10px 10px 50px 50px', marginBottom: '20px', paddingBottom: '30px', paddingTop: '10px'}}>
+            <CRow className="mb-4">
+              <CCol style={{ textAlign: "center" }}>
+              <img src={Rank2} width={70} />
+                <p style={{ fontSize: "0.8em", fontWeight: "bold", backgroundColor: 'white', padding: "5px", margin: "3px", borderRadius: '100px', bottom: "50px" }}>
+                  {selectedLeaderBoard[1]?.attributes.player}
+                </p>
+                
+              </CCol>
+              <CCol style={{ textAlign: "center" }}>
+       
+                <img src={Rank1} width={90} />
+                <p style={{ fontSize: "0.8em", fontWeight: "bold", backgroundColor: 'white', padding: "5px", margin: "3px",borderRadius: '100px', bottom: "50px" }}>
+                  {selectedLeaderBoard[0]?.attributes.player}
+                </p>
+          
+              </CCol>
+              <CCol style={{ textAlign: "center" }}>
+              <img src={Rank3} width={70} />
+                <p style={{ fontSize: "0.8em", fontWeight: "bold", backgroundColor: 'white', padding: "5px", margin: "3px",borderRadius: '100px', bottom: "50px" }}>
+                  {selectedLeaderBoard[2]?.attributes.player}
+                </p>
+    
+               
+              </CCol>
+            </CRow>
+            <h2 style={{ textAlign: "center" }}>
+              <img style={{ marginRight: 25 }} src={Trophy} height={35} />
+              Leaderboard{" "}
+              <img style={{ marginLeft: 20 }} src={Trophy} height={35} />
+              <h4 style={{ fontSize: "0.5em" }}>
+                ({selectedMatch?.attributes.campaign_name})
+              </h4>
+            </h2>
+          </div>
           {selectedLeaderBoard?.length == 0 ? (
             <p style={{ textAlign: "center", marginTop: "40px" }}>
               {STRINGS.NO_PLAYERS_MESSAGE[LANGUAGE_ID]}
             </p>
           ) : (
-            <List className="card-list-list">
+            <List
+              className="card-list-list"
+              style={{ overflow: "auto", height: "500px" }}
+            >
               <ListItem disablePadding>
-                <ListItemButton style={{ backgroundColor: "#1e2430" }}>
+                <ListItemButton style={{ backgroundColor: "white" }}>
                   <ListItemText primary="Rank" />
                   <ListItemText primary={STRINGS.NAME[LANGUAGE_ID]} />
                   <ListItemText
@@ -291,10 +325,12 @@ const MatchSelectionPage = () => {
                   <ListItemButton key={key}>
                     <ListItemText primary={<div>{key + 1}</div>} />
                     <ListItemText
+                      
+                      primary={<div>{item.attributes.player}</div>}
                       style={{
+                        display:'flex', justifyContent:'left',
                         color: checkCurrentUser(item.attributes.mobile),
                       }}
-                      primary={item.attributes.player}
                     />
                     <ListItemText
                       primary={
@@ -329,7 +365,7 @@ const MatchSelectionPage = () => {
           </div>
         </CModalBody>
       </CModal>
-      <div className="start-content animate__slow">
+      <div style={{ overflow: "auto" }} className="start-content animate__slow">
         <div className="top-heading">
           <h2
             style={{
@@ -350,13 +386,11 @@ const MatchSelectionPage = () => {
                 <Card
                   key={key}
                   sx={{
-                    width: 300,
-                    height: 265,
-                    borderRadius: 10,
+                    borderRadius: 4,
                     boxShadow: "10px 10px 20px rgb(56, 41, 41)",
                     textAlign: "center",
                   }}
-                  className="animate__animated animate__backInDown mb-5"
+                  className="match-card animate__animated animate__backInDown mb-5"
                 >
                   <CardActionArea>
                     <div
@@ -405,7 +439,7 @@ const MatchSelectionPage = () => {
                         style={{
                           position: "absolute",
                           top: "110px",
-                          right: "30px",
+                          right: "18%",
                           fontSize: "0.3em",
                           color: "#fff",
                           backgroundColor: "rgb(150, 41, 41)",
@@ -533,7 +567,7 @@ const MatchSelectionPage = () => {
             ))}
           </List>
         </div>
-        <div className="mt-5 animate__animated animate__bounce  animate__1 animate__delay-5s">
+        <div className=" animate__animated animate__bounce  animate__1 animate__delay-5s">
           <img src={Logo} className="logo-img" />
           <span
             style={{
@@ -545,7 +579,7 @@ const MatchSelectionPage = () => {
               justifyContent: "center",
             }}
           >
-            <span style={{ paddingTop: "5px" }}>Logged In As: </span>
+            <span style={{ paddingTop: "5px", color: '#192130' }}>Logged In As: </span>
             <CDropdown
               style={{ marginLeft: "10px" }}
               variant="input-group"

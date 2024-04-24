@@ -54,7 +54,7 @@ function Login({changeStatus}) {
         <>
             <div className='animate__animated animate__lightSpeedInLeft mt-3'>
                 <div className='input-container-name'>
-                    <p style={{ fontWeight: 'bold', fontSize: '1em', color: "#fff" }}>{STRINGS.NAME[LANGUAGE_ID]}</p>
+                    <p style={{ fontWeight: 'bold', fontSize: '1.1em',   color: "#cf4036", }}>{STRINGS.NAME[LANGUAGE_ID]}</p>
                     <div className='input-with-name'>
                         <TextField
                             variant="standard"
@@ -79,8 +79,8 @@ function Login({changeStatus}) {
             </div>
             <br />
             <div className='animate__animated animate__lightSpeedInLeft'>
-                <div className='input-container-number'>
-                    <p style={{ fontWeight: 'bold', fontSize: '1em', color: "#fff" }}>{STRINGS.MOBILE_NUMBER[LANGUAGE_ID]}</p>
+                <div className='input-container-number mt-2'>
+                    <p style={{ fontWeight: 'bold', fontSize: '1.1em', color: "#cf4036", }}>{STRINGS.MOBILE_NUMBER[LANGUAGE_ID]}</p>
                     <div className='input-with-number'>
                         <TextField
                             variant="standard"

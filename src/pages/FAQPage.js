@@ -45,16 +45,17 @@ function FAQPage() {
             FAQ
           </h2>
         </div>
-        <List className="card-list-faq" style={{ padding: "30px" }}>
+        <List className="card-list-faq" style={{ padding: "30px", }}>
           <CButton
-            color="light"
+            color="dark"
             variant="ghost"
+            
             onClick={(event) => {
               event.preventDefault();
               setVisible1(!visible1);
             }}
           >
-            <h3>MyCrickQ යනු කුමක්ද?</h3>
+            <h3 style={{ fontWeight: "bold"}}>MyCrickQ යනු කුමක්ද?</h3>
           </CButton>
 
           <CCollapse visible={visible1}>
@@ -77,14 +78,14 @@ function FAQPage() {
           <br />
           <CButton
             className="mt-4"
-            color="light"
+            color="dark"
             variant="ghost"
             onClick={(event) => {
               event.preventDefault();
               setVisible2(!visible2);
             }}
           >
-            <h3>මෙම ක්‍රීඩාව සිදු කරන්නේ කෙසේද?</h3>
+            <h3 style={{ fontWeight: "bold"}}>මෙම ක්‍රීඩාව සිදු කරන්නේ කෙසේද?</h3>
           </CButton>
 
           <CCollapse visible={visible2}>
@@ -106,14 +107,14 @@ function FAQPage() {
           <br />
           <CButton
             className="mt-4"
-            color="light"
+            color="dark"
             variant="ghost"
             onClick={(event) => {
               event.preventDefault();
               setVisible3(!visible3);
             }}
           >
-            <h3>සේවාවෙන් ඉවත් වන්නේ කෙසේද?</h3>
+            <h3 style={{ fontWeight: "bold"}}>සේවාවෙන් ඉවත් වන්නේ කෙසේද?</h3>
           </CButton>
 
           <CCollapse visible={visible3}>
@@ -139,14 +140,14 @@ function FAQPage() {
           <br />
           <CButton
             className="mt-4"
-            color="light"
+            color="dark"
             variant="ghost"
             onClick={(event) => {
               event.preventDefault();
               setVisible4(!visible4);
             }}
           >
-            <h3>MyCrickQ.com වෙත ලියාපදිංචි වීම</h3>
+            <h3 style={{ fontWeight: "bold"}}>MyCrickQ.com වෙත ලියාපදිංචි වීම</h3>
           </CButton>
 
           <CCollapse visible={visible4}>
@@ -170,14 +171,14 @@ function FAQPage() {
           <br />
           <CButton
             className="mt-4"
-            color="light"
+            color="dark"
             variant="ghost"
             onClick={(event) => {
               event.preventDefault();
               setVisible5(!visible5);
             }}
           >
-            <h3>ජයග්‍රාහකයෙකු තෝරා ගනු ලබන්නේ කෙසේද? </h3>
+            <h3 style={{ fontWeight: "bold"}}>ජයග්‍රාහකයෙකු තෝරා ගනු ලබන්නේ කෙසේද? </h3>
           </CButton>
 
           <CCollapse visible={visible5}>
@@ -211,14 +212,14 @@ function FAQPage() {
           <br />
           <CButton
             className="mt-4"
-            color="light"
+            color="dark"
             variant="ghost"
             onClick={(event) => {
               event.preventDefault();
               setVisible6(!visible6);
             }}
           >
-            <h3>MyCrickQ.com පිළිබඳ වැඩිදුර තොරතුරු</h3>
+            <h3 style={{ fontWeight: "bold"}}>MyCrickQ.com පිළිබඳ වැඩිදුර තොරතුරු</h3>
           </CButton>
 
           <CCollapse visible={visible6}>

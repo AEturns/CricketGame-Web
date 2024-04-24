@@ -22,7 +22,8 @@ function StatisticsWidgets() {
   return (
     <>
       <CRow>
-        <CCol md={6} xs={12}>
+        <CCol md={3} xs={1}> </CCol>
+        <CCol md={3} xs={5}>
           <CWidgetStatsE
             className="mb-3"
           
@@ -31,7 +32,7 @@ function StatisticsWidgets() {
               <CChartBar
               
                 className="mx-auto"
-                style={{ height: "40px", width: "80px", color: '#ffff' }}
+                style={{ height: "20px", width: "50px", color: '#ffff' }}
                 data={{
                   labels: [
                     "M",
@@ -80,18 +81,18 @@ function StatisticsWidgets() {
                 }}
               />
             }
-            title={<span style={{color: 'whitesmoke'}}>Daily Visits</span>}
-            value={<h1 style={{color: 'whitesmoke', fontWeight: 'bolder'}}><CountUp start={0} duration={4} end={dailyVisits} /></h1>}
+            title={<span style={{color: 'whitesmoke', fontSize: '11px'}}>Daily Visits</span>}
+            value={<h1 style={{color: 'whitesmoke', fontWeight: 'bolder', fontSize: '15px'}}><CountUp start={0} duration={4} end={dailyVisits} /></h1>}
           />
         </CCol>
-        <CCol md={6} xs={12}>
+        <CCol md={3} xs={5}>
           <CWidgetStatsE
           style={{backgroundColor: '#DAA403'}}
             className="mb-3"
             chart={
               <CChartLine
                 className="mx-auto"
-                style={{ height: "40px", width: "80px" }}
+                style={{ height: "20px", width: "50px" }}
                 data={{
                   labels: [
                     "M",
@@ -148,10 +149,11 @@ function StatisticsWidgets() {
                 }}
               />
             }
-            title={<span style={{color: 'whitesmoke'}}>Live Players</span>}
-            value={<h1 style={{color: 'whitesmoke', fontWeight: 'bolder'}}><CountUp start={0} duration={4} end={generateRandomNumber()} /></h1>}
+            title={<span style={{color: 'whitesmoke',  fontSize: '11px'}}>Live Players</span>}
+            value={<h1 style={{color: 'whitesmoke', fontWeight: 'bolder',  fontSize: '15px'}}><CountUp start={0} duration={4} end={generateRandomNumber()} /></h1>}
           />
         </CCol>
+        <CCol md={3} xs={1}> </CCol>
       </CRow>
     </>
   );

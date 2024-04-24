@@ -52,18 +52,24 @@ function Completed({ match }) {
         (element) => element?.attributes?.mobile == mobile
       );
       console.log("dataInFind", data, leaderboard);
-      
+
       completeMatch(
         localStorage.getItem("mycricq-username"),
         localStorage.getItem("mycricq-mobile"),
-        data ? Number(data?.attributes?.points) + Number(matchData.score) : Number(matchData.score),
-        `${data ? Number(data?.attributes?.points) + Number(matchData.score) : Number(matchData.score)}/${matchData.wickets}`,
+        data
+          ? Number(data?.attributes?.points) + Number(matchData.score)
+          : Number(matchData.score),
+        `${
+          data
+            ? Number(data?.attributes?.points) + Number(matchData.score)
+            : Number(matchData.score)
+        }/${matchData.wickets}`,
         matchData.id,
         data ? data.id : null
       ).then((res) => {
         if (!data) {
           console.log("USER CREATED");
-          console.log(res.data)
+          console.log(res.data);
           userSubscribe(
             res?.data?.data?.id,
             localStorage.getItem("mycricq-mobile"),
@@ -98,7 +104,7 @@ function Completed({ match }) {
   const checkCurrentUser = (listMobile) => {
     const mobile = localStorage.getItem("mycricq-mobile");
     if (listMobile == mobile) return "red";
-    else return "#fff";
+    else return "#1e2430";
   };
 
   return (
@@ -106,19 +112,23 @@ function Completed({ match }) {
       <div className="award-animation">
         <Lottie width={250} options={defaultOptions} />
       </div>
-      <h1 className="score-label">SCORE</h1>
-      <h1 className="score-points">
-        {match.score} / {match.wickets}{" "}
-      </h1>
-      <p style={{ textAlign: "center", color: "#fff" }}>
-        Leaderboard{" "}
-        <h4 style={{ fontSize: "0.5em" }}>
-          ({match.attributes.matchSize} /{match.attributes.matchSize} )
-        </h4>
-      </p>
-      <p style={{ textAlign: "center", color: "#fff" }}>
-        <h4 style={{ fontSize: "0.5em" }}>{match?.attributes?.last_message}</h4>
-      </p>
+      <div>
+        <h1 className="score-label">SCORE</h1>
+        <h1 className="score-points">
+          {match.score} / {match.wickets}{" "}
+        </h1>
+        <p style={{ textAlign: "center", color: "#fff", WebkitTextStroke: '1px black' }}>
+          Leaderboard{" "}
+          <h4 style={{ fontSize: "0.6em" }}>
+            ({match.attributes.matchSize} /{match.attributes.matchSize} )
+          </h4>
+        </p>
+        <p style={{ textAlign: "center", color: "#fff" }}>
+          <h4 style={{ fontSize: "0.5em" }}>
+            {match?.attributes?.last_message}
+          </h4>
+        </p>
+      </div>
       <div
         style={{
           display: "flex",
@@ -128,9 +138,9 @@ function Completed({ match }) {
         }}
       >
         <List className="card-list-list completed-leaderboard">
-          <ListItem disablePadding>
+          <ListItem disablePadding style={{backgroundColor: 'white'}}>
             <ListItemButton
-              style={{ backgroundColor: "#1e2430", color: "#fff" }}
+              style={{  color: "#1e2430", backgroundColor: 'white' }}
             >
               <ListItemText primary="Rank" />
               <ListItemText
@@ -147,7 +157,7 @@ function Completed({ match }) {
             <ListItem disablePadding>
               <ListItemButton
                 key={key}
-                style={{ backgroundColor: "#2a3244", color: "#fff" }}
+                style={{  color: "#1e2430", backgroundColor: 'white' }}
               >
                 <ListItemText primary={<div>{key + 1} </div>} />
                 <ListItemText
@@ -181,18 +191,23 @@ function Completed({ match }) {
         </List>
       </div>
 
-        <Button
-          variant="contained"
-          color="error"
-          className="mt-2"
-          onClick={() => {
-            navigate.push("/selection?ref=" + localStorage.getItem("mycricq-mobile") + "&username=" + localStorage.getItem("mycricq-username"));
-            sessionStorage.removeItem("mycricq-matchSession");
-          }}
-        >
-          Play Another Match
-        </Button>
-        {/* <Button
+      <Button
+        variant="contained"
+        color="error"
+        className="mt-2"
+        onClick={() => {
+          navigate.push(
+            "/selection?ref=" +
+              localStorage.getItem("mycricq-mobile") +
+              "&username=" +
+              localStorage.getItem("mycricq-username")
+          );
+          sessionStorage.removeItem("mycricq-matchSession");
+        }}
+      >
+        Play Another Match
+      </Button>
+      {/* <Button
           variant="contained"
           color="error"
           className="mt-2"
@@ -200,7 +215,6 @@ function Completed({ match }) {
             window.location.reload(false);
           }}
         ></Button> */}
-
     </div>
   );
 }

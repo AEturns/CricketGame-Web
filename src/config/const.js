@@ -156,7 +156,6 @@ export const matches = [
 ];
 
 export const previouseWinners = [
-  "0778987181",
   "94773677630",
   "0773677630",
   "94778661053",
