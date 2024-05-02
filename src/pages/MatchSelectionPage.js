@@ -597,7 +597,7 @@ const MatchSelectionPage = () => {
                     color: "#cf4036",
                     fontWeight: "bold",
                     fontSize: "0.7em",
-                    paddingBottom: "200px",
+                    paddingBottom: "300px",
                   }}
                 >
                   {localStorage.getItem("mycricq-username")}
