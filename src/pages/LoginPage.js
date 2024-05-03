@@ -11,6 +11,7 @@ import {
   mobileGenerator,
 } from "../util/otpGenerator";
 import { WEB_URL } from "../config/const";
+import LoadingFullscreen from "../components/LoadingFullscreen";
 
 const LoginPage = () => {
   const [state, setState] = useState("LOGIN");
@@ -18,6 +19,7 @@ const LoginPage = () => {
   const [name, setName] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
   const [serverRef, setServerRef] = useState("");
+  const [loading, setLoading] = useState(false)
 
   const [snackBarState, setSnackBarState] = useState({
     open: false,
@@ -34,6 +36,7 @@ const LoginPage = () => {
   const sendOTPmessage = async (name, mobileNumber) => {
     // const {otp, decryptedOTP} = generateOTP(6)
     // setGeneratedOTP(otp)
+    setLoading(true)
     setName(name);
     setMobileNumber(mobileNumber);
     await sendOTP(mobileNumber)
@@ -45,14 +48,17 @@ const LoginPage = () => {
           window.location.replace(WEB_URL + "selection?ref=" + mobileNumber + "&username=" + name)
           return
         }
+        setLoading(false)
         setSnackBarState({
           open: true,
           vertical: "bottom",
           horizontal: "center",
           message: "OTP has sent to your mobile number !!",
         });
+     
       })
       .catch((e) => {
+        setLoading(false)
         setSnackBarState({
           open: true,
           vertical: "bottom",
@@ -64,6 +70,7 @@ const LoginPage = () => {
 
   return (
     <Container style={{ textAlign: "center", marginTop: "10%" }} fixed>
+      <LoadingFullscreen loading={loading} />
       <div className="top-heading mb-3">
         <h2
           style={{
