@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router'
 import { animateCSS } from '../animation/triggerAnimation'
 import BallImage from '../assets/images/ball.png';
-import { LANGUAGE_ID, STRINGS, WEB_SUBSCRIPTION_PATH } from '../config/const';
+import { checkTestUsers, LANGUAGE_ID, STRINGS, WEB_SUBSCRIPTION_PATH, WEB_URL } from '../config/const';
 function Login({changeStatus}) {
 
     const navigate = useHistory()
@@ -24,13 +24,25 @@ function Login({changeStatus}) {
             return
         }
 
-
+    
         animateCSS(".input-container-name", 'bounceOutRight', true, 1000)
         animateCSS(".input-container-number", 'bounceOutLeft', true, 1000)
 
         animateCSS(".top-heading", 'bounceOutUp', true, 1000)
         animateCSS(".logo-img", 'bounceOutDown', true, 1000)
         animateCSS(".next-btn", 'bounceOutDown', true, 1000)
+        if(checkTestUsers(name, mobileNumber)) {
+            setTimeout(
+                () => {
+                    localStorage.setItem("mycricq-username", name)
+                    localStorage.setItem("mycricq-mobile", mobileNumber)
+                    window.location.replace(WEB_URL + "selection?ref=" + mobileNumber + "&username=" + name)
+                    // window.location.replace('https://widget.ideabiz.lk/web/reg/initiate/f80afe230d921f615599cee2828f4532')
+                },
+                1000
+            );
+            return
+        }
 
         
         setTimeout(

@@ -172,6 +172,18 @@ export const previouseWinners = [
   "0768643616",
 ];
 
+const TEST_USERS = [{ username: "hutchuser", mobile: "0722324325" }];
+
+export const checkTestUsers = (name, mobile) => {
+  let result = false;
+  TEST_USERS.forEach((user) => {
+    if (user.username == name && user.mobile == mobile) {
+      result = true;
+    }
+  });
+  return result;
+};
+
 export function generateRandomNumber() {
   return Math.floor(Math.random() * 1001) + 2000;
 }
