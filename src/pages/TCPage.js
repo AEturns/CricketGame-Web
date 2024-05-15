@@ -18,7 +18,7 @@ function TCPage() {
       <CButton
         color="danger"
         variant="outline"
-        style={{ textAlign: "start", marginTop: "5%" }}
+        style={{ textAlign: "start", marginTop: "5%", cursor: "pointer" }}
         size="small"
         onClick={() => navigate.goBack()}
       >

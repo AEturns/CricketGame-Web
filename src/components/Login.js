@@ -4,6 +4,8 @@ import { useHistory } from 'react-router'
 import { animateCSS } from '../animation/triggerAnimation'
 import BallImage from '../assets/images/ball.png';
 import { checkTestUsers, LANGUAGE_ID, STRINGS, WEB_SUBSCRIPTION_PATH, WEB_URL } from '../config/const';
+import { CButton } from '@coreui/react';
+
 function Login({changeStatus}) {
 
     const navigate = useHistory()
@@ -64,6 +66,7 @@ function Login({changeStatus}) {
     });
     return (
         <>
+        
             <div className='animate__animated animate__lightSpeedInLeft mt-3'>
                 <div className='input-container-name'>
                     <p style={{ fontWeight: 'bold', fontSize: '1.1em',   color: "#cf4036", }}>{STRINGS.NAME[LANGUAGE_ID]}</p>

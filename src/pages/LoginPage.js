@@ -5,13 +5,11 @@ import Logo from "../assets/images/Logo-01.png";
 import Login from "../components/Login";
 import OTP from "../components/OTP";
 import { sendOTP } from "../services/otp.service";
-import {
-  generateMessage,
-  generateOTP,
-  mobileGenerator,
-} from "../util/otpGenerator";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { WEB_URL } from "../config/const";
 import LoadingFullscreen from "../components/LoadingFullscreen";
+import { CButton } from "@coreui/react";
+import { useHistory } from "react-router";
 
 const LoginPage = () => {
   const [state, setState] = useState("LOGIN");
@@ -19,8 +17,8 @@ const LoginPage = () => {
   const [name, setName] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
   const [serverRef, setServerRef] = useState("");
-  const [loading, setLoading] = useState(false)
-
+  const [loading, setLoading] = useState(false);
+  const navigate = useHistory();
   const [snackBarState, setSnackBarState] = useState({
     open: false,
     vertical: "bottom",
@@ -36,29 +34,33 @@ const LoginPage = () => {
   const sendOTPmessage = async (name, mobileNumber) => {
     // const {otp, decryptedOTP} = generateOTP(6)
     // setGeneratedOTP(otp)
-    setLoading(true)
+    setLoading(true);
     setName(name);
     setMobileNumber(mobileNumber);
     await sendOTP(mobileNumber)
       .then((res) => {
         setServerRef(res?.data?.data.serverRef);
-        if(res.data?.statusCode == "E1351" || res.data?.statusDetail == "user already registered" ) {
-          localStorage.setItem("mycricq-username", name)
-          localStorage.setItem("mycricq-mobile", mobileNumber)
-          window.location.replace(WEB_URL + "selection?ref=" + mobileNumber + "&username=" + name)
-          return
+        if (
+          res.data?.statusCode == "E1351" ||
+          res.data?.statusDetail == "user already registered"
+        ) {
+          localStorage.setItem("mycricq-username", name);
+          localStorage.setItem("mycricq-mobile", mobileNumber);
+          window.location.replace(
+            WEB_URL + "selection?ref=" + mobileNumber + "&username=" + name
+          );
+          return;
         }
-        setLoading(false)
+        setLoading(false);
         setSnackBarState({
           open: true,
           vertical: "bottom",
           horizontal: "center",
           message: "OTP has sent to your mobile number !!",
         });
-     
       })
       .catch((e) => {
-        setLoading(false)
+        setLoading(false);
         setSnackBarState({
           open: true,
           vertical: "bottom",
@@ -71,6 +73,17 @@ const LoginPage = () => {
   return (
     <Container style={{ textAlign: "center", marginTop: "10%" }} fixed>
       <LoadingFullscreen loading={loading} />
+      <div style={{ textAlign: "start" }}>
+        <CButton
+          color="danger"
+          variant="outline"
+          style={{ textAlign: "start", marginTop: "5%", cursor: "pointer" }}
+          size="small"
+          onClick={() => navigate.goBack()}
+        >
+          <ArrowBackIcon />
+        </CButton>
+      </div>
       <div className="top-heading mb-3">
         <h2
           style={{
@@ -84,6 +97,7 @@ const LoginPage = () => {
           Login
         </h2>
       </div>
+
       <div className="mt-5">
         {state == "LOGIN" ? (
           <Login

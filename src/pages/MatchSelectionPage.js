@@ -1,4 +1,5 @@
 import {
+  CButton,
   CCard,
   CCol,
   CDropdown,
@@ -34,15 +35,11 @@ import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import GamepadIcon from "@mui/icons-material/Gamepad";
 import {
   LANGUAGE_ID,
-  leaderboard,
-  MAIN_API,
   MAIN_PROXY_API,
-  matches,
   previouseWinners,
   STRINGS,
-  WEB_SUBSCRIPTION_STATUS_PATH,
-  WEB_SUBSCRIPTION_TOKEN,
 } from "../config/const";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { getAllMatches } from "../services/match.service";
 import moment from "moment/moment";
 import Rank1 from "../assets/images/rank_1.png";
@@ -53,7 +50,6 @@ import {
   userSubscribe,
   userUnsubscribeFromApp,
 } from "../services/user.service";
-import axios from "axios";
 import { displayAmountWithCommas } from "../util/common";
 
 const MatchSelectionPage = () => {
@@ -266,30 +262,64 @@ const MatchSelectionPage = () => {
         onClose={() => setLeaderboardVisible(false)}
       >
         <CModalBody className="leaderboard-modal">
-          <div style={{background: 'linear-gradient(180deg, rgba(255,192,3,1) 0%, rgba(255,233,169,1) 65%)', borderRadius: '10px 10px 50px 50px', marginBottom: '20px', paddingBottom: '30px', paddingTop: '10px'}}>
+          <div
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(255,192,3,1) 0%, rgba(255,233,169,1) 65%)",
+              borderRadius: "10px 10px 50px 50px",
+              marginBottom: "20px",
+              paddingBottom: "30px",
+              paddingTop: "10px",
+            }}
+          >
             <CRow className="mb-4">
               <CCol style={{ textAlign: "center" }}>
-              <img src={Rank2} width={70} />
-                <p style={{ fontSize: "0.8em", fontWeight: "bold", backgroundColor: 'white', padding: "5px", margin: "3px", borderRadius: '100px', bottom: "50px" }}>
+                <img src={Rank2} width={70} />
+                <p
+                  style={{
+                    fontSize: "0.8em",
+                    fontWeight: "bold",
+                    backgroundColor: "white",
+                    padding: "5px",
+                    margin: "3px",
+                    borderRadius: "100px",
+                    bottom: "50px",
+                  }}
+                >
                   {selectedLeaderBoard[1]?.attributes.player}
                 </p>
-                
               </CCol>
               <CCol style={{ textAlign: "center" }}>
-       
                 <img src={Rank1} width={90} />
-                <p style={{ fontSize: "0.8em", fontWeight: "bold", backgroundColor: 'white', padding: "5px", margin: "3px",borderRadius: '100px', bottom: "50px" }}>
+                <p
+                  style={{
+                    fontSize: "0.8em",
+                    fontWeight: "bold",
+                    backgroundColor: "white",
+                    padding: "5px",
+                    margin: "3px",
+                    borderRadius: "100px",
+                    bottom: "50px",
+                  }}
+                >
                   {selectedLeaderBoard[0]?.attributes.player}
                 </p>
-          
               </CCol>
               <CCol style={{ textAlign: "center" }}>
-              <img src={Rank3} width={70} />
-                <p style={{ fontSize: "0.8em", fontWeight: "bold", backgroundColor: 'white', padding: "5px", margin: "3px",borderRadius: '100px', bottom: "50px" }}>
+                <img src={Rank3} width={70} />
+                <p
+                  style={{
+                    fontSize: "0.8em",
+                    fontWeight: "bold",
+                    backgroundColor: "white",
+                    padding: "5px",
+                    margin: "3px",
+                    borderRadius: "100px",
+                    bottom: "50px",
+                  }}
+                >
                   {selectedLeaderBoard[2]?.attributes.player}
                 </p>
-    
-               
               </CCol>
             </CRow>
             <h2 style={{ textAlign: "center" }}>
@@ -325,10 +355,10 @@ const MatchSelectionPage = () => {
                   <ListItemButton key={key}>
                     <ListItemText primary={<div>{key + 1}</div>} />
                     <ListItemText
-                      
                       primary={<div>{item.attributes.player}</div>}
                       style={{
-                        display:'flex', justifyContent:'left',
+                        display: "flex",
+                        justifyContent: "left",
                         color: checkCurrentUser(item.attributes.mobile),
                       }}
                     />
@@ -366,12 +396,23 @@ const MatchSelectionPage = () => {
         </CModalBody>
       </CModal>
       <div style={{ overflow: "auto" }} className="start-content animate__slow">
-        <div className="top-heading">
+        <div className="top-heading" style={{display: 'flex', gap: 10}}>
+          <div style={{ textAlign: "start", }}>
+            <CButton
+              color="danger"
+              variant="outline"
+              style={{ textAlign: "start", marginTop: "5%", cursor: "pointer" }}
+              size="small"
+              onClick={() => navigate.goBack()}
+            >
+              <ArrowBackIcon />
+            </CButton>
+          </div>
           <h2
             style={{
               color: "#cf4036",
               fontWeight: "bold",
-              fontSize: "2em",
+              fontSize: "1.5em",
               WebkitTextStroke: "0.5px #BD1307",
             }}
             className="animate__animated animate__bounceInDown"
@@ -579,7 +620,9 @@ const MatchSelectionPage = () => {
               justifyContent: "center",
             }}
           >
-            <span style={{ paddingTop: "5px", color: '#192130' }}>Logged In As: </span>
+            <span style={{ paddingTop: "5px", color: "#192130" }}>
+              Logged In As:{" "}
+            </span>
             <CDropdown
               style={{ marginLeft: "10px" }}
               variant="input-group"
