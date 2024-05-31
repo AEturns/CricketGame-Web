@@ -501,7 +501,7 @@ const MatchSelectionPage = () => {
                       </Typography>
                       <Typography gutterBottom variant="h8" component="div">
                         <span>
-                          {STRINGS.WIN_PRIZE[LANGUAGE_ID]}:
+                          {STRINGS.WIN_PRIZE[LANGUAGE_ID]}: {" "}
                           {match.attributes.prize}
                         </span>
                         <p
