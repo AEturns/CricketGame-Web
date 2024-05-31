@@ -396,8 +396,8 @@ const MatchSelectionPage = () => {
         </CModalBody>
       </CModal>
       <div style={{ overflow: "auto" }} className="start-content animate__slow">
-        <div className="top-heading" style={{display: 'flex', gap: 10}}>
-          <div style={{ textAlign: "start", }}>
+        <div className="top-heading" style={{ display: "flex", gap: 10 }}>
+          <div style={{ textAlign: "start" }}>
             <CButton
               color="danger"
               variant="outline"
@@ -501,8 +501,8 @@ const MatchSelectionPage = () => {
                       </Typography>
                       <Typography gutterBottom variant="h8" component="div">
                         <span>
-                          {STRINGS.WIN_PRIZE[LANGUAGE_ID]} Rs.{" "}
-                          {displayAmountWithCommas(match.attributes.prize)}
+                          {STRINGS.WIN_PRIZE[LANGUAGE_ID]}:
+                          {match.attributes.prize}
                         </span>
                         <p
                           style={{
