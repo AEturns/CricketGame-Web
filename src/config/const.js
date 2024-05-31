@@ -32,6 +32,7 @@ export const API_PATHS = {
   USER_UNSUBSCRIBE_FROM_APP_URL:
     MAIN_PROXY_CONFIG_API + "/config/unsubscribe-app",
   USER_STAT: MAIN_API + "dashboard-datas",
+  WINNERS: MAIN_API + "previouse-winners"
 };
 
 export const LANGUAGE_ID = 1;
@@ -170,6 +171,8 @@ export const previouseWinners = [
   "0768792585",
   "94768643616",
   "0768643616",
+  "0774575318",
+  "94774575318"
 ];
 
 const TEST_USERS = [{ username: "hutchuser", mobile: "0722324325" }];

@@ -47,6 +47,16 @@ const getUserStats = async () => {
     }
 }
 
+const getPreviouseWinners = async () => {
+
+    try {
+    const response = await axios.get(API_PATHS.WINNERS)
+    return response.data
+    } catch (e) {
+        throw e
+    }
+}
+
 
 
 // const userCheckFromIdeaBiz = async (userRef) => {
@@ -65,5 +75,6 @@ export {
     loginRegister,
     userSubscribe,
     userUnsubscribeFromApp,
-    getUserStats
+    getUserStats,
+    getPreviouseWinners
 }

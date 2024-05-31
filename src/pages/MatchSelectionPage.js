@@ -47,6 +47,7 @@ import Rank2 from "../assets/images/rank_2.png";
 import Rank3 from "../assets/images/rank_3.png";
 import Trophy from "../assets/images/trophy.png";
 import {
+  getPreviouseWinners,
   userSubscribe,
   userUnsubscribeFromApp,
 } from "../services/user.service";
@@ -59,15 +60,14 @@ const MatchSelectionPage = () => {
   const [selectedLeaderBoard, setSelectedLeaderBoard] = useState([]);
   const [leaderboardVisible, setLeaderboardVisible] = useState(false);
   const [allMatches, setAllMatches] = useState([]);
-  const winner = previouseWinners.includes(
-    localStorage.getItem("mycricq-mobile")
-  );
+  const [winner, setWinner] = useState(false);
+
   // useEffect(() => {
   //   getAllMatches().then((res) => {
   //     setAllMatches(res.data);
   //   });
   // }, []);
-
+console.log({winner})
   useEffect(() => {
     const queryParameters = new URLSearchParams(window.location.search);
 
@@ -83,6 +83,14 @@ const MatchSelectionPage = () => {
 
     getAllMatches().then((res) => {
       setAllMatches(res.data);
+    });
+
+    getPreviouseWinners().then((res) => {
+      setWinner(
+        res.data[0].attributes.winnerNumber.includes(
+          localStorage.getItem("mycricq-mobile")
+        )
+      );
     });
   }, []);
 
@@ -501,7 +509,7 @@ const MatchSelectionPage = () => {
                       </Typography>
                       <Typography gutterBottom variant="h8" component="div">
                         <span>
-                          {STRINGS.WIN_PRIZE[LANGUAGE_ID]}: {" "}
+                          {STRINGS.WIN_PRIZE[LANGUAGE_ID]}:{" "}
                           {match.attributes.prize}
                         </span>
                         <p
