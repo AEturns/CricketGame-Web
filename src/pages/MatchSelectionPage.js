@@ -61,13 +61,14 @@ const MatchSelectionPage = () => {
   const [leaderboardVisible, setLeaderboardVisible] = useState(false);
   const [allMatches, setAllMatches] = useState([]);
   const [winner, setWinner] = useState(false);
+  const [currentLeaderBoard, setCurrentLeaderBoard] = useState(null);
 
   // useEffect(() => {
   //   getAllMatches().then((res) => {
   //     setAllMatches(res.data);
   //   });
   // }, []);
-console.log({winner})
+  console.log({ winner });
   useEffect(() => {
     const queryParameters = new URLSearchParams(window.location.search);
 
@@ -227,6 +228,15 @@ console.log({winner})
     const data = leaderBoard.sort(function (a, b) {
       return b.attributes.points - a.attributes.points;
     });
+
+    const mobile = localStorage.getItem("mycricq-mobile");
+    const index = data.findIndex((x) => x.attributes.mobile === mobile);
+
+    if (index > 9) {
+      const currentLeaderBoard = data[index];
+      setCurrentLeaderBoard({ index, ...currentLeaderBoard });
+    }
+
     setSelectedLeaderBoard(data.slice(0, 10));
   };
 
@@ -251,6 +261,8 @@ console.log({winner})
     if (listMobile == mobile) return "red";
     else return "#192130";
   };
+
+  console.log({ currentLeaderBoard });
 
   return (
     <Container
@@ -394,6 +406,38 @@ console.log({winner})
                   </ListItemButton>
                 </ListItem>
               ))}
+
+              {currentLeaderBoard && (
+                <ListItem disablePadding>
+                  <ListItemButton style={{ fontWeight: "bold" }}>
+                    <ListItemText
+                      style={{ color: "red" }}
+                      primary={<div>{currentLeaderBoard.index + 1}</div>}
+                    />
+                    <ListItemText
+                      primary={
+                        <div>{currentLeaderBoard.attributes.player}</div>
+                      }
+                      style={{
+                        display: "flex",
+                        justifyContent: "left",
+                        color: checkCurrentUser(
+                          currentLeaderBoard.attributes.mobile
+                        ),
+                      }}
+                    />
+                    <ListItemText
+                      primary={
+                        <>
+                          {currentLeaderBoard.attributes.score}
+                          <img style={{ marginLeft: 10 }} src={""} width={25} />
+                        </>
+                      }
+                      style={{ textAlign: "right", color: "red" }}
+                    />
+                  </ListItemButton>
+                </ListItem>
+              )}
             </List>
           )}
           <div style={{ display: "flex", justifyContent: "end" }}>
