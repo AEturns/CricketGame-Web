@@ -25,9 +25,9 @@ function OTP({ generatedOTP, username, mobile, serverRef }) {
             return
         }
 
-        if(!serverRef) {
-            return
-        }
+        // if(!serverRef) {
+        //     return
+        // }
 
         // if (otp != generatedOTP) {
         //     setMobileValidationAlert(true)
