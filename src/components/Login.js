@@ -137,7 +137,9 @@ function Login({changeStatus}) {
                 >
                     NEXT
                 </Button>
+                
             </div>
+            <span style={{fontSize: '12px'}}>දිනකට රු6 + අදාල බදු අය වේ</span>
         </>
     )
 }
