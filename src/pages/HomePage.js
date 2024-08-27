@@ -53,11 +53,30 @@ const HomePage = () => {
           />
         </div>
       </div>
-      <div
+      {/* <div
         className="mt-3 animate__animated animate__backInUp animate__delay-1s"
         style={{ zIndex: -1 }}
       >
         <StatisticsWidgets />
+      </div> */}
+      <div
+        className="mt-3 animate__animated animate__backInUp animate__delay-1s"
+        style={{
+          backgroundColor: "white",
+          marginInline: 350,
+          padding: 12,
+          borderRadius: 20,
+        }}
+      >
+        <span style={{ color: "#BD1307", fontWeight: "bold", fontSize: 55 }}>
+          <span style={{ fontWeight: "bold", fontSize: 30 }}>රු.</span>50,000
+          <span style={{ fontWeight: "bold", fontSize: 15 }}>ක්</span>
+        </span>
+        <br />
+        <span style={{ fontWeight: "bold" }}>
+          දිනාගන්න. <span style={{ color: "green" }}>Play Now</span>{" "}
+          බොත්තම ඔබන්න
+        </span>
       </div>
       <div className="animate__animated animate__backInUp animate__delay-1s">
         {/* <Button
