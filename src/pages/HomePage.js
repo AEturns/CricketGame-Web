@@ -60,13 +60,8 @@ const HomePage = () => {
         <StatisticsWidgets />
       </div> */}
       <div
-        className="mt-3 animate__animated animate__backInUp animate__delay-1s"
-        style={{
-          backgroundColor: "white",
-          marginInline: 350,
-          padding: 12,
-          borderRadius: 20,
-        }}
+        className="mt-3 animate__animated animate__backInUp animate__delay-1s home-promo-banner"
+       
       >
         <span style={{ color: "#BD1307", fontWeight: "bold", fontSize: 55 }}>
           <span style={{ fontWeight: "bold", fontSize: 30 }}>රු.</span>50,000
