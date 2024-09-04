@@ -86,13 +86,17 @@ const MatchSelectionPage = () => {
       setAllMatches(res.data);
     });
 
-    getPreviouseWinners().then((res) => {
-      setWinner(
-        res.data[0].attributes.winnerNumber.includes(
-          localStorage.getItem("mycricq-mobile")
-        )
-      );
-    });
+    setWinner(
+      previouseWinners.includes(localStorage.getItem("mycricq-mobile"))
+    );
+
+    // getPreviouseWinners().then((res) => {
+    //   setWinner(
+    //     res.data[0].attributes.winnerNumber.includes(
+    //       localStorage.getItem("mycricq-mobile")
+    //     )
+    //   );
+    // });
   }, []);
 
   const handleUnsubscribeBtn = async (match) => {
