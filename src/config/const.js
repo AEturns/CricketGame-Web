@@ -72,6 +72,10 @@ export const STRINGS = {
     "You are not allowed to play this game again because you previously won.",
     "ඔබ කලින් දිනූ නිසා ඔබට මෙම ක්‍රීඩාව නැවත ක්‍රීඩා කිරීමට අවසර නැත.",
   ],
+  BLOCKED_MESSAGE: [
+    "Unauthorized activity has been detected from this number, and it has been temporarily blocked. If you believe this is an error or have any concerns, please contact us at 070-2704304. We’re here to help",
+    "මෙම අංකයෙන් අනවසර ක්‍රියාකාරකම් හඳුනාගෙන ඇති අතර, එය තාවකාලිකව වාරණය කර ඇත. මෙය වැරැදි බව ඔබ සිතන්නේ නම්, කරුණාකර අපගේ 070-2704304 අංකයට අමතන්න. අපි ඔබට උදව් කිරීමට සූදානම්.",
+  ],
 };
 
 export const leaderboard = [
@@ -178,6 +182,13 @@ export const previouseWinners = [
   "94712946950",
   "0712946950"
 ];
+
+export const blockedNumbers = [
+  "94712946950",
+  "0712946950",
+  "94777619064",
+  "0777619064"
+]
 
 const TEST_USERS = [{ username: "hutchuser", mobile: "0722324325" }];
 
