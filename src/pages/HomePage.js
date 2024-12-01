@@ -64,7 +64,7 @@ const HomePage = () => {
        
       >
         <span style={{ color: "#BD1307", fontWeight: "bold", fontSize: 55 }}>
-          <span style={{ fontWeight: "bold", fontSize: 30 }}>රු.</span>50,000
+          <span style={{ fontWeight: "bold", fontSize: 30 }}>රු.</span>20,000
           <span style={{ fontWeight: "bold", fontSize: 15 }}>ක්</span>
         </span>
         <br />
