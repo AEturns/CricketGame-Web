@@ -8,6 +8,7 @@ import { CCol, CImage, CLink, CRow, CWidgetStatsE } from "@coreui/react";
 import { CChartBar, CChartLine } from "@coreui/react-chartjs";
 import StatisticsWidgets from "../components/StatisticsWidgets";
 import HomeCricketImage from "../assets/images/home-image.png";
+import PROMO from "../assets/images/promo-20.jpg";
 
 const HomePage = () => {
   const navigate = useHistory();
@@ -59,7 +60,7 @@ const HomePage = () => {
       >
         <StatisticsWidgets />
       </div> */}
-      <div
+      {/* <div
         className="mt-3 animate__animated animate__backInUp animate__delay-1s home-promo-banner"
        
       >
@@ -72,6 +73,19 @@ const HomePage = () => {
           දිනාගන්න. <span style={{ color: "green" }}>Play Now</span>{" "}
           බොත්තම ඔබන්න
         </span>
+      </div> */}
+      <div className="mt-3 animate__animated animate__backInUp animate__delay-1s ">
+
+        <img
+          src={PROMO}
+          height={150}
+          className="home-cricket-image"
+          style={{
+            borderRadius: 10,
+            boxShadow: " rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px",
+            width: 300
+          }}
+        />
       </div>
       <div className="animate__animated animate__backInUp animate__delay-1s">
         {/* <Button
@@ -122,7 +136,7 @@ const HomePage = () => {
             >
               Terms & Conditions
             </CLink>
-            {'\t'}/ {'\t'}
+            {"\t"}/ {"\t"}
             <CLink
               style={{
                 cursor: "pointer",
@@ -139,7 +153,7 @@ const HomePage = () => {
                 }, 1000);
               }}
             >
-               FAQ
+              FAQ
             </CLink>
           </div>
         </div>
