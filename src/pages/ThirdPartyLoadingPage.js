@@ -20,8 +20,6 @@ const ThirdPartyLoadingPage = () => {
   // Parse the query parameters
   const queryParams = new URLSearchParams(location.search);
   const uuid = queryParams.get("uuid");
-  const mid = queryParams.get("mid");
-  const lid = queryParams.get("lid");
 
   useEffect(() => {
     loginFirmi();
@@ -31,8 +29,6 @@ const ThirdPartyLoadingPage = () => {
     try {
       const body = {
         uuid,
-        mid,
-        lid,
       };
       const response = await validateLoginFrimiUser(body);
       console.log(response);
@@ -70,6 +66,9 @@ const ThirdPartyLoadingPage = () => {
         title: "Oops...",
         text: "Something went wrong!",
       });
+      window.location.replace(
+        WEB_URL
+      );
     }
   };
 
