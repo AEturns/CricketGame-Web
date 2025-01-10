@@ -18,6 +18,7 @@
     transform: scale(1.1);
 }
 
+
 @media (max-width:600px) {
 
     .home-img {
@@ -30,6 +31,10 @@
 
     .home-cricket-image {
         width: 100%;
+    }
+
+    .home-promo-banner {
+        margin-inline: 1px
     }
   
 

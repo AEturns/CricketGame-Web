@@ -140,7 +140,6 @@ function OTP({ generatedOTP, username, mobile, serverRef }) {
                     LOGIN
                 </Button>
             </div>
-            <span style={{fontSize: '12px'}}>දිනකට රු6 + අදාල බදු අය වේ</span>
         </>
     )
 }

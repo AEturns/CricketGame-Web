@@ -112,6 +112,14 @@ body::before {
   align-items: center;
 }
 
+.home-promo-banner {
+  background-color: white;
+  margin-inline: 350px;
+  padding: 12px;
+  border-radius: 20px;
+}
+
+
 .fullscreen-overlay.visible {
   display: flex;
 }
@@ -124,6 +132,8 @@ body::before {
   .award-animation {
     height: 220px;
   }
+
+
 }
 
 @media (max-height: 1200px) {
@@ -134,6 +144,8 @@ body::before {
   .card-list-list {
     height: 100%;
   }
+
+
 }
 
 @media (max-height: 700px) {
@@ -149,6 +161,10 @@ body::before {
     margin-top: 5px !important;
     height: 130px !important;
   }
+
+  .home-promo-banner {
+    margin-inline: 1px
+}
 }
 
 @media (max-height: 900px) {
@@ -163,6 +179,10 @@ body::before {
   .award-animation {
     height: 200px;
   }
+
+  .home-promo-banner {
+    margin-inline: 1px
+}
 }
 
 @media (max-height: 620px) {

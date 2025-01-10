@@ -61,6 +61,7 @@ const MatchSelectionPage = () => {
   const [leaderboardVisible, setLeaderboardVisible] = useState(false);
   const [allMatches, setAllMatches] = useState([]);
   const [winner, setWinner] = useState(false);
+  const [blocked, setBlocked] = useState(false)
   const [currentLeaderBoard, setCurrentLeaderBoard] = useState(null);
 
   // useEffect(() => {
@@ -86,13 +87,19 @@ const MatchSelectionPage = () => {
       setAllMatches(res.data);
     });
 
-    getPreviouseWinners().then((res) => {
-      setWinner(
-        res.data[0].attributes.winnerNumber.includes(
-          localStorage.getItem("mycricq-mobile")
-        )
-      );
-    });
+    setWinner(
+      previouseWinners.includes(localStorage.getItem("mycricq-mobile"))
+    );
+
+    setBlocked(previouseWinners.includes(localStorage.getItem("mycricq-mobile")))
+
+    // getPreviouseWinners().then((res) => {
+    //   setWinner(
+    //     res.data[0].attributes.winnerNumber.includes(
+    //       localStorage.getItem("mycricq-mobile")
+    //     )
+    //   );
+    // });
   }, []);
 
   const handleUnsubscribeBtn = async (match) => {
@@ -193,9 +200,13 @@ const MatchSelectionPage = () => {
   };
 
   const rulesGenerator = (rules) => {
-    if (winner) {
+    if (blocked) {
+      return `<div style="text-align:center"> ${STRINGS.BLOCKED_MESSAGE[LANGUAGE_ID]}</div>`;
+    }
+    else if (winner) {
       return `<div style="text-align:center"> ${STRINGS.WINNER_MESSAGE[LANGUAGE_ID]}</div>`;
     }
+    
     if (rules?.length == 0) return "";
     let html = `<div style="text-align:left">Rules: <ul>`;
     rules.forEach((element) => {
