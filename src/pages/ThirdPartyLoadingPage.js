@@ -59,7 +59,7 @@ const ThirdPartyLoadingPage = () => {
 
       localStorage.setItem("mycricq-username", username);
       localStorage.setItem("mycricq-mobile", mobile);
-      localStorage.setItem("mycricq-tag", tag);
+      localStorage.setItem("mycricq-tag", response.tag);
       window.location.replace(
         WEB_URL + "selection?ref=" + mobile + "&username=" + username
       );
