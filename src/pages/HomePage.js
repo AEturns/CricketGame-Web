@@ -8,7 +8,7 @@ import { CCol, CImage, CLink, CRow, CWidgetStatsE } from "@coreui/react";
 import { CChartBar, CChartLine } from "@coreui/react-chartjs";
 import StatisticsWidgets from "../components/StatisticsWidgets";
 import HomeCricketImage from "../assets/images/home-image.png";
-import PROMO from "../assets/images/promo-20.jpg";
+import PROMO2 from "../assets/images/promo-20-1.png";
 
 const HomePage = () => {
   const navigate = useHistory();
@@ -77,7 +77,7 @@ const HomePage = () => {
       <div className="mt-3 animate__animated animate__backInUp animate__delay-1s ">
 
         <img
-          src={PROMO}
+          src={PROMO2}
           height={150}
           className="home-cricket-image"
           style={{
