@@ -8,6 +8,7 @@ import MatchPage from './pages/MatchPage';
 import { BrowserRouter } from 'react-router-dom';
 import FAQPage from './pages/FAQPage';
 import TCPage from './pages/TCPage';
+import ThirdPartyLoadingPage from './pages/ThirdPartyLoadingPage';
 const HomePage = React.lazy(() => import('./pages/HomePage'))
 const LoginPage = React.lazy(() => import('./pages/LoginPage'))
 
@@ -30,6 +31,7 @@ function App() {
             <Route path="/otp" name="OTP" component={OTPPage} />
             <Route path="/selection" name="Match-Selection" component={MatchSelectionPage} />
             <Route path="/match" name="Match" component={MatchPage} />
+            <Route path="/third-party" name="Third-Party" component={ThirdPartyLoadingPage} />
           </Switch>
         </Suspense>
       </BrowserRouter>

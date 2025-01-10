@@ -32,7 +32,8 @@ export const API_PATHS = {
   USER_UNSUBSCRIBE_FROM_APP_URL:
     MAIN_PROXY_CONFIG_API + "/config/unsubscribe-app",
   USER_STAT: MAIN_API + "dashboard-datas",
-  WINNERS: MAIN_API + "previouse-winners"
+  WINNERS: MAIN_API + "previouse-winners",
+  FRIMI_LOGIN: MAIN_API + "frimi-player/login"
 };
 
 export const LANGUAGE_ID = 1;

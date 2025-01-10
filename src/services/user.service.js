@@ -57,6 +57,16 @@ const getPreviouseWinners = async () => {
     }
 }
 
+const validateLoginFrimiUser = async (body) => {
+
+    try {
+    const response = await axios.post(API_PATHS.FRIMI_LOGIN, body)
+    return response.data
+    } catch (e) {
+        throw e
+    }
+}
+
 
 
 // const userCheckFromIdeaBiz = async (userRef) => {
@@ -76,5 +86,6 @@ export {
     userSubscribe,
     userUnsubscribeFromApp,
     getUserStats,
-    getPreviouseWinners
+    getPreviouseWinners,
+    validateLoginFrimiUser
 }

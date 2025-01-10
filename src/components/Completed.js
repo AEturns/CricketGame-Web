@@ -70,6 +70,12 @@ function Completed({ match }) {
         if (!data) {
           console.log("USER CREATED");
           console.log(res.data);
+
+          //!remove for frimi users
+          if (localStorage.getItem("mycricq-tag") == "frimi") {
+            return;
+          }
+
           userSubscribe(
             res?.data?.data?.id,
             localStorage.getItem("mycricq-mobile"),
@@ -117,7 +123,13 @@ function Completed({ match }) {
         <h1 className="score-points">
           {match.score} / {match.wickets}{" "}
         </h1>
-        <p style={{ textAlign: "center", color: "#fff", WebkitTextStroke: '1px black' }}>
+        <p
+          style={{
+            textAlign: "center",
+            color: "#fff",
+            WebkitTextStroke: "1px black",
+          }}
+        >
           Leaderboard{" "}
           <h4 style={{ fontSize: "0.6em" }}>
             ({match.attributes.matchSize} /{match.attributes.matchSize} )
@@ -138,9 +150,9 @@ function Completed({ match }) {
         }}
       >
         <List className="card-list-list completed-leaderboard">
-          <ListItem disablePadding style={{backgroundColor: 'white'}}>
+          <ListItem disablePadding style={{ backgroundColor: "white" }}>
             <ListItemButton
-              style={{  color: "#1e2430", backgroundColor: 'white' }}
+              style={{ color: "#1e2430", backgroundColor: "white" }}
             >
               <ListItemText primary="Rank" />
               <ListItemText
@@ -157,7 +169,7 @@ function Completed({ match }) {
             <ListItem disablePadding>
               <ListItemButton
                 key={key}
-                style={{  color: "#1e2430", backgroundColor: 'white' }}
+                style={{ color: "#1e2430", backgroundColor: "white" }}
               >
                 <ListItemText primary={<div>{key + 1} </div>} />
                 <ListItemText
