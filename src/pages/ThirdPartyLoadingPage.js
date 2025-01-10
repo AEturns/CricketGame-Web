@@ -31,7 +31,6 @@ const ThirdPartyLoadingPage = () => {
         uuid,
       };
       const response = await validateLoginFrimiUser(body);
-      console.log(response);
 
       const { mobile, username } = response.data;
 
