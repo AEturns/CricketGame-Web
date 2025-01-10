@@ -37,9 +37,9 @@ const ThirdPartyLoadingPage = () => {
       const response = await validateLoginFrimiUser(body);
       console.log(response);
 
-      const { mobile, username, tag } = response;
+      const { mobile, username } = response.data;
 
-      if (!mobile || !username || !tag) {
+      if (!mobile || !username || !response.tag) {
         Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -48,7 +48,7 @@ const ThirdPartyLoadingPage = () => {
         return;
       }
 
-      if (tag != "FRIMI") {
+      if (response.tag != "FRIMI") {
         Swal.fire({
           icon: "error",
           title: "Oops...",
